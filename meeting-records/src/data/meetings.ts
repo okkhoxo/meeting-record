@@ -81,7 +81,7 @@ export const meetings: MeetingRecord[] = [
             },
             {
                 type: 'vision',
-                title: "네안데르 2023년 회고 (https://meet-xi.vercel.app/네안데르_2023_자료.pdf)",
+                title: "네안데르 2023년 회고 (https://meeting-records-mim7qs4jh-okkhoxos-projects.vercel.app/네안데르_2023_자료.pdf)",
                 sections: [
                     {
                         title: "",
@@ -93,7 +93,7 @@ export const meetings: MeetingRecord[] = [
             },
             {
                 type: 'vision',
-                title: "네안데르 2024년 회고 (https://meet-xi.vercel.app/네안데르_2024_자료.pdf)",
+                title: "네안데르 2024년 회고 (https://meeting-records-mim7qs4jh-okkhoxos-projects.vercel.app/네안데르_2024_자료.pdf)",
                 sections: [
                     {
                         title: "",
@@ -334,7 +334,7 @@ export const meetings: MeetingRecord[] = [
             },
             {
                 type: 'organization',
-                title: "유선화 (https://meet-xi.vercel.app/유선화_2026_목표.pdf)",
+                title: "유선화 (https://meeting-records-mim7qs4jh-okkhoxos-projects.vercel.app/유선화_2026_목표.pdf)",
                 sections: [
                     {
                         title: "2026 개인 목표",
