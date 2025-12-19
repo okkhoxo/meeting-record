@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="595" height="842" viewBox="0 0 595 842" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="bgGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0a0f;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a2e;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="accentGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#3B82F6;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#8B5CF6;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="spotGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#06B6D4;stop-opacity:1" />
+    </linearGradient>
+    <linearGradient id="labGradient" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#EF4444;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+
+  <!-- Background -->
+  <rect width="595" height="842" fill="url(#bgGradient)"/>
+
+  <!-- Decorative Elements -->
+  <circle cx="50" cy="80" r="150" fill="#3B82F6" opacity="0.03"/>
+  <circle cx="545" cy="750" r="200" fill="#8B5CF6" opacity="0.03"/>
+
+  <!-- Header Line -->
+  <rect x="40" y="50" width="80" height="4" rx="2" fill="url(#accentGradient)"/>
+
+  <!-- Title Section -->
+  <text x="40" y="95" font-family="Arial, sans-serif" font-size="14" fill="#888" font-weight="500" letter-spacing="3">NEANDER</text>
+  <text x="40" y="140" font-family="Arial, sans-serif" font-size="36" fill="#fff" font-weight="800">2026 목표 수립</text>
+  <text x="40" y="175" font-family="Arial, sans-serif" font-size="24" fill="#666" font-weight="300">Goal Setting Request</text>
+
+  <!-- Divider -->
+  <line x1="40" y1="200" x2="555" y2="200" stroke="#333" stroke-width="1"/>
+
+  <!-- Business Model Section -->
+  <text x="40" y="245" font-family="Arial, sans-serif" font-size="13" fill="#3B82F6" font-weight="700" letter-spacing="2">OUR BUSINESS MODEL</text>
+
+  <!-- BM Card 1 - AC'SCENT -->
+  <rect x="40" y="265" width="515" height="60" rx="8" fill="#111" stroke="#222" stroke-width="1"/>
+  <rect x="40" y="265" width="4" height="60" rx="2" fill="url(#accentGradient)"/>
+  <text x="60" y="295" font-family="Arial, sans-serif" font-size="16" fill="#fff" font-weight="700">AC'SCENT</text>
+  <text x="160" y="295" font-family="Arial, sans-serif" font-size="12" fill="#666">ID (일반, 뿌덕, 뿌디) / WOW (생일이벤트)</text>
+  <rect x="475" y="283" width="60" height="22" rx="11" fill="#888" opacity="0.15"/>
+  <text x="505" y="299" font-family="Arial, sans-serif" font-size="11" fill="#888" font-weight="600" text-anchor="middle">유지</text>
+  <text x="60" y="315" font-family="Arial, sans-serif" font-size="11" fill="#10B981">* 뿌디(뿌덕 디퓨저)는 SPOT 콜라보로 집중</text>
+
+  <!-- BM Card 2 - SPOT -->
+  <rect x="40" y="335" width="515" height="50" rx="8" fill="#111" stroke="#10B981" stroke-width="2"/>
+  <rect x="40" y="335" width="4" height="50" rx="2" fill="url(#spotGradient)"/>
+  <text x="60" y="365" font-family="Arial, sans-serif" font-size="16" fill="#fff" font-weight="700">SPOT</text>
+  <text x="120" y="365" font-family="Arial, sans-serif" font-size="12" fill="#666">핫플 콜라보 / AC'SCENT 콜라보</text>
+  <rect x="475" y="349" width="60" height="22" rx="11" fill="#10B981" opacity="0.2"/>
+  <text x="505" y="365" font-family="Arial, sans-serif" font-size="11" fill="#10B981" font-weight="700" text-anchor="middle">FOCUS</text>
+
+  <!-- BM Card 3 - NEANDER LAB -->
+  <rect x="40" y="395" width="515" height="50" rx="8" fill="#111" stroke="#F59E0B" stroke-width="2"/>
+  <rect x="40" y="395" width="4" height="50" rx="2" fill="url(#labGradient)"/>
+  <text x="60" y="425" font-family="Arial, sans-serif" font-size="16" fill="#fff" font-weight="700">NEANDER LAB</text>
+  <text x="190" y="425" font-family="Arial, sans-serif" font-size="12" fill="#666">AI 콘텐츠 기획사 / B2B</text>
+  <rect x="475" y="409" width="60" height="22" rx="11" fill="#F59E0B" opacity="0.2"/>
+  <text x="505" y="425" font-family="Arial, sans-serif" font-size="11" fill="#F59E0B" font-weight="700" text-anchor="middle">FOCUS</text>
+
+  <!-- BM Card 4 - ETC -->
+  <rect x="40" y="455" width="515" height="50" rx="8" fill="#111" stroke="#222" stroke-width="1" opacity="0.6"/>
+  <rect x="40" y="455" width="4" height="50" rx="2" fill="#444"/>
+  <text x="60" y="485" font-family="Arial, sans-serif" font-size="16" fill="#666" font-weight="700">ETC</text>
+  <text x="110" y="485" font-family="Arial, sans-serif" font-size="12" fill="#555">외주개발, 향수납품, 사쉐납품, 시제품제작</text>
+  <rect x="475" y="469" width="60" height="22" rx="11" fill="#555" opacity="0.15"/>
+  <text x="505" y="485" font-family="Arial, sans-serif" font-size="11" fill="#555" font-weight="600" text-anchor="middle">축소</text>
+
+  <!-- Divider -->
+  <line x1="40" y1="530" x2="555" y2="530" stroke="#333" stroke-width="1"/>
+
+  <!-- Request Section -->
+  <text x="40" y="570" font-family="Arial, sans-serif" font-size="13" fill="#EC4899" font-weight="700" letter-spacing="2">REQUEST</text>
+  <text x="40" y="600" font-family="Arial, sans-serif" font-size="20" fill="#fff" font-weight="700">아래 내용을 작성해 주세요</text>
+
+  <!-- Request Item 1 -->
+  <rect x="40" y="625" width="515" height="55" rx="10" fill="#1a1a2e"/>
+  <circle cx="70" cy="652" r="18" fill="#3B82F6" opacity="0.15"/>
+  <text x="70" y="658" font-family="Arial, sans-serif" font-size="16" fill="#3B82F6" font-weight="800" text-anchor="middle">1</text>
+  <text x="100" y="645" font-family="Arial, sans-serif" font-size="15" fill="#fff" font-weight="700">2026년 개인 목표</text>
+  <text x="100" y="668" font-family="Arial, sans-serif" font-size="12" fill="#888">회사와 관련이 있어도, 없어도 됩니다</text>
+
+  <!-- Request Item 2 -->
+  <rect x="40" y="690" width="515" height="55" rx="10" fill="#1a1a2e"/>
+  <circle cx="70" cy="717" r="18" fill="#10B981" opacity="0.15"/>
+  <text x="70" y="723" font-family="Arial, sans-serif" font-size="16" fill="#10B981" font-weight="800" text-anchor="middle">2</text>
+  <text x="100" y="710" font-family="Arial, sans-serif" font-size="15" fill="#fff" font-weight="700">2026년 회사 목표 + 팀별 KPI</text>
+  <text x="100" y="733" font-family="Arial, sans-serif" font-size="12" fill="#888">구체적으로, 공유드린 자료 기반으로 작성</text>
+
+  <!-- Request Item 3 -->
+  <rect x="40" y="755" width="515" height="55" rx="10" fill="#1a1a2e"/>
+  <circle cx="70" cy="782" r="18" fill="#8B5CF6" opacity="0.15"/>
+  <text x="70" y="788" font-family="Arial, sans-serif" font-size="16" fill="#8B5CF6" font-weight="800" text-anchor="middle">3</text>
+  <text x="100" y="775" font-family="Arial, sans-serif" font-size="15" fill="#fff" font-weight="700">2030년 개인 + 회사 목표</text>
+  <text x="100" y="798" font-family="Arial, sans-serif" font-size="12" fill="#888">러프하게 작성해도 괜찮습니다</text>
+
+  <!-- Footer -->
+  <text x="555" y="830" font-family="Arial, sans-serif" font-size="10" fill="#444" text-anchor="end">NEANDER 2025.12</text>
+</svg>

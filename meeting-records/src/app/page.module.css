@@ -1,0 +1,166 @@
+.main {
+  min-height: 100vh;
+  padding: 4rem 2rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  position: relative;
+  z-index: 1;
+}
+
+.heroTitle {
+  font-size: 5rem;
+  margin-bottom: 1rem;
+  letter-spacing: -0.05em;
+  background: linear-gradient(180deg, #fff 0%, rgba(255, 255, 255, 0.5) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.heroSubtitle {
+  font-size: 1.5rem;
+  color: #888;
+  max-width: 600px;
+  margin-bottom: 3rem;
+}
+
+.timelineSection {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 4rem 0;
+  position: relative;
+}
+
+.timelineLine {
+  position: absolute;
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, transparent 0%, var(--glass-border) 15%, var(--glass-border) 85%, transparent 100%);
+  transform: translateX(-50%);
+}
+
+.meetingCard {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 2rem;
+  margin-bottom: 2rem;
+  cursor: pointer;
+  position: relative;
+  z-index: 2;
+}
+
+.dateBadge {
+  background: var(--primary-glow);
+  color: var(--primary);
+  padding: 0.5rem 1rem;
+  border-radius: 20px;
+  font-weight: 600;
+  font-size: 0.9rem;
+  border: 1px solid var(--primary);
+  margin-bottom: 1rem;
+  display: inline-block;
+}
+
+.cardContent {
+  flex: 1;
+}
+
+.cardTitle {
+  font-size: 1.5rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.attendees {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+
+.attendee {
+  font-size: 0.8rem;
+  color: #aaa;
+  background: rgba(255, 255, 255, 0.1);
+  padding: 0.2rem 0.6rem;
+  border-radius: 4px;
+}
+
+.arrow {
+  color: var(--primary);
+  opacity: 0;
+  transform: translateX(-10px);
+  transition: all 0.3s ease;
+}
+
+.meetingCard:hover .arrow {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* Background Blobs */
+.blob {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(80px);
+  z-index: 0;
+  opacity: 0.4;
+}
+
+.blob1 {
+  top: -10%;
+  left: -10%;
+  width: 500px;
+  height: 500px;
+  background: var(--primary-glow);
+  animation: float 10s infinite ease-in-out;
+}
+
+.blob2 {
+  bottom: -10%;
+  right: -10%;
+  width: 600px;
+  height: 600px;
+  background: var(--secondary-glow);
+  animation: float 12s infinite ease-in-out reverse;
+}
+
+@keyframes float {
+  0% {
+    transform: translate(0, 0);
+  }
+
+  50% {
+    transform: translate(30px, 50px);
+  }
+
+  100% {
+    transform: translate(0, 0);
+  }
+}
+
+@media (max-width: 768px) {
+  .heroTitle {
+    font-size: 3rem;
+  }
+
+  .timelineLine {
+    left: 20px;
+  }
+
+  .meetingCard {
+    flex-direction: column;
+    align-items: flex-start;
+    margin-left: 40px;
+  }
+}
