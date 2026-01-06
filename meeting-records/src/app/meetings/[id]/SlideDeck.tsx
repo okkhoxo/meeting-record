@@ -30,40 +30,6 @@ const slideColors: Record<string, string> = {
     'vision': '#EC4899'
 };
 
-// 아티스트 이름과 링크 매핑
-const artistLinks: Record<string, string> = {
-    '이이남': 'https://claude.ai/public/artifacts/3e12f257-800a-4687-9f6b-a9bc16873137',
-};
-
-// 텍스트에서 아티스트 이름을 링크로 변환하는 함수
-const renderTextWithLinks = (text: string, accentColor?: string) => {
-    const artistNames = Object.keys(artistLinks);
-    const regex = new RegExp(`(${artistNames.join('|')})`, 'g');
-    const parts = text.split(regex);
-
-    return parts.map((part, index) => {
-        if (artistLinks[part]) {
-            return (
-                <a
-                    key={index}
-                    href={artistLinks[part]}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    style={{
-                        color: accentColor || '#06B6D4',
-                        textDecoration: 'underline',
-                        cursor: 'pointer',
-                        fontWeight: 600,
-                    }}
-                    onClick={(e) => e.stopPropagation()}
-                >
-                    {part}
-                </a>
-            );
-        }
-        return part;
-    });
-};
 
 export default function SlideDeck({ meeting }: SlideDeckProps) {
     const [currentSlide, setCurrentSlide] = useState(0);
@@ -156,7 +122,7 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                 <ul className={styles.sectionList}>
                                     {section.items.map((item, iIdx) => (
                                         <li key={iIdx} style={{ '--accent-color': '#10B981', fontSize: '1.3rem' } as React.CSSProperties}>
-                                            {renderTextWithLinks(item, '#10B981')}
+                                            {item}
                                         </li>
                                     ))}
                                 </ul>
@@ -188,7 +154,7 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                                     fontSize: '1rem',
                                                     padding: '0.4rem 0'
                                                 } as React.CSSProperties}>
-                                                    {renderTextWithLinks(item, isReduced ? '#666' : '#F59E0B')}
+                                                    {item}
                                                 </li>
                                             ))}
                                         </ul>
@@ -262,7 +228,7 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                                 }}>
                                                     {item}
                                                 </a>
-                                            ) : renderTextWithLinks(item, color)}
+                                            ) : item}
                                         </li>
                                     );
                                 })}

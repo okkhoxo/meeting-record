@@ -14,14 +14,20 @@
     --success-color: #00C896;
     --warning-color: #FF6B6B;
     --in-progress-color: #4ECDC4;
-}
 
-* {
-    box-sizing: border-box;
-}
-
-.reveal {
-    font-family: 'Roboto', sans-serif;
+    /* Vision 2030 Premium Theme */
+    --vision-bg: #050505;
+    --vision-primary: #00FF9D;
+    /* Neon Green */
+    --vision-secondary: #7000FF;
+    /* Electric Purple */
+    --vision-text: #FFFFFF;
+    --vision-text-muted: #888888;
+    --vision-glass: rgba(255, 255, 255, 0.05);
+    --vision-glass-border: rgba(255, 255, 255, 0.1);
+    --vision-glass-hover: rgba(255, 255, 255, 0.1);
+    --vision-gradient: linear-gradient(135deg, #00FF9D 0%, #00C896 100%);
+    --vision-glow: 0 0 20px rgba(0, 255, 157, 0.3);
     font-size: 28px;
     font-weight: 300;
     color: var(--text-color);
@@ -438,10 +444,8 @@
     width: 200px;
     height: 200px;
     border-radius: 50%;
-    background: conic-gradient(
-        var(--primary-color) 0deg 270deg,
-        var(--light-gray) 270deg 360deg
-    );
+    background: conic-gradient(var(--primary-color) 0deg 270deg,
+            var(--light-gray) 270deg 360deg);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -1808,20 +1812,23 @@
     gap: 12px;
 }
 
-.plan-column, .actual-column {
+.plan-column,
+.actual-column {
     background: var(--light-gray);
     padding: 10px 12px;
     border-radius: 8px;
 }
 
-.plan-column h4, .actual-column h4 {
+.plan-column h4,
+.actual-column h4 {
     font-size: 0.9em;
     color: var(--neandered-green);
     margin: 0 0 6px 0;
     font-weight: 700;
 }
 
-.plan-column p, .actual-column p {
+.plan-column p,
+.actual-column p {
     font-size: 0.72em;
     color: var(--text-color);
     margin: 4px 0;
@@ -1843,7 +1850,8 @@
     gap: 12px;
 }
 
-.price-plan, .price-actual {
+.price-plan,
+.price-actual {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -2281,7 +2289,8 @@
     gap: 6px;
 }
 
-.problem-statement, .future-direction {
+.problem-statement,
+.future-direction {
     padding: 7px 10px;
     border-radius: 6px;
 }
@@ -2310,14 +2319,16 @@
     font-weight: 700;
 }
 
-.problem-statement p, .future-direction p {
+.problem-statement p,
+.future-direction p {
     font-size: 0.68em;
     color: var(--text-color);
     margin: 3px 0;
     line-height: 1.3;
 }
 
-.problem-statement p strong, .future-direction p strong {
+.problem-statement p strong,
+.future-direction p strong {
     color: #FF6B6B;
     font-weight: 700;
 }
@@ -2430,4 +2441,218 @@
     .projects-grid {
         grid-template-columns: 1fr;
     }
+}
+
+/* =========================================
+   VISION 2030 PREMIUM REDESIGN
+   ========================================= */
+
+/* Background & Typography */
+.vision-slide {
+    background-color: var(--vision-bg) !important;
+    color: var(--vision-text) !important;
+}
+
+.vision-title {
+    font-size: 5em !important;
+    font-weight: 900 !important;
+    background: linear-gradient(to right, #ffffff, #888888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -2px !important;
+    margin-bottom: 20px !important;
+    text-shadow: 0 0 50px rgba(255, 255, 255, 0.1);
+}
+
+.vision-subtitle {
+    font-size: 1.5em !important;
+    color: var(--vision-primary) !important;
+    font-weight: 500 !important;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    margin-bottom: 60px !important;
+    text-shadow: var(--vision-glow);
+}
+
+/* Glassmorphism Cards */
+.glass-card {
+    background: var(--vision-glass);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border: 1px solid var(--vision-glass-border);
+    border-radius: 20px;
+    padding: 30px;
+    transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    position: relative;
+    overflow: hidden;
+}
+
+.glass-card:hover {
+    background: var(--vision-glass-hover);
+    border-color: var(--vision-primary);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4), var(--vision-glow);
+}
+
+.glass-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+    transition: 0.5s;
+}
+
+.glass-card:hover::before {
+    left: 100%;
+}
+
+/* 5 Pillars (Core Contents) */
+.pillars-container {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 20px;
+    flex-wrap: wrap;
+}
+
+.pillar-card {
+    flex: 1;
+    min-width: 200px;
+    min-height: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
+.pillar-icon {
+    font-size: 3em;
+    margin-bottom: 20px;
+    color: var(--vision-primary);
+    filter: drop-shadow(0 0 10px rgba(0, 255, 157, 0.5));
+}
+
+.pillar-title {
+    font-size: 1.2em;
+    font-weight: 700;
+    margin-bottom: 10px;
+    color: white;
+}
+
+.pillar-desc {
+    font-size: 0.8em;
+    color: var(--vision-text-muted);
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.3s ease;
+}
+
+.pillar-card:hover .pillar-desc {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Roadmap Diagram */
+.roadmap-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 50px;
+    position: relative;
+}
+
+.roadmap-step {
+    flex: 1;
+    padding: 40px;
+    text-align: center;
+    position: relative;
+    z-index: 2;
+}
+
+.roadmap-line {
+    position: absolute;
+    top: 50%;
+    left: 10%;
+    right: 10%;
+    height: 2px;
+    background: linear-gradient(90deg, var(--vision-secondary), var(--vision-primary));
+    transform: translateY(-50%);
+    z-index: 1;
+    box-shadow: 0 0 15px var(--vision-primary);
+}
+
+.step-circle {
+    width: 60px;
+    height: 60px;
+    background: var(--vision-bg);
+    border: 3px solid var(--vision-primary);
+    border-radius: 50%;
+    margin: 0 auto 20px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.5em;
+    color: var(--vision-primary);
+    box-shadow: 0 0 20px rgba(0, 255, 157, 0.2);
+    transition: all 0.3s ease;
+}
+
+.roadmap-step:hover .step-circle {
+    transform: scale(1.2);
+    background: var(--vision-primary);
+    color: var(--vision-bg);
+}
+
+/* Bento Grid System */
+.bento-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(2, 250px);
+    gap: 20px;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.bento-item {
+    border-radius: 20px;
+    padding: 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.bento-item.large {
+    grid-column: span 2;
+    grid-row: span 2;
+    background: radial-gradient(circle at top right, rgba(0, 255, 157, 0.1), transparent), var(--vision-glass);
+}
+
+.bento-item.medium {
+    grid-column: span 2;
+}
+
+.bento-item.tall {
+    grid-row: span 2;
+}
+
+.bento-label {
+    font-size: 0.9em;
+    color: var(--vision-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.bento-value {
+    font-size: 2.5em;
+    font-weight: 800;
+    color: white;
+}
+
+.neon-accent {
+    color: var(--vision-primary);
+    text-shadow: 0 0 10px rgba(0, 255, 157, 0.5);
 }

@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>논의 중인 사항 - 12월 회의</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        body {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+            min-height: 100vh;
+            padding: 40px;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            color: #FFD700;
+            font-size: 3em;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            text-align: center;
+            color: #888;
+            font-size: 1.3em;
+            margin-bottom: 40px;
+        }
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        svg {
+            width: 100%;
+            height: auto;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>📋 논의 중인 사항</h1>
+        <p class="subtitle">12월 29일 & 30일 회의에서 결정 필요한 안건들</p>
+
+        <svg viewBox="0 0 1200 650">
+            <defs>
+                <linearGradient id="cardGrad1" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#FF6B6B;stop-opacity:0.3" />
+                    <stop offset="100%" style="stop-color:#FF8E53;stop-opacity:0.15" />
+                </linearGradient>
+                <linearGradient id="cardGrad2" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#667eea;stop-opacity:0.3" />
+                    <stop offset="100%" style="stop-color:#764ba2;stop-opacity:0.15" />
+                </linearGradient>
+                <linearGradient id="cardGrad3" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#00C896;stop-opacity:0.3" />
+                    <stop offset="100%" style="stop-color:#00a67c;stop-opacity:0.15" />
+                </linearGradient>
+                <linearGradient id="cardGrad4" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style="stop-color:#FFD700;stop-opacity:0.3" />
+                    <stop offset="100%" style="stop-color:#FFA500;stop-opacity:0.15" />
+                </linearGradient>
+                <filter id="glow">
+                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+                <filter id="shadow">
+                    <feDropShadow dx="0" dy="4" stdDeviation="8" flood-opacity="0.3"/>
+                </filter>
+            </defs>
+
+            <!-- 카드 1: 악센트 ID -->
+            <g transform="translate(20, 20)" filter="url(#shadow)">
+                <rect x="0" y="0" width="280" height="290" rx="15" fill="url(#cardGrad1)" stroke="#FF6B6B" stroke-width="2"/>
+                <text x="140" y="40" text-anchor="middle" fill="#FF6B6B" font-size="20" font-weight="bold">🏪 악센트 ID</text>
+                <text x="140" y="65" text-anchor="middle" fill="#FFD700" font-size="14" font-weight="bold">[논의 중]</text>
+                <line x1="20" y1="82" x2="260" y2="82" stroke="#FF6B6B" stroke-width="1" opacity="0.5"/>
+
+                <text x="20" y="110" fill="#fff" font-size="14" font-weight="bold">문제점</text>
+                <text x="20" y="135" fill="#ddd" font-size="13">• 4.8만원 → 30분 = 가격 불일치</text>
+                <text x="20" y="158" fill="#ddd" font-size="13">• 피규어 단색 → 완성도 ↓</text>
+                <text x="20" y="181" fill="#ddd" font-size="13">• 알바 응대 품질 불균일</text>
+
+                <text x="20" y="215" fill="#00C896" font-size="14" font-weight="bold">해결방안 (결정 필요)</text>
+                <text x="20" y="240" fill="#bbb" font-size="12">1. 알바 교육 강화</text>
+                <text x="20" y="258" fill="#bbb" font-size="12">2. 색칠 과정 추가</text>
+                <text x="20" y="276" fill="#bbb" font-size="12">3. 리뷰 이벤트 / 4. 디테일 추상화</text>
+            </g>
+
+            <!-- 카드 2: 악센트 WOW -->
+            <g transform="translate(320, 20)" filter="url(#shadow)">
+                <rect x="0" y="0" width="280" height="290" rx="15" fill="url(#cardGrad2)" stroke="#667eea" stroke-width="2"/>
+                <text x="140" y="40" text-anchor="middle" fill="#667eea" font-size="20" font-weight="bold">🎂 악센트 WOW</text>
+                <text x="140" y="65" text-anchor="middle" fill="#FFD700" font-size="14" font-weight="bold">[논의 중]</text>
+                <line x1="20" y1="82" x2="260" y2="82" stroke="#667eea" stroke-width="1" opacity="0.5"/>
+
+                <text x="20" y="110" fill="#fff" font-size="14" font-weight="bold">문제점</text>
+                <text x="20" y="135" fill="#ddd" font-size="13">• 생카 6천원 vs WOW 1.5만원</text>
+                <text x="20" y="158" fill="#ddd" font-size="13">• 고객 대부분 10대 (구매력↓)</text>
+                <text x="20" y="181" fill="#ddd" font-size="13">• 70% 가격 듣고 이탈</text>
+
+                <text x="20" y="215" fill="#00C896" font-size="14" font-weight="bold">해결방안 (결정 필요)</text>
+                <text x="20" y="240" fill="#bbb" font-size="12">1. 이탈 고객 데이터 1개월 수집</text>
+                <text x="20" y="258" fill="#bbb" font-size="12">2. 3D 피규어 디퓨저 도입</text>
+                <text x="20" y="276" fill="#bbb" font-size="12">3. 5천원 저가 상품 / 4. 오수 재확인</text>
+            </g>
+
+            <!-- 카드 3: 뿌디 퀄리티 -->
+            <g transform="translate(620, 20)" filter="url(#shadow)">
+                <rect x="0" y="0" width="280" height="290" rx="15" fill="url(#cardGrad3)" stroke="#00C896" stroke-width="2"/>
+                <text x="140" y="40" text-anchor="middle" fill="#00C896" font-size="20" font-weight="bold">🎨 뿌디 퀄리티</text>
+                <text x="140" y="65" text-anchor="middle" fill="#FFD700" font-size="14" font-weight="bold">[논의 중]</text>
+                <line x1="20" y1="82" x2="260" y2="82" stroke="#00C896" stroke-width="1" opacity="0.5"/>
+
+                <text x="20" y="110" fill="#fff" font-size="14" font-weight="bold">핵심 질문</text>
+                <text x="20" y="135" fill="#ddd" font-size="13">• 현재 퀄리티로 충분한가?</text>
+                <text x="20" y="158" fill="#ddd" font-size="13">• 어떤 스타일이 우리다운가?</text>
+                <text x="20" y="181" fill="#ddd" font-size="13">• 개선에 필요한 리소스는?</text>
+
+                <text x="20" y="215" fill="#00C896" font-size="14" font-weight="bold">개선 방안 (결정 필요)</text>
+                <text x="20" y="240" fill="#bbb" font-size="12">1. 우리 스타일로 변환</text>
+                <text x="20" y="258" fill="#bbb" font-size="12">2. 디테일 후보정 작업</text>
+                <text x="20" y="276" fill="#bbb" font-size="12">3. 일관된 아트 스타일 적용</text>
+            </g>
+
+            <!-- 카드 4: SPOT 정체성 -->
+            <g transform="translate(920, 20)" filter="url(#shadow)">
+                <rect x="0" y="0" width="260" height="290" rx="15" fill="url(#cardGrad4)" stroke="#FFD700" stroke-width="2"/>
+                <text x="130" y="40" text-anchor="middle" fill="#FFD700" font-size="20" font-weight="bold">📍 SPOT 정체성</text>
+                <text x="130" y="65" text-anchor="middle" fill="#FF6B6B" font-size="14" font-weight="bold">[방향 제시됨]</text>
+                <line x1="20" y1="82" x2="240" y2="82" stroke="#FFD700" stroke-width="1" opacity="0.5"/>
+
+                <text x="20" y="110" fill="#fff" font-size="14" font-weight="bold">핵심 질문</text>
+                <text x="20" y="135" fill="#ddd" font-size="13">• SPOT = 체험형 AI 브랜드?</text>
+                <text x="20" y="158" fill="#ddd" font-size="13">• 줄이거나 없애거나?</text>
+                <text x="20" y="181" fill="#ddd" font-size="13">• 확실한 전환 필요</text>
+
+                <text x="20" y="215" fill="#00C896" font-size="14" font-weight="bold">제시된 방향</text>
+                <text x="20" y="240" fill="#bbb" font-size="12">SPOT: 보류</text>
+                <text x="20" y="258" fill="#bbb" font-size="12">→ 뿌덕 온라인으로</text>
+                <text x="20" y="276" fill="#bbb" font-size="12">   피벗 가능성 검토</text>
+            </g>
+
+            <!-- 하단 요약 박스 -->
+            <g transform="translate(20, 340)">
+                <rect x="0" y="0" width="1160" height="290" rx="20" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.2)" stroke-width="1"/>
+
+                <!-- 결정된 사항 섹션 -->
+                <text x="40" y="40" fill="#00C896" font-size="22" font-weight="bold" filter="url(#glow)">✅ 이미 결정된 사항 (12/30)</text>
+
+                <g transform="translate(40, 60)">
+                    <rect x="0" y="0" width="170" height="55" rx="10" fill="rgba(0,200,150,0.2)" stroke="#00C896" stroke-width="1"/>
+                    <text x="85" y="22" text-anchor="middle" fill="#00C896" font-size="13" font-weight="bold">방향성</text>
+                    <text x="85" y="42" text-anchor="middle" fill="#fff" font-size="11">체험형 AI 창작 집단</text>
+                </g>
+
+                <g transform="translate(220, 60)">
+                    <rect x="0" y="0" width="170" height="55" rx="10" fill="rgba(0,200,150,0.2)" stroke="#00C896" stroke-width="1"/>
+                    <text x="85" y="22" text-anchor="middle" fill="#00C896" font-size="13" font-weight="bold">유튜브 전략</text>
+                    <text x="85" y="42" text-anchor="middle" fill="#fff" font-size="11">브랜딩 수단으로 활용</text>
+                </g>
+
+                <g transform="translate(400, 60)">
+                    <rect x="0" y="0" width="170" height="55" rx="10" fill="rgba(0,200,150,0.2)" stroke="#00C896" stroke-width="1"/>
+                    <text x="85" y="22" text-anchor="middle" fill="#00C896" font-size="13" font-weight="bold">VS AI 콘텐츠</text>
+                    <text x="85" y="42" text-anchor="middle" fill="#fff" font-size="11">스트릿 AI 콘셉트</text>
+                </g>
+
+                <g transform="translate(580, 60)">
+                    <rect x="0" y="0" width="170" height="55" rx="10" fill="rgba(0,200,150,0.2)" stroke="#00C896" stroke-width="1"/>
+                    <text x="85" y="22" text-anchor="middle" fill="#00C896" font-size="13" font-weight="bold">브랜딩</text>
+                    <text x="85" y="42" text-anchor="middle" fill="#fff" font-size="11">마스크 착용 전략</text>
+                </g>
+
+                <g transform="translate(760, 60)">
+                    <rect x="0" y="0" width="170" height="55" rx="10" fill="rgba(0,200,150,0.2)" stroke="#00C896" stroke-width="1"/>
+                    <text x="85" y="22" text-anchor="middle" fill="#00C896" font-size="13" font-weight="bold">사업 구조</text>
+                    <text x="85" y="42" text-anchor="middle" fill="#fff" font-size="11">4대 사업 구조 확정</text>
+                </g>
+
+                <g transform="translate(940, 60)">
+                    <rect x="0" y="0" width="170" height="55" rx="10" fill="rgba(0,200,150,0.2)" stroke="#00C896" stroke-width="1"/>
+                    <text x="85" y="22" text-anchor="middle" fill="#00C896" font-size="13" font-weight="bold">팀 문화</text>
+                    <text x="85" y="42" text-anchor="middle" fill="#fff" font-size="11">한 몸이 되자</text>
+                </g>
+
+                <!-- 다음 스텝 -->
+                <text x="40" y="165" fill="#FFD700" font-size="20" font-weight="bold">⚡ 다음 스텝</text>
+
+                <g transform="translate(40, 185)">
+                    <circle cx="10" cy="10" r="6" fill="#FF6B6B"/>
+                    <text x="25" y="15" fill="#ddd" font-size="14">악센트 ID/WOW 이슈에 대한 구체적인 해결방안 선택 및 실행 계획 수립</text>
+                </g>
+
+                <g transform="translate(40, 215)">
+                    <circle cx="10" cy="10" r="6" fill="#00C896"/>
+                    <text x="25" y="15" fill="#ddd" font-size="14">뿌디 퀄리티 개선 방향 및 리소스 투입 범위 결정</text>
+                </g>
+
+                <g transform="translate(40, 245)">
+                    <circle cx="10" cy="10" r="6" fill="#FFD700"/>
+                    <text x="25" y="15" fill="#ddd" font-size="14">SPOT 브랜드 피벗 여부 최종 결정</text>
+                </g>
+            </g>
+        </svg>
+    </div>
+</body>
+</html>
