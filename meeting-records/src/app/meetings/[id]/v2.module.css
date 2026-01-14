@@ -1,0 +1,1470 @@
+/* V2 Design - Modern, Clean, Minimal */
+
+.container {
+    width: 100vw;
+    height: 100vh;
+    background: linear-gradient(135deg, #0a0a0f 0%, #12121a 50%, #0a0a0f 100%);
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+}
+
+/* Ambient Background Effect */
+.container::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 30% 30%, rgba(59, 130, 246, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 70% 70%, rgba(139, 92, 246, 0.03) 0%, transparent 50%);
+    pointer-events: none;
+    animation: ambientMove 20s ease-in-out infinite;
+}
+
+@keyframes ambientMove {
+    0%, 100% { transform: translate(0, 0); }
+    50% { transform: translate(-5%, -5%); }
+}
+
+/* Top Bar */
+.topBar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1.5rem 3rem;
+    z-index: 10;
+}
+
+.backBtn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.6rem 1rem;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.03);
+    border: 1px solid rgba(255, 255, 255, 0.06);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.backBtn:hover {
+    color: #fff;
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.12);
+}
+
+.slideNav {
+    display: flex;
+    gap: 8px;
+    align-items: center;
+}
+
+.navDot {
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.15);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navDot:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: scale(1.3);
+}
+
+.navDot.active {
+    width: 24px;
+    border-radius: 4px;
+    background: linear-gradient(90deg, #3B82F6, #8B5CF6);
+}
+
+.counter {
+    color: #444;
+    font-size: 0.85rem;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+    letter-spacing: 0.05em;
+}
+
+/* Slide Area */
+.slideArea {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4rem;
+    position: relative;
+}
+
+.slide {
+    width: 100%;
+    max-width: 1400px;
+    height: 100%;
+    max-height: 800px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 24px;
+    overflow: hidden;
+    backdrop-filter: blur(20px);
+}
+
+.slideNext {
+    animation: slideInNext 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.slidePrev {
+    animation: slideInPrev 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes slideInNext {
+    from {
+        opacity: 0;
+        transform: translateX(60px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+@keyframes slideInPrev {
+    from {
+        opacity: 0;
+        transform: translateX(-60px) scale(0.98);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+    }
+}
+
+/* Title Slide */
+.titleSlide {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 4rem;
+    position: relative;
+}
+
+.titleContent {
+    text-align: center;
+    z-index: 1;
+}
+
+.dateTag {
+    display: inline-block;
+    color: #666;
+    font-size: 0.9rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    letter-spacing: 0.1em;
+}
+
+.mainTitle {
+    font-size: 4rem;
+    font-weight: 700;
+    color: #fff;
+    letter-spacing: -0.03em;
+    line-height: 1.2;
+    margin-bottom: 1.5rem;
+    background: linear-gradient(135deg, #fff 0%, #999 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: #666;
+    font-weight: 400;
+    margin-bottom: 3rem;
+    letter-spacing: -0.01em;
+}
+
+.attendeeList {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.8rem;
+    color: #555;
+    font-size: 1rem;
+}
+
+.attendeeList svg {
+    color: #3B82F6;
+}
+
+.titleDecor {
+    position: absolute;
+    bottom: 4rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+}
+
+.decorLine {
+    width: 1px;
+    height: 60px;
+    background: linear-gradient(180deg, rgba(59, 130, 246, 0.5) 0%, transparent 100%);
+}
+
+.decorDot {
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #3B82F6;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; transform: scale(1); }
+    50% { opacity: 0.5; transform: scale(0.8); }
+}
+
+/* Content Slide */
+.contentSlide {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 3rem 4rem;
+    overflow-y: auto;
+}
+
+.contentSlide::-webkit-scrollbar {
+    width: 4px;
+}
+
+.contentSlide::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.contentSlide::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 2px;
+}
+
+.slideHeader {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+}
+
+.headerLeft {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.typeLabel {
+    font-size: 0.8rem;
+    font-weight: 600;
+    color: #3B82F6;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    padding: 0.4rem 0.8rem;
+    background: rgba(59, 130, 246, 0.1);
+    border-radius: 4px;
+}
+
+.slideIndex {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #333;
+    font-family: 'SF Mono', 'Fira Code', monospace;
+}
+
+.progressBar {
+    width: 120px;
+    height: 3px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 2px;
+    overflow: hidden;
+}
+
+.progressFill {
+    height: 100%;
+    background: linear-gradient(90deg, #3B82F6, #8B5CF6);
+    border-radius: 2px;
+    transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.slideTitle {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 2.5rem;
+    letter-spacing: -0.02em;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.pdfLink {
+    font-size: 0.7rem;
+    color: #666;
+    text-decoration: none;
+    padding: 0.3rem 0.6rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    transition: all 0.2s ease;
+}
+
+.pdfLink:hover {
+    color: #3B82F6;
+    background: rgba(59, 130, 246, 0.1);
+}
+
+/* Sections */
+.sectionsContainer {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+    gap: 1.5rem;
+    flex: 1;
+}
+
+.section {
+    background: rgba(255, 255, 255, 0.02);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    padding: 1.5rem 2rem;
+    animation: sectionFadeIn 0.5s ease-out backwards;
+}
+
+@keyframes sectionFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.sectionTitle {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #888;
+    margin-bottom: 1.2rem;
+    padding-bottom: 0.8rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.sectionItems {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.sectionItems li {
+    display: flex;
+    align-items: flex-start;
+    gap: 0.8rem;
+    font-size: 1rem;
+    color: #bbb;
+    line-height: 1.6;
+    padding: 0.6rem 0;
+    animation: itemFadeIn 0.4s ease-out backwards;
+}
+
+@keyframes itemFadeIn {
+    from {
+        opacity: 0;
+        transform: translateX(-10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+.itemIcon {
+    color: #3B82F6;
+    flex-shrink: 0;
+    margin-top: 3px;
+}
+
+.itemLink {
+    color: #3B82F6;
+    text-decoration: none;
+    word-break: break-all;
+}
+
+.itemLink:hover {
+    text-decoration: underline;
+}
+
+/* Bottom Navigation */
+.bottomNav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 3rem;
+    padding: 1.5rem;
+    z-index: 10;
+}
+
+.navArrow {
+    width: 48px;
+    height: 48px;
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    background: rgba(255, 255, 255, 0.03);
+    color: #666;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.navArrow:hover:not(:disabled) {
+    background: rgba(59, 130, 246, 0.1);
+    border-color: rgba(59, 130, 246, 0.3);
+    color: #3B82F6;
+    transform: scale(1.05);
+}
+
+.navArrow:disabled {
+    opacity: 0.2;
+    cursor: not-allowed;
+}
+
+.slideInfo {
+    min-width: 100px;
+    text-align: center;
+}
+
+.currentType {
+    font-size: 0.85rem;
+    color: #555;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+/* ========================================
+   도식화 슬라이드 스타일
+   ======================================== */
+
+/* 3페이지: 문제 제기 - 대비 구조 */
+.diagramContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.contextNote {
+    font-size: 0.9rem;
+    color: #888;
+    font-style: italic;
+    text-align: center;
+    margin-bottom: -1rem;
+}
+
+.centerQuestion {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    padding: 1.5rem 2rem;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 16px;
+    animation: pulseGlow 3s ease-in-out infinite;
+}
+
+@keyframes pulseGlow {
+    0%, 100% { box-shadow: 0 0 20px rgba(139, 92, 246, 0.1); }
+    50% { box-shadow: 0 0 40px rgba(139, 92, 246, 0.2); }
+}
+
+.centerQuestion svg {
+    color: #8B5CF6;
+}
+
+.centerQuestion span {
+    font-size: 1.4rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.compareBoxes {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.compareBox {
+    flex: 1;
+    max-width: 400px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px solid;
+    border-radius: 16px;
+    overflow: hidden;
+    animation: fadeInUp 0.5s ease-out backwards;
+}
+
+.compareBox:first-child {
+    animation-delay: 0.1s;
+}
+
+.compareBox:last-child {
+    animation-delay: 0.3s;
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.compareHeader {
+    padding: 1rem 1.5rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.compareLabel {
+    font-size: 1.1rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.compareContent {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    text-align: center;
+}
+
+.compareContent p {
+    color: #999;
+    font-size: 1rem;
+}
+
+.questionMark {
+    padding: 0.8rem 1.2rem;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 8px;
+    border: 1px dashed rgba(255, 255, 255, 0.1);
+}
+
+.questionMark span {
+    color: #666;
+    font-size: 0.9rem;
+    font-style: italic;
+}
+
+.arrow {
+    color: #444;
+}
+
+.decision {
+    font-weight: 600;
+    color: #fff !important;
+    font-size: 1.1rem !important;
+}
+
+.vsCircle {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
+    border: 2px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.9rem;
+    font-weight: 700;
+    color: #666;
+    flex-shrink: 0;
+}
+
+/* 4페이지: 방향성 - 플로우 구조 */
+.flowContainer {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.flowSection {
+    flex: 1;
+    max-width: 450px;
+    animation: fadeInUp 0.5s ease-out backwards;
+}
+
+.flowSection:first-child {
+    animation-delay: 0.1s;
+}
+
+.flowSection:last-child {
+    animation-delay: 0.3s;
+}
+
+.flowHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.flowHeader svg {
+    color: #F59E0B;
+}
+
+.flowHeader span {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.flowCards {
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.flowCard {
+    padding: 1rem 1.5rem;
+    background: rgba(245, 158, 11, 0.05);
+    border: 1px solid rgba(245, 158, 11, 0.2);
+    border-radius: 12px;
+    color: #ccc;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+}
+
+.flowCard:hover {
+    background: rgba(245, 158, 11, 0.1);
+    border-color: rgba(245, 158, 11, 0.4);
+    transform: translateX(5px);
+}
+
+.flowArrow {
+    color: #333;
+    animation: arrowPulse 2s ease-in-out infinite;
+}
+
+@keyframes arrowPulse {
+    0%, 100% { transform: translateX(0); opacity: 0.5; }
+    50% { transform: translateX(5px); opacity: 1; }
+}
+
+.targetBox {
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 16px;
+    padding: 2rem;
+}
+
+.targetItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    text-align: center;
+}
+
+.targetLabel {
+    font-size: 0.85rem;
+    color: #666;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+}
+
+.targetValue {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #10B981;
+}
+
+.targetDivider {
+    height: 1px;
+    background: rgba(255, 255, 255, 0.1);
+    margin: 1.5rem 0;
+}
+
+/* ========================================
+   조직도 슬라이드 스타일
+   ======================================== */
+
+.orgContainer {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    justify-content: center;
+}
+
+.orgLevel {
+    animation: fadeInUp 0.5s ease-out backwards;
+}
+
+.orgLevel:nth-child(1) { animation-delay: 0.1s; }
+.orgLevel:nth-child(2) { animation-delay: 0.2s; }
+.orgLevel:nth-child(3) { animation-delay: 0.3s; }
+
+.orgLevelHeader {
+    font-size: 0.85rem;
+    color: #888;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    margin-bottom: 0.8rem;
+    padding-left: 0.5rem;
+}
+
+.orgCards {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.orgCard {
+    flex: 1;
+    min-width: 150px;
+    max-width: 220px;
+    padding: 1rem 1.2rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px solid;
+    border-radius: 12px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    transition: all 0.3s ease;
+}
+
+.orgCard:hover {
+    transform: translateY(-3px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.orgRole {
+    font-size: 0.75rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: inherit;
+    opacity: 0.8;
+}
+
+.orgName {
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #fff;
+}
+
+.orgDesc {
+    font-size: 0.8rem;
+    color: #888;
+    line-height: 1.4;
+}
+
+/* ========================================
+   목표 논의 슬라이드 스타일
+   ======================================== */
+
+.goalContainer {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.goalQuestions {
+    flex: 1;
+    max-width: 350px;
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    animation: fadeInUp 0.5s ease-out backwards;
+}
+
+.goalQuestion {
+    padding: 1rem 1.5rem;
+    background: rgba(239, 68, 68, 0.05);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 12px;
+    color: #ccc;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.goalAnswer {
+    flex: 1;
+    max-width: 400px;
+    background: linear-gradient(135deg, rgba(16, 185, 129, 0.05) 0%, rgba(59, 130, 246, 0.05) 100%);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 16px;
+    padding: 1.5rem;
+    animation: fadeInUp 0.5s ease-out backwards;
+    animation-delay: 0.2s;
+}
+
+.goalAnswerHeader {
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: #10B981;
+    margin-bottom: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.goalAnswerItems {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.goalAnswerItem {
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+}
+
+.goalLabel {
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.goalValue {
+    font-size: 1rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+/* ========================================
+   네안데르 랩 2026 목표 슬라이드 스타일
+   ======================================== */
+
+.labGoalContainer {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.labGoalBox {
+    flex: 1;
+    max-width: 380px;
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px solid rgba(239, 68, 68, 0.3);
+    border-radius: 16px;
+    padding: 2rem;
+    animation: fadeInUp 0.5s ease-out backwards;
+}
+
+.labGoalBox:last-child {
+    animation-delay: 0.2s;
+}
+
+.labGoalHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    color: #EF4444;
+    margin-bottom: 1.5rem;
+    font-size: 1.1rem;
+    font-weight: 600;
+}
+
+.labGoalMetrics {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+}
+
+.labGoalMetric {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+}
+
+.metricValue {
+    font-size: 2.5rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.metricLabel {
+    font-size: 0.85rem;
+    color: #888;
+}
+
+.metricPlus {
+    font-size: 1.5rem;
+    color: #666;
+}
+
+.labGoalTargets {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.labGoalTarget {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.8rem 1rem;
+    background: rgba(16, 185, 129, 0.05);
+    border-radius: 8px;
+}
+
+.labGoalTarget span:first-child {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #10B981;
+    text-transform: uppercase;
+    min-width: 60px;
+}
+
+.labGoalTarget span:last-child {
+    color: #ccc;
+    font-size: 0.95rem;
+}
+
+/* ========================================
+   긱블 벤치마킹 슬라이드 스타일
+   ======================================== */
+
+.benchmarkContainer {
+    flex: 1;
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    align-items: stretch;
+}
+
+.benchmarkSection {
+    flex: 1;
+    max-width: 450px;
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    overflow: hidden;
+    animation: fadeInUp 0.5s ease-out backwards;
+}
+
+.benchmarkSection:nth-child(2) {
+    animation-delay: 0.15s;
+}
+
+.benchmarkHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 1.5rem;
+    border-left: 4px solid;
+    background: rgba(255, 255, 255, 0.02);
+    font-weight: 600;
+    color: #fff;
+}
+
+.benchmarkHeader svg {
+    opacity: 0.8;
+}
+
+.benchmarkContent {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.benchmarkItem {
+    display: flex;
+    gap: 1rem;
+    align-items: baseline;
+}
+
+.benchmarkLabel {
+    font-size: 0.8rem;
+    color: #666;
+    min-width: 60px;
+}
+
+.benchmarkValue {
+    color: #ccc;
+    font-size: 0.95rem;
+}
+
+.benchmarkHighlight {
+    margin-top: 0.5rem;
+    padding: 0.8rem 1rem;
+    background: linear-gradient(135deg, rgba(59, 130, 246, 0.1) 0%, rgba(139, 92, 246, 0.1) 100%);
+    border: 1px solid rgba(59, 130, 246, 0.3);
+    border-radius: 8px;
+    color: #3B82F6;
+    font-size: 0.9rem;
+    font-weight: 500;
+    text-align: center;
+}
+
+.benchmarkChannels {
+    padding: 1.5rem;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0.8rem;
+}
+
+.channelCard {
+    padding: 1rem;
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px solid;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    transition: all 0.3s ease;
+}
+
+.channelCard:hover {
+    transform: translateY(-2px);
+    background: rgba(255, 255, 255, 0.05);
+}
+
+.channelCard:first-child {
+    grid-column: span 2;
+}
+
+.channelName {
+    font-size: 0.85rem;
+    color: #fff;
+    font-weight: 600;
+}
+
+.channelStat {
+    font-size: 1.1rem;
+    color: #fff;
+    font-weight: 700;
+}
+
+.channelViews {
+    font-size: 0.75rem;
+    color: #888;
+}
+
+/* 투자 타임라인 */
+.investmentTimeline {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.investmentItem {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.investYear {
+    font-size: 0.8rem;
+    color: #888;
+    min-width: 60px;
+}
+
+.investRound {
+    font-size: 0.85rem;
+    color: #10B981;
+    font-weight: 600;
+    min-width: 70px;
+}
+
+.investAmount {
+    font-size: 0.95rem;
+    color: #fff;
+    font-weight: 500;
+}
+
+.investmentTotal {
+    margin-top: 0.5rem;
+    padding: 0.8rem 1rem;
+    background: rgba(16, 185, 129, 0.1);
+    border-radius: 8px;
+    color: #10B981;
+    font-size: 0.9rem;
+    text-align: center;
+}
+
+/* 재무 현황 */
+.financialContent {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.financialRow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.6rem 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+.financialYear {
+    font-size: 0.85rem;
+    color: #888;
+    min-width: 60px;
+}
+
+.financialData {
+    display: flex;
+    gap: 1rem;
+}
+
+.revenue {
+    color: #10B981;
+    font-size: 0.9rem;
+}
+
+.loss {
+    color: #EF4444;
+    font-size: 0.9rem;
+}
+
+.financialWarning {
+    margin-top: 0.5rem;
+    padding: 1rem;
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+    border-radius: 8px;
+    color: #EF4444;
+    font-size: 0.85rem;
+    text-align: center;
+    line-height: 1.6;
+}
+
+.financialSuccess {
+    margin-top: 0.5rem;
+    padding: 1rem;
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+    border-radius: 8px;
+    color: #10B981;
+    font-size: 0.85rem;
+    text-align: center;
+    line-height: 1.6;
+}
+
+/* 구조조정 */
+.restructuringContent {
+    padding: 1.5rem;
+}
+
+.restructuringFlow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.restructureBefore, .restructureAfter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 1rem 1.5rem;
+    border-radius: 12px;
+}
+
+.restructureBefore {
+    background: rgba(239, 68, 68, 0.1);
+    border: 1px solid rgba(239, 68, 68, 0.3);
+}
+
+.restructureAfter {
+    background: rgba(16, 185, 129, 0.1);
+    border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.restructureLabel {
+    font-size: 0.75rem;
+    color: #888;
+}
+
+.restructureNum {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #fff;
+}
+
+.restructureArrow {
+    color: #666;
+}
+
+.restructureDetail {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    font-size: 0.9rem;
+    color: #999;
+    text-align: center;
+}
+
+.restructureHighlight {
+    color: #F59E0B;
+    font-weight: 500;
+}
+
+/* 시사점 */
+.lessonsContent {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.lessonItem {
+    padding: 0.7rem 1rem;
+    background: rgba(139, 92, 246, 0.05);
+    border-left: 3px solid rgba(139, 92, 246, 0.3);
+    border-radius: 0 8px 8px 0;
+    color: #ccc;
+    font-size: 0.9rem;
+    transition: all 0.3s ease;
+}
+
+.lessonItem:hover {
+    background: rgba(139, 92, 246, 0.1);
+    border-left-color: #8B5CF6;
+    transform: translateX(3px);
+}
+
+.lessonHighlight {
+    margin-top: 0.5rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, rgba(139, 92, 246, 0.1) 0%, rgba(59, 130, 246, 0.1) 100%);
+    border: 1px solid rgba(139, 92, 246, 0.3);
+    border-radius: 8px;
+    color: #8B5CF6;
+    font-size: 0.9rem;
+    text-align: center;
+    font-weight: 500;
+}
+
+/* ========================================
+   뿌디 슬라이드 스타일
+   ======================================== */
+
+.ppudiContainer {
+    flex: 1;
+    display: flex;
+    gap: 2rem;
+    align-items: stretch;
+}
+
+.ppudiImageSection {
+    flex: 1;
+    max-width: 450px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    animation: fadeInUp 0.5s ease-out backwards;
+}
+
+.ppudiImageBox {
+    width: 100%;
+    background: rgba(255, 255, 255, 0.02);
+    border: 2px dashed rgba(255, 255, 255, 0.2);
+    border-radius: 16px;
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    transition: all 0.3s ease;
+}
+
+.ppudiImageBox:hover {
+    border-color: rgba(245, 158, 11, 0.4);
+    background: rgba(255, 255, 255, 0.03);
+}
+
+.ppudiImage {
+    width: 100%;
+    max-height: 350px;
+    object-fit: contain;
+    border-radius: 12px;
+}
+
+.ppudiImageLabel {
+    font-size: 0.85rem;
+    color: #888;
+    text-align: center;
+}
+
+.ppudiContentSection {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+    animation: fadeInUp 0.5s ease-out backwards;
+    animation-delay: 0.15s;
+}
+
+.ppudiBox {
+    background: rgba(255, 255, 255, 0.02);
+    border-radius: 16px;
+    overflow: hidden;
+}
+
+.ppudiBoxHeader {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    padding: 1rem 1.5rem;
+    border-left: 4px solid;
+    background: rgba(255, 255, 255, 0.02);
+    font-weight: 600;
+    color: #fff;
+}
+
+.ppudiItems {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.ppudiItem {
+    padding: 0.8rem 1rem;
+    background: rgba(245, 158, 11, 0.05);
+    border-left: 3px solid rgba(245, 158, 11, 0.3);
+    border-radius: 0 8px 8px 0;
+    color: #ccc;
+    font-size: 0.95rem;
+    transition: all 0.3s ease;
+}
+
+.ppudiItem:hover {
+    background: rgba(245, 158, 11, 0.1);
+    border-left-color: #F59E0B;
+    transform: translateX(3px);
+}
+
+.ppudiQuestions {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
+}
+
+.ppudiQuestion {
+    padding: 1rem 1.2rem;
+    background: rgba(139, 92, 246, 0.05);
+    border: 1px solid rgba(139, 92, 246, 0.2);
+    border-radius: 12px;
+    color: #ccc;
+    font-size: 0.95rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.ppudiQuestion:hover {
+    background: rgba(139, 92, 246, 0.1);
+    border-color: rgba(139, 92, 246, 0.4);
+}
+
+/* Responsive */
+@media (max-width: 1200px) {
+    .slideArea {
+        padding: 0 2rem;
+    }
+
+    .slide {
+        border-radius: 16px;
+    }
+
+    .mainTitle {
+        font-size: 2.8rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .contentSlide {
+        padding: 2rem;
+    }
+
+    .slideTitle {
+        font-size: 1.8rem;
+    }
+
+    .sectionsContainer {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 768px) {
+    .topBar {
+        padding: 1rem 1.5rem;
+    }
+
+    .slideNav {
+        display: none;
+    }
+
+    .slideArea {
+        padding: 0 1rem;
+    }
+
+    .mainTitle {
+        font-size: 2rem;
+    }
+
+    .titleSlide {
+        padding: 2rem;
+    }
+
+    .contentSlide {
+        padding: 1.5rem;
+    }
+
+    .slideTitle {
+        font-size: 1.4rem;
+    }
+
+    .section {
+        padding: 1rem 1.2rem;
+    }
+
+    .sectionItems li {
+        font-size: 0.9rem;
+    }
+}
