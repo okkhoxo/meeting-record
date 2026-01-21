@@ -23,26 +23,640 @@ export interface MeetingRecord {
         title: string;
         content: string;
     }[];
-    // 새로운 7슬라이드 구조용 필드
+    // 새로운 슬라이드 구조용 필드 (확장)
     slides?: {
-        type: 'title' | 'achievements' | 'organization' | 'operations' | 'financial' | 'strategy' | 'vision';
+        type: 'title' | 'achievements' | 'organization' | 'operations' | 'financial' | 'strategy' | 'vision' | 'timeline' | 'kpi' | 'comparison' | 'deadline' | 'summary' | 'orgchart' | 'intro' | 'business';
         title: string;
         subtitle?: string;
         linkUrl?: string;
+        // 이미지 + 자막
+        image?: string;
+        caption?: string;
         sections?: {
             title: string;
             items: string[];
+            highlight?: boolean; // 강조 표시
+            status?: 'success' | 'warning' | 'danger' | 'info'; // 상태 표시
+        }[];
+        // 타임라인 전용
+        timeline?: {
+            date: string;
+            title: string;
+            description: string;
+            status: 'completed' | 'current' | 'upcoming';
+        }[];
+        // KPI 전용
+        kpis?: {
+            label: string;
+            value: string;
+            target?: string;
+            status: 'success' | 'warning' | 'danger';
+        }[];
+        // 비교 테이블 전용
+        comparison?: {
+            headers: string[];
+            rows: string[][];
+        };
+        // 마감일 강조
+        deadlines?: {
+            task: string;
+            date: string;
+            assignee: string;
+            priority: 'critical' | 'high' | 'medium';
+        }[];
+        // 조직도 전용
+        orgChart?: {
+            name: string;
+            role: string;
+            color: string;
+            members?: { name: string; role?: string }[];
+        }[];
+        // 사업 영역 전용
+        businessAreas?: {
+            name: string;
+            icon: string;
+            color: string;
+            items: string[];
+        }[];
+        // 플로우 다이어그램 전용
+        flowDiagram?: {
+            left: { title: string; subtitle: string; items: string[]; color: string };
+            right: { title: string; subtitle: string; items: string[]; color: string };
+            arrow: string;
+        };
+        // 회의 진행 방식 전용
+        meetingFlow?: {
+            rules: string[];
+            steps: string[];
+        };
+        // 목표 전용
+        goals?: {
+            title: string;
+            items: string[];
+            icon: string;
+            color: string;
+            highlight?: boolean;
         }[];
     }[];
 }
 
 export const meetings: MeetingRecord[] = [
+    // 1.21 전체회의 - 신규 멤버 온보딩 & 2026 목표
+    {
+        id: "2026-01-21",
+        date: "2026.01.21",
+        title: "2026년 1월 4주차 전체 회의",
+        subtitle: "신규 멤버 온보딩 & 2026 목표 공유",
+        attendees: ["유재영", "이동주", "유선화", "김주연", "김주희", "김정연", "류다혜", "김제연"],
+        meetingType: 'all',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "회사 소개" },
+            { id: 2, content: "조직 구조" },
+            { id: 3, content: "전체회의 진행 방식" },
+            { id: 4, content: "2026년 목표" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "2026년 1월 4주차 전체 회의",
+                subtitle: "신규 멤버 온보딩 & 2026 목표 공유"
+            },
+            // 슬라이드 2: 회사 소개 - 네안데르 정체성
+            {
+                type: 'intro',
+                title: "네안데르",
+                subtitle: "향 × AI 체험형 콘텐츠 기획사",
+                image: "/images/choigangrok.png",
+                caption: "제목은 AI 체험형 콘텐츠 기획사로 하겠습니다. 향을 곁들인"
+            },
+            // 슬라이드 3: 사업 영역
+            {
+                type: 'business',
+                title: "사업 영역",
+                subtitle: "악센트 & 네안데르 랩",
+                businessAreas: [
+                    {
+                        name: "악센트",
+                        icon: "🏪",
+                        color: "#8B5CF6",
+                        items: [
+                            "오프라인 매장 운영",
+                            "향 제품 판매",
+                            "악센트 ID",
+                            "추가 콘텐츠 제작"
+                        ]
+                    },
+                    {
+                        name: "네안데르 랩 (B2B)",
+                        icon: "🔬",
+                        color: "#06B6D4",
+                        items: [
+                            "AI 체험형 콘텐츠 행사 납품",
+                            "AI 체험형 전시 기획 및 운영",
+                            "AI 사주 향수",
+                            "AI 신점 향수",
+                            "AI 포토부스 제작기",
+                            "유튜브/SNS 콘텐츠"
+                        ]
+                    }
+                ],
+                flowDiagram: {
+                    left: {
+                        title: "네안데르 랩",
+                        subtitle: "콘텐츠 제작",
+                        items: ["AI 사주 향수", "AI 신점 향수", "AI 포토부스"],
+                        color: "#06B6D4"
+                    },
+                    right: {
+                        title: "악센트",
+                        subtitle: "매장 정착",
+                        items: ["체험 콘텐츠", "악센트 ID", "수익화"],
+                        color: "#8B5CF6"
+                    },
+                    arrow: "바이럴"
+                }
+            },
+            // 슬라이드 4: 조직 구조
+            {
+                type: 'orgchart',
+                title: "조직 구조",
+                subtitle: "네안데르 팀",
+                orgChart: [
+                    { name: "유재영", role: "영업 / 인사 / 총괄", color: "#3B82F6", members: [{ name: "김주희", role: "영업팀, 매장 운영 및 관리" }] },
+                    { name: "이동주", role: "재무 / 회계 / 제품생산 / 공간기획", color: "#10B981" },
+                    { name: "유선화", role: "마케팅 / 브랜딩 / 유튜브", color: "#EC4899", members: [{ name: "김정연", role: "마케팅팀, 유튜브 PD" }, { name: "류다혜", role: "마케팅팀" }] },
+                    { name: "김주연", role: "개발 / 신사업 / 지원사업", color: "#F59E0B", members: [{ name: "김제연", role: "개발팀, 외주개발 담당" }] }
+                ]
+            },
+            // 슬라이드 5: 전체회의 진행 방식
+            {
+                type: 'operations',
+                title: "전체회의 진행 방식",
+                subtitle: "매주 수요일",
+                meetingFlow: {
+                    rules: [
+                        "매주 수요일",
+                        "최대 2시간",
+                        "필참",
+                        "스케줄 조절: 유재영"
+                    ],
+                    steps: [
+                        "결정 사항 공유",
+                        "팀별 진행상황 공유",
+                        "추가 안건 브레인스토밍"
+                    ]
+                }
+            },
+            // 슬라이드 6: 2026년 목표
+            {
+                type: 'strategy',
+                title: "2026년 목표",
+                subtitle: "온라인 확대 & 콘텐츠 다각화",
+                goals: [
+                    {
+                        title: "온라인 출시",
+                        icon: "🛒",
+                        color: "#10B981",
+                        highlight: true,
+                        items: [
+                            "2월 1일 정식 출시",
+                            "5월까지 1,500만원",
+                            "화장품 제조업 등록"
+                        ]
+                    },
+                    {
+                        title: "마케팅 다각화",
+                        icon: "📺",
+                        color: "#8B5CF6",
+                        items: [
+                            "유튜브",
+                            "틱톡 (미정)",
+                            "샤오홍슈 (미정)",
+                            "담당: 유선화 이사"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 7: 핵심 마감일
+            {
+                type: 'deadline',
+                title: "핵심 마감일",
+                subtitle: "2026년 상반기",
+                deadlines: [
+                    { task: "온라인 사이트 정식 출시", date: "2월 1일", assignee: "김주연 유선화", priority: "critical" },
+                    { task: "온라인 매출 1,500만원", date: "5월", assignee: "전체", priority: "critical" },
+                    { task: "화장품 제조업 등록", date: "5월 이후", assignee: "유재영", priority: "high" },
+                    { task: "정부지원사업 지원", date: "3월", assignee: "김주연", priority: "high" },
+                    { task: "일반용 악센트 아이디 AI 콘텐츠 제작", date: "예정", assignee: "", priority: "medium" },
+                    { task: "행사 및 전시 B2B 영업", date: "상시", assignee: "유재영 김주희", priority: "high" },
+                    { task: "유튜브 런칭", date: "미정", assignee: "유선화 김정연", priority: "critical" }
+                ]
+            },
+            // 슬라이드 8: 마무리
+            {
+                type: 'summary',
+                title: "함께 만들어가는 네안데르",
+                subtitle: "2026년, 새로운 도약",
+                sections: [
+                    {
+                        title: "🏢 네안데르",
+                        items: [
+                            "향 × AI 체험형 콘텐츠 기획사"
+                        ],
+                        status: "success"
+                    },
+                    {
+                        title: "📋 전체회의",
+                        items: [
+                            "매주 수요일, 최대 2시간"
+                        ],
+                        status: "info"
+                    },
+                    {
+                        title: "🎯 2026 목표",
+                        items: [
+                            "2/1 온라인 출시 → 5월 1,500만원"
+                        ],
+                        status: "warning"
+                    }
+                ]
+            }
+        ]
+    },
+    // 상세 정리본 (157분 회의 내용 전체 기록) - 먼저 표시
+    {
+        id: "2026-01-14-detailed",
+        date: "2026.01.14",
+        title: "📋 1월 3주차 전체회의 상세 정리본",
+        subtitle: "적자 구조 개선 & 향 × AI 체험형 콘텐츠 피봇 | 157분",
+        attendees: ["유재영", "유선화", "김주연", "이동주"],
+        meetingType: 'all',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "인플루언서 바이럴 마케팅 분석" },
+            { id: 2, content: "적자 구조 해소 방안" },
+            { id: 3, content: "향 × AI 체험형 콘텐츠 기획사로 피봇" },
+            { id: 4, content: "온라인 런칭 일정 확정" },
+            { id: 5, content: "10년/20년 비전" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "2026년 1월 3주차 전체 회의",
+                subtitle: "적자 구조 개선 & 향 × AI 체험형 콘텐츠 | 157분"
+            },
+            // 슬라이드 2: 인플루언서 바이럴 분석
+            {
+                type: 'comparison',
+                title: "📈 인플루언서 바이럴 마케팅 분석",
+                subtitle: "12월 30일 기준 릴스 협업 성과",
+                comparison: {
+                    headers: ["구분", "수치", "비고"],
+                    rows: [
+                        ["총 릴스 협업", "5건", "12/30 이전 업로드"],
+                        ["상위 바이럴", "2건", "크게 터진 콘텐츠"],
+                        ["바이럴율", "25%", "협업 시 빵터지는 비율"],
+                        ["샤쉐 판매", "2월 단종", "사바리 향수박스"]
+                    ]
+                },
+                sections: [
+                    {
+                        title: "🎯 선화의 희망 콘텐츠 방향",
+                        items: [
+                            "사람들이 궁금해하지만 직접 하기 망설여지는 일 대신 체험/검증",
+                            "직접 발로 뛰는 진정성 보여주기",
+                            "썸네일 자체를 자극적이고 흥미롭게 편집"
+                        ]
+                    },
+                    {
+                        title: "💡 바이럴 수익화 과제",
+                        items: [
+                            "바이럴 → 수익화 연결 방안 필요",
+                            "김주연, 유재영이 수익화 방안 찾기로 함",
+                            "체험 요소 부각 + 전달에 집중"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 4: 적자 구조 문제점 분석
+            {
+                type: 'strategy',
+                title: "🚨 적자 구조 현황 분석",
+                subtitle: "김주연 발제 - 핵심 문제 진단",
+                sections: [
+                    {
+                        title: "❌ 현재 문제점",
+                        items: [
+                            "외주 개발/행사 용역 → 반복 정산만, 남는 게 없음",
+                            "포트폴리오가 되지 않는 일들",
+                            "행사 용역 회사로는 성장 가능성 불투명",
+                            "AI교 같은 새 사업이 적자 해소 가능? → 불확실",
+                            "우리 사업 대부분이 노동집약적"
+                        ],
+                        status: "danger"
+                    },
+                    {
+                        title: "✅ 해결 방향",
+                        items: [
+                            "적자 구조 해소 → 유지가 핵심",
+                            "안정적 수익원 확보 후 창의적 활동",
+                            "직접적인 수익 구조와 매칭되는 방향으로 진행",
+                            "돈이 없어서 투자 못함 → 우리만의 것 필요"
+                        ],
+                        status: "success"
+                    }
+                ]
+            },
+            // 슬라이드 5: 방향 전환 - 향 × AI
+            {
+                type: 'strategy',
+                title: "🔄 방향 전환: 향 × AI 체험형 콘텐츠",
+                subtitle: "유재영 제안 - 새로운 정체성 정립",
+                sections: [
+                    {
+                        title: "💡 핵심 피봇 방향",
+                        items: [
+                            "우리만의 IP 확보 방법에 대한 고민",
+                            "기존에 하려던 것들 뒤엎기",
+                            "향 + AI 체험형 콘텐츠 기획사로 피봇",
+                            "향을 좀 더 집중할 필요성"
+                        ],
+                        highlight: true
+                    },
+                    {
+                        title: "📌 입증된 사실",
+                        items: [
+                            "향이라는 수단으로 콘텐츠 판매 → 이미 입증됨",
+                            "향에 대한 콘텐츠 아이디어 많음",
+                            "길거리 유튜브 촬영 + 방향성 변화 시도"
+                        ]
+                    },
+                    {
+                        title: "🎯 새로운 정체성 (유선화 의견)",
+                        items: [
+                            "우리는 브랜드성보다 체험 선사에 강함",
+                            "향과 결합된 AI 체험형 콘텐츠 = 우리의 IP",
+                            "예술 방향 철회 → 전문적/심오함 불필요",
+                            "유튜브는 우리 강점 살리는 방향으로"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 6: 체험형 콘텐츠 매체
+            {
+                type: 'operations',
+                title: "🖥️ 체험형 콘텐츠 매체 전략",
+                subtitle: "핸드폰을 넘어서 피지컬 AI로",
+                sections: [
+                    {
+                        title: "📱 기존 한계",
+                        items: [
+                            "핸드폰에 그치면 안 됨",
+                            "더 다양한 피지컬 접점 필요"
+                        ],
+                        status: "warning"
+                    },
+                    {
+                        title: "🎪 확장 방향",
+                        items: [
+                            "키오스크 기반 체험",
+                            "대형 모니터 인터랙션",
+                            "프로젝션 맵핑 활용",
+                            "다양한 피지컬 AI 콘텐츠"
+                        ],
+                        status: "success"
+                    },
+                    {
+                        title: "💰 B2B 전략",
+                        items: [
+                            "향기 마케팅 + 다양한 체험형 팝업",
+                            "AI 체험형 콘텐츠 + 향 = 필수 조합",
+                            "단가 상승 전략"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 7: 온라인 확대 전략 (중요!)
+            {
+                type: 'financial',
+                title: "💰 온라인 확대 전략",
+                subtitle: "적자 구조 개선의 핵심",
+                kpis: [
+                    { label: "온라인 매출 목표", value: "1,500만원", target: "5월까지", status: "warning" },
+                    { label: "달성 시", value: "화장품 제조업", target: "등록 진행", status: "success" },
+                    { label: "온라인 파이", value: "충분히 보임", target: "시장성 확인", status: "success" }
+                ],
+                sections: [
+                    {
+                        title: "📈 온라인 확대가 필수인 이유",
+                        items: [
+                            "온라인에서 얻을 수 있는 파이가 충분히 보임",
+                            "팬덤 형성 → 새 콘텐츠 실험 시 봐줄 사람 확보",
+                            "상업적인 걸 살짝 빼고 재미있는 콘텐츠로 팬덤 형성"
+                        ],
+                        highlight: true
+                    },
+                    {
+                        title: "⚖️ B2C를 위한 제조업",
+                        items: [
+                            "B2B용이지만 실제로는 B2C 확장을 위함",
+                            "온라인 부분 합법화 필수",
+                            "향수가 아닌 '향'으로 판매 중",
+                            "오프라인에서 IP 확보 + 팬덤 형성 목표"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 8: 핵심 마감일 (매우 중요!)
+            {
+                type: 'deadline',
+                title: "⏰ 핵심 마감일 & 담당자",
+                subtitle: "반드시 지켜야 할 일정",
+                deadlines: [
+                    { task: "온라인 사이트 배포", date: "1월 21일 (다음주 전체회의 전)", assignee: "김주연", priority: "critical" },
+                    { task: "온라인 사이트 정식 출시", date: "2월 1일", assignee: "전체", priority: "critical" },
+                    { task: "향수 가격 조정", date: "2월 1일", assignee: "유선화", priority: "high" },
+                    { task: "온라인 구매 안내지 제작", date: "2월 1일 전", assignee: "이동주", priority: "high" },
+                    { task: "온라인 매출 1,500만원 달성", date: "5월 이전", assignee: "전체", priority: "critical" },
+                    { task: "화장품 제조업 등록", date: "5월 이후", assignee: "유재영", priority: "high" }
+                ],
+                sections: [
+                    {
+                        title: "📋 온라인 런칭 세부 계획",
+                        items: [
+                            "새로운 시리즈가 아니므로 사전 홍보보다 완성도 집중",
+                            "배포 후 다양한 마케팅 진행 (유선화)",
+                            "종이 프린트: 향수 사용법 + 온라인 구매 안내 동봉 (이동주)"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 9: 제품 퀄리티 논의
+            {
+                type: 'operations',
+                title: "🎨 제품 퀄리티 투자 논의",
+                subtitle: "이동주 제안 - 제품 자체에 대한 투자",
+                sections: [
+                    {
+                        title: "💭 이동주 의견",
+                        items: [
+                            "콘텐츠도 중요하지만 제품 자체 투자 필요",
+                            "향을 팔지만 제품 자체에 대한 애정도 떨어짐",
+                            "향의 종류가 많아 커스터마이징에 제한"
+                        ]
+                    },
+                    {
+                        title: "💬 유선화 → 이동주",
+                        items: [
+                            "멋진 거 하나 딱! 박스 퀄리티 업그레이드 필요",
+                            "돈 문제로 걱정되는 상황",
+                            "이동주가 고민/테스트 해주면 설득 용이"
+                        ],
+                        highlight: true
+                    }
+                ]
+            },
+            // 슬라이드 10: 복합 문화 공간 비전
+            {
+                type: 'vision',
+                title: "🏛️ 복합 문화 공간 비전",
+                subtitle: "10년 후 목표 - 우리의 IP 확보",
+                sections: [
+                    {
+                        title: "🎯 10년 후 목표 (2036)",
+                        items: [
+                            "향 + AI + 체험형 콘텐츠가 융합된 복합 문화 공간",
+                            "악센트 신촌 3년 내 부활 가능",
+                            "제주도/강원도 공간 투자 → 관광 명소화",
+                            "지역 지원 사업 활용 가능"
+                        ],
+                        highlight: true
+                    },
+                    {
+                        title: "📍 지역 확장 전략",
+                        items: [
+                            "우리 콘텐츠 보러 그 지역에 오는 구조",
+                            "지역에서도 좋아할 콘텐츠",
+                            "지역 돈도 먹으면서 관광 수단화"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 11: 타임라인 로드맵
+            {
+                type: 'timeline',
+                title: "🗺️ 네안데르 성장 로드맵",
+                subtitle: "단기 → 중기 → 장기 비전",
+                timeline: [
+                    { date: "NOW", title: "2026 적자 구조 개선", description: "온라인 확대, 1,500만원 달성, 제조업 등록", status: "current" },
+                    { date: "3년 내", title: "악센트 신촌 부활", description: "오프라인 거점 확보", status: "upcoming" },
+                    { date: "10년 후", title: "복합 문화 공간", description: "향 × AI × 체험 융합 공간, 제주/강원 확장", status: "upcoming" },
+                    { date: "20년 후", title: "KOSPI 상장", description: "향기 콘텐츠 분야 1위, 글로벌 진출", status: "upcoming" }
+                ]
+            },
+            // 슬라이드 12: 핵심 결정 사항 요약
+            {
+                type: 'summary',
+                title: "✅ 핵심 결정 사항 요약",
+                subtitle: "이번 회의에서 확정된 내용",
+                sections: [
+                    {
+                        title: "🎯 방향성",
+                        items: [
+                            "향 × AI 체험형 콘텐츠 기획사로 피봇",
+                            "예술 방향 철회 → 체험/재미에 집중",
+                            "우리만의 IP = 향과 결합된 AI 체험형 콘텐츠"
+                        ],
+                        status: "success"
+                    },
+                    {
+                        title: "💰 재정 목표",
+                        items: [
+                            "온라인 매출 1,500만원 (5월까지)",
+                            "달성 시 화장품 제조업 등록",
+                            "적자 구조 해소 → 유지가 핵심"
+                        ],
+                        status: "warning"
+                    },
+                    {
+                        title: "📅 즉시 실행",
+                        items: [
+                            "온라인 사이트 1/21 배포 (김주연)",
+                            "2/1 정식 런칭 + 가격 조정",
+                            "온라인 구매 안내지 제작 (이동주)"
+                        ],
+                        status: "info"
+                    }
+                ]
+            },
+            // 슬라이드 13: 대표 코멘트
+            {
+                type: 'summary',
+                title: "💭 회의 후 생각",
+                subtitle: "유재영 코멘트",
+                sections: [
+                    {
+                        title: "🎯 이번 피봇에 대한 확신",
+                        items: [
+                            "향 × AI 체험형 콘텐츠는 우리만의 영역",
+                            "이미 향으로 콘텐츠 판매가 된다는 건 입증됨",
+                            "예술보다 '체험'에 집중하는 게 맞다",
+                            "이번엔 진짜 우리만의 IP가 생긴다"
+                        ],
+                        status: "success"
+                    },
+                    {
+                        title: "⚠️ 핵심 리스크 & 대응",
+                        items: [
+                            "5월까지 1,500만원 못 채우면? → 제조업 등록 연기, 플랜B 필요",
+                            "온라인 런칭 지연되면? → 마케팅 타이밍 놓침"
+                        ],
+                        status: "danger"
+                    },
+                    {
+                        title: "🔥 이번 달 우선순위",
+                        items: [
+                            "1순위: 온라인 사이트 1/21 배포",
+                            "절대 놓치면 안 됨: 2/1 정식 런칭",
+                            "나중에 해도 됨: 제품 퀄리티 업그레이드"
+                        ],
+                        status: "warning"
+                    },
+                    {
+                        title: "❓ 다음 회의에서 논의할 것",
+                        items: [
+                            "온라인 체계 잡기 및 PG 심사 진행도 바로 같이 진행",
+                            "유튜브 콘텐츠 첫 주제는?"
+                        ],
+                        status: "info"
+                    }
+                ]
+            },
+            // 슬라이드 14: 추가 회의 안건
+            {
+                type: 'deadline',
+                title: "📝 추가 회의 안건",
+                subtitle: "논의 필요 사항",
+                deadlines: [
+                    { task: "온라인 구체적인 타임라인 정하기", date: "논의 필요", assignee: "전체", priority: "critical" },
+                    { task: "악센트 와우 프로젝터 수리 타임라인 정하기", date: "논의 필요", assignee: "이동주", priority: "high" },
+                    { task: "매장관리 체계 논의", date: "논의 필요", assignee: "전체", priority: "high" },
+                    { task: "정연님 설득 시 정확한 역할 설정", date: "논의 필요", assignee: "유재영", priority: "medium" },
+                    { task: "매장관리 시 특별히 신경 써줬으면 하는 점 (추천 받음)", date: "의견 수렴", assignee: "전체", priority: "medium" }
+                ]
+            }
+        ]
+    },
+    // 원본 회의록 (간략 버전)
     {
         id: "2026-01-14",
         date: "2026.01.14",
         title: "2026년 1월 3주차 전체 회의",
         subtitle: "새로운 방향성 - 향 × AI 체험형 콘텐츠",
-        attendees: ["유재영", "유선화", "김주연", "류다혜", "이동주"],
+        attendees: ["유재영", "유선화", "김주연", "이동주"],
         meetingType: 'all',
         isArchived: false,
         agendaItems: [
@@ -204,7 +818,7 @@ export const meetings: MeetingRecord[] = [
         date: "2026.01.07",
         title: "2026년 1월 2주차 전체 회의",
         subtitle: "네안데르만의 예술 생태계 구축",
-        attendees: ["유재영", "유선화", "김주연", "류다혜", "이동주", "김제연"],
+        attendees: ["유재영", "유선화", "김주연", "이동주", "김제연"],
         meetingType: 'all',
         isArchived: false,
         agendaItems: [
@@ -250,7 +864,7 @@ export const meetings: MeetingRecord[] = [
                         title: "🏢 사무실 (이동주)",
                         items: [
                             "회의실에 책상 3개 추가 예정",
-                            "김제연 인수인계 진행 중 (김주연 담당)",
+                            "김제연 온보딩 진행 중 (김주연 담당)",
                             "회의실 자리: 공용 1석 + 김제연 + 김정연",
                             "3D 프린터 턱 때문에 문 안 열림 → 수정 예정"
                         ]
@@ -258,19 +872,8 @@ export const meetings: MeetingRecord[] = [
                     {
                         title: "📣 마케팅 (유선화)",
                         items: [
-                            "1월 생일 이벤트 80% 업로드 완료 → 언니에게 인수인계",
-                            "2월부터 언니가 100% 담당",
                             "12월부터 마케팅 팀 활성화",
                             "인플루언서 협업 활발히 진행 중"
-                        ]
-                    },
-                    {
-                        title: "📝 기획 (류다혜)",
-                        items: [
-                            "1/15부터 선화에게 인수인계 받음",
-                            "한 달간 기획안 6개 완성",
-                            "NCT 재현 기획안 완성",
-                            "류다혜 아주 잘하는 중 👍"
                         ]
                     }
                 ]
@@ -317,14 +920,6 @@ export const meetings: MeetingRecord[] = [
                             "그 전에 마케팅 선진입 필요",
                             "3D 프린팅 마감: 1월 16일",
                             "러브 페어링 외 다양한 작업 예정"
-                        ]
-                    },
-                    {
-                        title: "📌 류다혜 1월 목표",
-                        items: [
-                            "2월 이벤트들 조금씩 진행",
-                            "DB 감각 익히기",
-                            "2월부터 100% 담당 전환"
                         ]
                     }
                 ]
@@ -450,12 +1045,6 @@ export const meetings: MeetingRecord[] = [
                 title: "다음 할 일 정리",
                 sections: [
                     {
-                        title: "👤 류다혜",
-                        items: [
-                            "2월 이벤트 DB 감각 익히기"
-                        ]
-                    },
-                    {
                         title: "👤 이동주",
                         items: [
                             "1/16까지 공간 세팅 완료",
@@ -488,7 +1077,7 @@ export const meetings: MeetingRecord[] = [
         date: "2026.01.07",
         title: "유재영 주간 진행 상황 공유",
         subtitle: "방향성 탐색과 정체성 확립",
-        attendees: ["유선화", "김주연", "류다혜", "유재영", "이동주"],
+        attendees: ["유선화", "김주연", "유재영", "이동주"],
         meetingType: 'all',
         isArchived: false,
         agendaItems: [
@@ -1443,7 +2032,7 @@ export const meetings: MeetingRecord[] = [
         date: "2025.12.20",
         title: "2026 목표 수립 회의 결과",
         subtitle: "체험형 AI 콘텐츠 기획사로의 전환",
-        attendees: ["유재영", "김주연", "유선화", "이동주", "김주희", "류다혜", "김정연", "김제연"],
+        attendees: ["유재영", "김주연", "유선화", "이동주", "김주희", "김정연", "김제연"],
         meetingType: 'all',
         isArchived: true,
         agendaItems: [
@@ -1572,10 +2161,9 @@ export const meetings: MeetingRecord[] = [
                         ]
                     },
                     {
-                        title: "🎂 악센트 ID / 생일이벤트",
+                        title: "🎂 악센트 ID",
                         items: [
                             "총괄: 유선화",
-                            "생일이벤트 인수인계: 류다혜 담당 예정",
                             "뿌덕 운영 유지 + 트위터 바이럴 활용"
                         ]
                     }
