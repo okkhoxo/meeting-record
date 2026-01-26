@@ -25,7 +25,7 @@ export interface MeetingRecord {
     }[];
     // 새로운 슬라이드 구조용 필드 (확장)
     slides?: {
-        type: 'title' | 'achievements' | 'organization' | 'operations' | 'financial' | 'strategy' | 'vision' | 'timeline' | 'kpi' | 'comparison' | 'deadline' | 'summary' | 'orgchart' | 'intro' | 'business';
+        type: 'title' | 'achievements' | 'organization' | 'operations' | 'financial' | 'strategy' | 'vision' | 'timeline' | 'kpi' | 'comparison' | 'deadline' | 'summary' | 'orgchart' | 'intro' | 'business' | 'agenda';
         title: string;
         subtitle?: string;
         linkUrl?: string;
@@ -101,6 +101,80 @@ export interface MeetingRecord {
 }
 
 export const meetings: MeetingRecord[] = [
+    // 1.26 임원진 회의
+    {
+        id: "2026-01-26",
+        date: "2026.01.26",
+        title: "2026년 1월 4주차 임원진 회의",
+        subtitle: "시스템 수립 및 운영 점검",
+        attendees: ["유재영", "이동주", "유선화", "김주연"],
+        meetingType: 'executive',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "네안데르 시스템 수립" },
+            { id: 2, content: "구정 휴무일 체크" },
+            { id: 3, content: "악센트 와우 이미지 분석 진행 여부" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "2026년 1월 4주차 임원진 회의",
+                subtitle: "시스템 수립 및 운영 점검"
+            },
+            // 슬라이드 2: 네안데르 시스템 수립
+            {
+                type: 'agenda',
+                title: "네안데르 시스템 수립 중",
+                subtitle: "2026 회사 체계 구축",
+                sections: [
+                    {
+                        title: "📋 현황",
+                        items: [
+                            "노션 NEANDER 임원진 → CLASSIFIED → 2026 회사 체계에 내용 정리 중",
+                            "같이 수정해보면서 체계를 잡아가자"
+                        ]
+                    },
+                    {
+                        title: "🔗 시스템 링크",
+                        items: [
+                            "<a href='https://neander-2026.vercel.app' target='_blank' style='color: #60A5FA; text-decoration: underline;'>https://neander-2026.vercel.app</a>"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 3: 구정 휴무일
+            {
+                type: 'agenda',
+                title: "구정 휴무일 체크",
+                subtitle: "직원 휴무 관련 확인 필요",
+                sections: [
+                    {
+                        title: "📅 확인 사항",
+                        items: [
+                            "임원진 휴무일 확정",
+                            "직원들 휴무 관련 확인 필요"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 4: 악센트 와우 이미지 분석
+            {
+                type: 'agenda',
+                title: "악센트 와우 이미지 분석 진행 여부",
+                subtitle: "우빈 체크 필요",
+                sections: [
+                    {
+                        title: "⚠️ 현황",
+                        items: [
+                            "우빈이에게 체크하기로는 어느 순간부터 진행을 안하고 있다고 함",
+                            "진행 여부 확인 필요"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
     // 1.21 전체회의 - 신규 멤버 온보딩 & 2026 목표
     {
         id: "2026-01-21",

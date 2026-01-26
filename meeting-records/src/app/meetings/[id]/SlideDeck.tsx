@@ -25,7 +25,8 @@ const slideIcons: Record<string, string> = {
     'summary': '✅',
     'intro': '🏢',
     'business': '📊',
-    'orgchart': '👥'
+    'orgchart': '👥',
+    'agenda': '📝'
 };
 
 const slideColors: Record<string, string> = {
@@ -43,7 +44,8 @@ const slideColors: Record<string, string> = {
     'summary': '#10B981',
     'intro': '#8B5CF6',
     'business': '#06B6D4',
-    'orgchart': '#3B82F6'
+    'orgchart': '#3B82F6',
+    'agenda': '#F59E0B'
 };
 
 const statusColors: Record<string, string> = {
@@ -1155,6 +1157,56 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                             }}>
                                                 <span style={{ color: sectionColor }}>→</span> {item}
                                             </li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+            );
+        }
+
+        // 🆕 Agenda 슬라이드 - 논의 안건용
+        if (slideData.type === 'agenda' && slideData.sections) {
+            return (
+                <div className={styles.slideContent}>
+                    <div className={styles.newSlideHeader}>
+                        <div className={styles.slideHeaderLeft}>
+                            <span className={styles.slideIcon} style={{ background: `${color}20`, color: color }}>{icon}</span>
+                            <span className={styles.slideNumber} style={{ color: color }}>
+                                {String(index + 1).padStart(2, '0')}
+                            </span>
+                        </div>
+                    </div>
+                    <h2 className={styles.newSlideTitle} style={{ color: color }}>{slideData.title}</h2>
+                    {slideData.subtitle && <p style={{ color: '#888', fontSize: '1.3rem', marginBottom: '1.5rem' }}>{slideData.subtitle}</p>}
+
+                    <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
+                        {slideData.sections.map((section, sIdx) => {
+                            const sectionColor = section.status ? statusColors[section.status] : color;
+                            return (
+                                <div key={sIdx} style={{
+                                    background: `linear-gradient(135deg, ${sectionColor}15 0%, ${sectionColor}05 100%)`,
+                                    border: `2px solid ${sectionColor}40`,
+                                    borderRadius: '16px',
+                                    padding: '1.5rem',
+                                    borderLeft: `4px solid ${sectionColor}`
+                                }}>
+                                    <h3 style={{ color: sectionColor, fontSize: '1.4rem', fontWeight: 700, marginBottom: '1rem' }}>{section.title}</h3>
+                                    <ul style={{ listStyle: 'none', padding: 0, margin: 0 }}>
+                                        {section.items.map((item, iIdx) => (
+                                            <li key={iIdx} style={{
+                                                color: '#ccc',
+                                                fontSize: '1.1rem',
+                                                padding: '0.6rem 0',
+                                                borderBottom: iIdx < section.items.length - 1 ? '1px solid #333' : 'none',
+                                                display: 'flex',
+                                                alignItems: 'flex-start',
+                                                gap: '0.5rem'
+                                            }}
+                                            dangerouslySetInnerHTML={{ __html: `<span style="color: ${sectionColor}">→</span> ${item}` }}
+                                            />
                                         ))}
                                     </ul>
                                 </div>
