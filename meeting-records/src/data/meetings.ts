@@ -101,6 +101,258 @@ export interface MeetingRecord {
 }
 
 export const meetings: MeetingRecord[] = [
+    // 1.28 전체회의
+    {
+        id: "2026-01-28",
+        date: "2026.01.28",
+        title: "2026년 1월 5주차 전체 회의",
+        subtitle: "임원진 회의 공유 & 팀별 진행상황",
+        attendees: ["유재영", "이동주", "유선화", "김주연", "김주희", "김정연", "류다혜", "김제연"],
+        meetingType: 'all',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "임원진 회의 공유사항" },
+            { id: 2, content: "팀별 진행상황 공유" },
+            { id: 3, content: "전체 특이사항" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "2026년 1월 5주차 전체 회의",
+                subtitle: "임원진 회의 공유 & 팀별 진행상황"
+            },
+            // 슬라이드 2: 임원진 회의 공유사항 — KPI 중심 시각화
+            {
+                type: 'strategy',
+                title: "임원진 회의 공유사항",
+                subtitle: "KPI · 역할 · 분기별 계획",
+                goals: [
+                    {
+                        title: "팀별 KPI 설정",
+                        icon: "📊",
+                        color: "#3B82F6",
+                        highlight: true,
+                        items: [
+                            "팀별 구체적인 KPI 설정 중",
+                            "KPI = 핵심 성과 지표 (Key Performance Indicator)",
+                            "KPI 달성 시 소정의 상여금 제공 예정"
+                        ]
+                    },
+                    {
+                        title: "역할 부여",
+                        icon: "👤",
+                        color: "#8B5CF6",
+                        items: [
+                            "팀원들의 정확한 역할 부여 예정",
+                            "역할 부여를 통해 권한과 책임을 부여"
+                        ]
+                    },
+                    {
+                        title: "분기별 계획",
+                        icon: "📅",
+                        color: "#10B981",
+                        items: [
+                            "분기별 KPI 공유 진행",
+                            "분기별 회식 진행 예정"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 3: 매장 운영 현황 — deadline 타입으로 진행상황 시각화
+            {
+                type: 'deadline',
+                title: "매장 운영 현황",
+                subtitle: "김주희 담당 업무",
+                deadlines: [
+                    { task: "매장 매커니즘 정립 (운영 & 재고)", date: "진행중", assignee: "김주희", priority: "critical" },
+                    { task: "동주랑 재고 정리 → 다음주 매커니즘 파일 공유", date: "이번주 금", assignee: "김주희 · 이동주", priority: "high" },
+                    { task: "뿌디 마스터 진행", date: "진행중", assignee: "김주희", priority: "high" },
+                    { task: "네이버예약 관리 마스터 진행", date: "진행중", assignee: "김주희", priority: "high" },
+                    { task: "스마트플레이스에 뿌디 체험 시간 텍스트 추가 (제안)", date: "제안", assignee: "김주희", priority: "medium" }
+                ]
+            },
+            // 슬라이드 4: 플랫폼 영업 현황 — summary 타입
+            {
+                type: 'summary',
+                title: "플랫폼 영업 현황",
+                subtitle: "크몽 · 숨고 전문가 인증",
+                sections: [
+                    {
+                        title: "네안데르",
+                        items: [
+                            "전문가 인증 완료"
+                        ],
+                        status: "success"
+                    },
+                    {
+                        title: "일해라컴퍼니",
+                        items: [
+                            "전문가 인증 진행중"
+                        ],
+                        status: "warning"
+                    }
+                ]
+            },
+            // 슬라이드 5: 웹개발 외주사업 — 비즈니스 모델 시각화
+            {
+                type: 'kpi',
+                title: "웹개발 외주사업 영업 전략",
+                subtitle: "크몽 × 숨고 동시 공략 · 비즈니스 모델",
+                kpis: [
+                    { label: "컨설팅", value: "₩1만", target: "진입 상품", status: "success" },
+                    { label: "MVP 웹개발", value: "₩100만~", target: "핵심 상품", status: "success" },
+                    { label: "핵심 경쟁력", value: "50%↓", target: "AI 개발 원가 절감", status: "success" }
+                ]
+            },
+            // 슬라이드 6: 웹개발 외주사업 — 영업 퍼널 시각화
+            {
+                type: 'timeline',
+                title: "웹개발 영업 퍼널",
+                subtitle: "컨설팅 → 개발 전환 플로우 · 전환율 25%",
+                timeline: [
+                    { date: "STEP 01", title: "유입", description: "크몽/숨고에서 컨설팅 구매 (₩10,000)", status: "completed" },
+                    { date: "STEP 02", title: "상담", description: "30분 줌 미팅, 사업 분석 + 합격 사례 공유", status: "completed" },
+                    { date: "STEP 03", title: "제안", description: "지원사업 붙으려면 MVP 개발해야 해", status: "current" },
+                    { date: "STEP 04", title: "계약", description: "개발 계약 체결 (₩100만+)", status: "upcoming" }
+                ]
+            },
+            // 슬라이드 7: 웹개발 외주사업 — ETC · 목표 · 제안
+            {
+                type: 'strategy',
+                title: "웹개발 외주사업 — 목표 & 추가 전략",
+                subtitle: "ETC · 목표 · 제안",
+                goals: [
+                    {
+                        title: "목표",
+                        icon: "🎯",
+                        color: "#3B82F6",
+                        highlight: true,
+                        items: [
+                            "3개월 안에 월 매출 300만원 목표",
+                            "올해 안에 월 1,000만원 매출 목표"
+                        ]
+                    },
+                    {
+                        title: "추가 전략",
+                        icon: "📌",
+                        color: "#F59E0B",
+                        items: [
+                            "개발 싸게 해드립니다 — 크몽 전략 그대로 유지",
+                            "지원사업 침투 영업 유지",
+                            "멘토링 + MVP 제작 — 벤처기업협회, 이승정 작가 통해서 진행 예정"
+                        ]
+                    },
+                    {
+                        title: "제안",
+                        icon: "💡",
+                        color: "#10B981",
+                        items: [
+                            "리뷰 작성 예산 편성 요청 — 수수료 30만원"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 8: 체험형 AI 컨텐츠 기획사 — 채널 전략 시각화
+            {
+                type: 'comparison',
+                title: "체험형 AI 컨텐츠 기획사 — 채널 전략",
+                subtitle: "메인 vs 보조 채널 비교",
+                comparison: {
+                    headers: ["구분", "채널", "타겟 상품", "특징"],
+                    rows: [
+                        ["메인", "크몽 / 숨고 / 콜드메일", "AI 포토부스 · AI 조향 · AI 캐리커쳐", "B2B 고단가"],
+                        ["보조", "크몽 / 숨고", "AI 프로필 사진 · AI 이미지 생성", "리뷰 쌓기 머신"]
+                    ]
+                }
+            },
+            // 슬라이드 9: 체험형 AI 컨텐츠 기획사 — 상품 Tier 시각화
+            {
+                type: 'summary',
+                title: "AI 컨텐츠 상품 Tier",
+                subtitle: "시장 검증도 기반 3단계 분류",
+                sections: [
+                    {
+                        title: "Tier 1 — 시장 검증됨",
+                        items: [
+                            "AI 포토부스",
+                            "AI 프로필 사진",
+                            "AI 캐리커쳐 / 엽서",
+                            "AI 이미지 생성"
+                        ],
+                        status: "success"
+                    },
+                    {
+                        title: "Tier 2 — 트렌드 상승",
+                        items: [
+                            "AI 조향 프로그램",
+                            "AI 타로 / 운세",
+                            "AI 캐릭터 / 만화",
+                            "AI 닮은꼴"
+                        ],
+                        status: "warning"
+                    },
+                    {
+                        title: "Tier 3 — 니치마켓",
+                        items: [
+                            "AI 드로잉 / 라이브",
+                            "AI 음성 / 보이스",
+                            "AI 스타일링"
+                        ],
+                        status: "info"
+                    }
+                ]
+            },
+            // 슬라이드 10: 체험형 AI 컨텐츠 기획사 — 실행 우선순위 로드맵
+            {
+                type: 'timeline',
+                title: "AI 컨텐츠 실행 우선순위",
+                subtitle: "단계별 실행 로드맵",
+                timeline: [
+                    { date: "1순위", title: "즉시 크몽 등록", description: "AI 프로필 + AI 이미지 → 리뷰 쌓기", status: "completed" },
+                    { date: "2순위", title: "크몽 / 숨고 / 콜드메일 주력", description: "AI 포토부스 + 캐리커쳐 + 조향 → B2B", status: "current" },
+                    { date: "3순위", title: "차별화", description: "차별화된 체험형 AI 콘텐츠 제작", status: "upcoming" },
+                    { date: "4순위", title: "글로벌", description: "글로벌 AI 컨텐츠 출시", status: "upcoming" }
+                ]
+            },
+            // 슬라이드 11: 체험형 AI 컨텐츠 기획사 — 제안사항
+            {
+                type: 'strategy',
+                title: "AI 컨텐츠 영업 — 제안사항",
+                subtitle: "핵심 방향성",
+                goals: [
+                    {
+                        title: "콘텐츠 다양화 절실",
+                        icon: "⚡",
+                        color: "#EF4444",
+                        highlight: true,
+                        items: [
+                            "체험형 AI 콘텐츠의 다양화가 매우 절실하다"
+                        ]
+                    },
+                    {
+                        title: "타겟 영업 전환",
+                        icon: "🎯",
+                        color: "#F59E0B",
+                        items: [
+                            "기존 영업 방식 → 타겟 영업으로 전환",
+                            "이유: 기존 방식이 너무 광범위함"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 12: 전체 특이사항
+            {
+                type: 'deadline',
+                title: "전체 특이사항",
+                subtitle: "공지 및 요청사항",
+                deadlines: [
+                    { task: "구정 스케줄 체크", date: "확인 필요", assignee: "전체", priority: "critical" },
+                    { task: "매장 추가/변경/체계 개선 사항 → 김주희에게 수시 공유", date: "수시", assignee: "전체 → 김주희", priority: "high" }
+                ]
+            }
+        ]
+    },
     // 1.26 임원진 회의
     {
         id: "2026-01-26",
@@ -113,7 +365,17 @@ export const meetings: MeetingRecord[] = [
         agendaItems: [
             { id: 1, content: "네안데르 시스템 수립" },
             { id: 2, content: "구정 휴무일 체크" },
-            { id: 3, content: "악센트 와우 이미지 분석 진행 여부" }
+            { id: 3, content: "악센트 와우 이미지 분석 진행 여부" },
+            { id: 4, content: "마케팅 팀 현황" },
+            { id: 5, content: "1월 매출 현황" },
+            { id: 6, content: "향수 패키지 및 케이스" },
+            { id: 7, content: "개발 및 지원사업 현황" },
+            { id: 8, content: "전체회의 운영 및 역할 체계" },
+            { id: 9, content: "KPI 체계 수립" },
+            { id: 10, content: "근무 규정 및 연차" },
+            { id: 11, content: "복리후생 및 보상 체계" },
+            { id: 12, content: "구정 휴무 및 인력 관리" },
+            { id: 13, content: "AI 개발 및 비용 관리" }
         ],
         slides: [
             // 슬라이드 1: 타이틀
@@ -171,6 +433,263 @@ export const meetings: MeetingRecord[] = [
                             "진행 여부 확인 필요"
                         ]
                     }
+                ]
+            },
+            // 슬라이드 5: 마케팅 팀 현황
+            {
+                type: 'agenda',
+                title: "마케팅 팀 현황",
+                subtitle: "담당: 유선화",
+                sections: [
+                    {
+                        title: "🎉 1월 목표 달성",
+                        items: [
+                            "1월 목표를 달성하여 매우 기쁨",
+                            "1월에 기획한 이벤트 2개 → 일주일 더 미뤄놓음 (유선화, 류다혜)",
+                            "인플루언서 마케팅 및 광고 집행 중"
+                        ]
+                    },
+                    {
+                        title: "🌐 온라인 사이트 마케팅 계획",
+                        items: [
+                            "온라인 사이트 마케팅 총 3가지 진행 예정",
+                            "개발 지연으로 2월 1일에 기획 마케팅 시작 예정"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 6: 매출 현황
+            {
+                type: 'agenda',
+                title: "1월 매출 현황",
+                subtitle: "담당: 이동주",
+                sections: [
+                    {
+                        title: "💰 매출 분석",
+                        items: [
+                            "아이디 매출 성질 포함됨",
+                            "성진 예약을 아이디로 받아 분리 처리",
+                            "영업이익 600만 원 조금 넘는 수준"
+                        ]
+                    },
+                    {
+                        title: "🚀 방향",
+                        items: [
+                            "온라인을 성공시키자! (유재영)"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 7: 제품/패키지
+            {
+                type: 'agenda',
+                title: "향수 패키지 및 케이스",
+                subtitle: "제품 기획",
+                sections: [
+                    {
+                        title: "📦 향수 패키지 제작",
+                        items: [
+                            "향수를 패키지로 판매하기 위해 단 박스 제작",
+                            "샤쉐를 넣을 수 있는 샤쉐 박스 제작",
+                            "기존 단박스 유지 진행",
+                            "추후 3D 프린팅 패키지 제작 필요"
+                        ]
+                    },
+                    {
+                        title: "🦆 케이스 변형",
+                        items: [
+                            "오리케이스! 해보자!!"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 8: 개발/지원사업 현황
+            {
+                type: 'agenda',
+                title: "개발 및 지원사업 현황",
+                subtitle: "담당: 김주연",
+                sections: [
+                    {
+                        title: "📋 지원사업 제출 현황",
+                        items: [
+                            "총 4개 제출 완료",
+                            "남은 것: 초창패 일반, 와작랑 1건 2개",
+                            "예술경영 초기 3개 전부 제출 예정",
+                            "관광촌용 필컴, 와자홈즈 제출 예정",
+                            "중앙대 캠타 1건 제출 예정",
+                            "콘진 외 몇 가지 추가"
+                        ]
+                    },
+                    {
+                        title: "⚡ 개발 현황",
+                        items: [
+                            "개발 딜레이는 절대 없다",
+                            "지원사업이 바빠도 개발이 딜레이 될 수는 없음",
+                            "넘겨주면 당일 중으로 완료 예정"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 9: 전체회의 운영 및 역할 체계
+            {
+                type: 'agenda',
+                title: "전체회의 운영 및 역할 체계",
+                subtitle: "담당: 유재영",
+                sections: [
+                    {
+                        title: "👥 팀원 관리 방침",
+                        items: [
+                            "팀원이 생기면서 스스로 더 열심히 하려는 분위기",
+                            "같이 일해 주는 것만큼 팀원들을 배려해 줄 필요가 있음",
+                            "전체 회의: 매주 수요일, 최대 2시간 내 빠르게 종료 목표"
+                        ]
+                    },
+                    {
+                        title: "🔄 역할/공유 체계",
+                        items: [
+                            "역할을 명확하게 지정 필요",
+                            "비즈니스 플로우 역할 지정 필요",
+                            "정기 공유: 팀원 → 팀 리더 → 임원진/전체 회의",
+                            "비정기 이슈: 누구에게 얘기해야 하는지 명확히"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 10: KPI 체계
+            {
+                type: 'agenda',
+                title: "KPI 체계 수립",
+                subtitle: "예산 및 성과 관리",
+                sections: [
+                    {
+                        title: "📊 KPI 설정",
+                        items: [
+                            "예산 초과분에 대한 승인 필요",
+                            "예산 금액 기준 (건수 30만 원 이하 100건은 의미 없음)",
+                            "현재 KPI 작성을 안 하고 있음 → 반드시 작성",
+                            "KPI 설정 기한: 다음 주 임원 회의까지"
+                        ]
+                    },
+                    {
+                        title: "📅 분기별 운영",
+                        items: [
+                            "분기마다 최소 회식 + 성과 리뷰",
+                            "방향성이 흔들리지 않도록 점검",
+                            "분기마다 KPI 공유 및 회식 예정",
+                            "팀원이 없으면 가만히 있으면 됨"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 11: 근무 규정 및 연차
+            {
+                type: 'agenda',
+                title: "근무 규정 및 연차",
+                subtitle: "유연근무제 및 휴가 체계",
+                sections: [
+                    {
+                        title: "⏰ 근무 규정",
+                        items: [
+                            "유연 근무제 운영",
+                            "코어 타임 설정"
+                        ]
+                    },
+                    {
+                        title: "🏖️ 연차 규정",
+                        items: [
+                            "1년 이상: 연 15일 (10년 이상 16일, 2년마다 +1일)",
+                            "1년 미만: 월차 개념 (월 1일, 최대 11일)",
+                            "아프면 쉬세요 → 병가 처리"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 12: 복리후생 및 보상
+            {
+                type: 'agenda',
+                title: "복리후생 및 보상 체계",
+                subtitle: "연말 선물 및 KPI 보상",
+                sections: [
+                    {
+                        title: "🎁 연말 선물",
+                        items: [
+                            "연 기본 50만 원",
+                            "연말 선물은 현금 불가"
+                        ]
+                    },
+                    {
+                        title: "💵 KPI 보상",
+                        items: [
+                            "분기별 KPI 달성 시 인당 월 30만 원",
+                            "KPI 보상은 현금 지급",
+                            "KPI 평가 → 지급 여부 결정 (시간 소모 적음)"
+                        ]
+                    },
+                    {
+                        title: "📝 기타",
+                        items: [
+                            "인수인계 자료 만들어 놓을 것",
+                            "API를 설정해서 팀원이 달성하게 안내"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 13: 구정 휴무 및 인력 관리
+            {
+                type: 'agenda',
+                title: "구정 휴무 및 인력 관리",
+                subtitle: "가족 행사 및 프리랜서",
+                sections: [
+                    {
+                        title: "🏠 구정 휴무",
+                        items: [
+                            "가족 행사: 선화, 주연이 먼저 날짜 정할 것",
+                            "선화는 첫날에 할머니 집 방문 필요",
+                            "직원들 휴무: 쉬는 게 당연함"
+                        ]
+                    },
+                    {
+                        title: "💼 프리랜서/외주 관리",
+                        items: [
+                            "새로운 프로그램을 만드는 게 맞음",
+                            "수익 실현이 없어서 기본급 지급 + 외주 개발 진행",
+                            "프리랜서 50:50 수익 배분도 고려"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 14: AI 개발 및 비용
+            {
+                type: 'agenda',
+                title: "AI 개발 및 비용 관리",
+                subtitle: "지원 및 외주 방안",
+                sections: [
+                    {
+                        title: "🤖 AI 개발",
+                        items: [
+                            "AI 개발 비용은 자연스럽게 진행",
+                            "이미지 분석으로 부탁 드려보는 걸로"
+                        ]
+                    },
+                    {
+                        title: "🏆 예창배 지원",
+                        items: [
+                            "예창배 붙으면 250만 원씩 계속 챙겨주는 구조"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 15: 다음 할 일
+            {
+                type: 'deadline',
+                title: "다음 할 일",
+                subtitle: "액션 아이템",
+                deadlines: [
+                    { task: "KPI 설정 및 공유", date: "다음 주 임원회의", assignee: "전체 임원", priority: "critical" },
+                    { task: "팀원들에게 정확한 역할 부여", date: "즉시", assignee: "전체 임원", priority: "critical" },
+                    { task: "팀원 KPI 달성 방법 및 관리 방안 모색", date: "진행 중", assignee: "전체 임원", priority: "high" },
+                    { task: "구정 휴무일 확정", date: "이번 주", assignee: "유선화 김주연", priority: "high" },
+                    { task: "인수인계 자료 작성", date: "진행 중", assignee: "전체", priority: "medium" }
                 ]
             }
         ]
