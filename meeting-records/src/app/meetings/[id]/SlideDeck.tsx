@@ -1014,6 +1014,18 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                         ))}
                     </div>
 
+                    {/* Optional Image */}
+                    {slideData.image && (
+                        <div style={{ marginBottom: '2rem', borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.1)' }}>
+                            <img src={slideData.image} alt={slideData.caption || ''} style={{ width: '100%', objectFit: 'cover', display: 'block' }} />
+                            {slideData.caption && (
+                                <div style={{ padding: '0.8rem 1rem', background: 'rgba(255,255,255,0.05)', color: '#aaa', fontSize: '0.95rem', textAlign: 'center' }}>
+                                    {slideData.caption}
+                                </div>
+                            )}
+                        </div>
+                    )}
+
                     {/* Sections */}
                     {slideData.sections && (
                         <div className={styles.sectionsGrid}>

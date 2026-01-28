@@ -164,6 +164,8 @@ export const meetings: MeetingRecord[] = [
                 type: 'deadline',
                 title: "매장 운영 현황",
                 subtitle: "김주희 담당 업무",
+                image: "/images/뿌디진행상황.jpeg",
+                caption: "뿌리는 디퓨저 제작 현황 (1/21~1/28)",
                 deadlines: [
                     { task: "매장 매커니즘 정립 (운영 & 재고)", date: "진행중", assignee: "김주희", priority: "critical" },
                     { task: "동주랑 재고 정리 → 다음주 매커니즘 파일 공유", date: "이번주 금", assignee: "김주희 · 이동주", priority: "high" },
