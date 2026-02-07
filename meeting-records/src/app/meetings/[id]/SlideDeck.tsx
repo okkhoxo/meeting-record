@@ -876,9 +876,23 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                 <div key={sIdx} className={styles.sectionCard} style={{ borderTopColor: color }}>
                                     <h3 className={styles.sectionTitle}>{section.title}</h3>
                                     <ul className={styles.sectionList}>
-                                        {section.items.map((item, iIdx) => (
-                                            <li key={iIdx} style={{ '--accent-color': color } as React.CSSProperties}>{item}</li>
-                                        ))}
+                                        {section.items.map((item, iIdx) => {
+                                            const isUrl = item.startsWith('http://') || item.startsWith('https://');
+                                            return (
+                                                <li key={iIdx} style={{ '--accent-color': color } as React.CSSProperties}>
+                                                    {isUrl ? (
+                                                        <a href={item} target="_blank" rel="noopener noreferrer" style={{
+                                                            color: color,
+                                                            textDecoration: 'underline',
+                                                            cursor: 'pointer',
+                                                            wordBreak: 'break-all'
+                                                        }}>
+                                                            {item}
+                                                        </a>
+                                                    ) : item}
+                                                </li>
+                                            );
+                                        })}
                                     </ul>
                                 </div>
                             ))}
