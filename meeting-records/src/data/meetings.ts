@@ -101,6 +101,403 @@ export interface MeetingRecord {
 }
 
 export const meetings: MeetingRecord[] = [
+    // 2.23 임원진 회의 (2월 4주차)
+    {
+        id: "2026-02-23",
+        date: "2026.02.23",
+        title: "2026년 2월 4주차 임원진 회의",
+        subtitle: "B2B 성장 전략 제안 · 의견 나누기",
+        attendees: ["유재영", "이동주", "유선화", "김주연"],
+        meetingType: 'executive',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "회계장부 공유" },
+            { id: 2, content: "B2B 성장 전략 제안" },
+            { id: 3, content: "인바운드 마케팅 방향 제안" },
+            { id: 4, content: "아웃바운드 B2B 타겟 후보 검토" },
+            { id: 5, content: "매출 시뮬레이션 & 실행 방향 논의" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "2026년 2월 4주차 임원진 회의",
+                subtitle: "B2B 성장 전략 제안 · 의견 나누기"
+            },
+            // 슬라이드 2: 오늘의 안건
+            {
+                type: 'agenda',
+                title: "오늘의 안건",
+                subtitle: "2026.02.23 (월)",
+                sections: [
+                    {
+                        title: "📋 회의 안건",
+                        items: [
+                            "<strong>1.</strong> 회계장부 공유",
+                            "<strong>2.</strong> B2B 성장 전략 제안",
+                            "<strong>3.</strong> 인바운드 마케팅 방향 제안",
+                            "<strong>4.</strong> 아웃바운드 B2B 타겟 후보 검토",
+                            "<strong>5.</strong> 매출 시뮬레이션 & 실행 방향 논의"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 3: 회계장부 공유
+            {
+                type: 'agenda',
+                title: "회계장부 공유",
+                subtitle: "2월 회계 현황",
+                sections: [
+                    {
+                        title: "💰 회계 현황",
+                        items: [],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 4: B2B 성장 전략 제안
+            {
+                type: 'strategy',
+                title: "B2B 성장 전략 제안",
+                subtitle: "이런 구조는 어떨까요? — 인바운드 + 아웃바운드 병행",
+                flowDiagram: {
+                    left: {
+                        title: "인바운드",
+                        subtitle: "고객이 찾아오게",
+                        items: [
+                            "구글/네이버 SEO",
+                            "보도자료 · 기사 노출",
+                            "블로그/커뮤니티 침투",
+                            "SNS 바이럴",
+                            "→ 3개월 후 효과"
+                        ],
+                        color: "#3B82F6"
+                    },
+                    right: {
+                        title: "아웃바운드",
+                        subtitle: "직접 가서 보여주기",
+                        items: [
+                            "7개 타겟 직접 영업",
+                            "무료 파일럿 → 유료 전환",
+                            "구독 반복 매출 구조",
+                            "프랜차이즈 본사 공략",
+                            "→ 즉시 매출 가능"
+                        ],
+                        color: "#8B5CF6"
+                    },
+                    arrow: "아웃바운드 성공 사례 → 인바운드 콘텐츠 / 인바운드 문의 → 아웃바운드 클로징"
+                }
+            },
+            // 슬라이드 5: 현재 문제점 & USP
+            {
+                type: 'agenda',
+                title: "현재 상황 정리 & 우리의 강점",
+                subtitle: "이 부분을 어떻게 풀면 좋을지 의견 부탁드립니다",
+                sections: [
+                    {
+                        title: "🚨 현재 문제",
+                        items: [
+                            "\"AI 향수\", \"AI 조향 체험\" 등 검색 시 네안데르가 안 나옴",
+                            "경쟁사만 노출 — 이상한드(온라인), 캐봇/바닐라이슈(포토부스)"
+                        ],
+                        status: 'danger'
+                    },
+                    {
+                        title: "💎 네안데르 USP (Unique Selling Proposition)",
+                        items: [
+                            "AI 덕질 향수 — 유일한 포지션",
+                            "조향 + 포토 + 미디어아트 복합 체험 솔루션",
+                            "190건+ 실적 검증 · 누적 방문자 10,000명+",
+                            "오프라인 매장 2개"
+                        ],
+                        status: 'success'
+                    }
+                ]
+            },
+            // 슬라이드 6: 인바운드 - SEO & 콘텐츠 전략
+            {
+                type: 'strategy',
+                title: "인바운드 마케팅 방향 제안",
+                subtitle: "이런 채널들을 활용하면 어떨까요?",
+                goals: [
+                    {
+                        title: "구글 SEO",
+                        icon: "🔍",
+                        color: "#EF4444",
+                        items: [
+                            "메타태그, 사이트맵, Search Console",
+                            "Schema Markup, E-E-A-T, GEO"
+                        ]
+                    },
+                    {
+                        title: "네이버 SEO",
+                        icon: "🟢",
+                        color: "#10B981",
+                        highlight: true,
+                        items: [
+                            "블로그(C-Rank), 플레이스 3곳 등록",
+                            "지식iN 전문가 답변, 카페 침투"
+                        ]
+                    },
+                    {
+                        title: "보도자료 & 기사",
+                        icon: "📰",
+                        color: "#3B82F6",
+                        items: [
+                            "뉴스와이어 스타트업 무료 배포",
+                            "행사/성과/협업 정기 발행"
+                        ]
+                    },
+                    {
+                        title: "커뮤니티 & SNS",
+                        icon: "📱",
+                        color: "#F59E0B",
+                        items: [
+                            "디쿠, 인스티즈, 네이트 자연스러운 후기",
+                            "인스타 릴스, 틱톡/유튜브 숏폼"
+                        ]
+                    }
+                ]
+            },
+            // 슬라이드 7: 인바운드 B2B 키워드 전략
+            {
+                type: 'comparison',
+                title: "B2B 키워드 후보",
+                subtitle: "이런 키워드를 잡아보면 어떨까요?",
+                comparison: {
+                    headers: ["티어", "목적", "키워드 예시"],
+                    rows: [
+                        ["Tier 1", "직접 매출 연결", "AI 조향 체험 행사, AI 맞춤 향수 팝업, AI 포토부스 렌탈"],
+                        ["Tier 2", "관심 유도", "브랜드 팝업스토어 기획, 기업행사 아이디어, MZ 체험 마케팅"],
+                        ["Tier 3", "연관 검색", "AI 조향 기술 트렌드, 체험형 마케팅 ROI, 팝업 마케팅 트렌드"]
+                    ]
+                }
+            },
+            // 슬라이드 8: 인바운드 실행 로드맵
+            {
+                type: 'timeline',
+                title: "인바운드 실행 로드맵 (안)",
+                subtitle: "이런 순서로 진행하면 어떨까요?",
+                timeline: [
+                    {
+                        date: "1~2주차",
+                        title: "1단계: 기반 구축",
+                        description: "Search Console · 블로그 개설 · 플레이스 등록 · 커뮤니티 계정 생성",
+                        status: 'current'
+                    },
+                    {
+                        date: "3~6주차",
+                        title: "2단계: 콘텐츠 생산",
+                        description: "블로그 주2~3회 · 릴스 제작 · 보도자료 1건 발행",
+                        status: 'upcoming'
+                    },
+                    {
+                        date: "7~12주차",
+                        title: "3단계: 공격적 확장",
+                        description: "커뮤니티 침투 · 블로거 체험단 · 지식iN 전문가 답변",
+                        status: 'upcoming'
+                    },
+                    {
+                        date: "13주차~",
+                        title: "4단계: 성과 측정 & 최적화",
+                        description: "검색 순위 추적 · 전환율 분석 · 키워드 조정",
+                        status: 'upcoming'
+                    }
+                ]
+            },
+            // 슬라이드 9: 아웃바운드 타겟 후보 7개
+            {
+                type: 'comparison',
+                title: "아웃바운드 B2B 타겟 후보 7개",
+                subtitle: "조사해본 타겟 후보들입니다 — 우선순위 의견 부탁드려요",
+                comparison: {
+                    headers: ["타겟", "AI 솔루션", "초기비", "구독료", "우선"],
+                    rows: [
+                        ["🏠 방탈출 카페", "AI NPC + 3D프린팅 + 공간기획", "300~1,000만", "30~50만", "⭐1순위"],
+                        ["📚 만화카페", "AI 만화 추천 + 위치 안내", "500~900만", "20~40만", "2순위"],
+                        ["🍜 외국인 핫플", "AI 메뉴판 + 통역 + 안내", "350~600만", "15~30만", "⭐1순위"],
+                        ["👶 키즈카페", "AI 인터랙티브 + 미디어아트", "500~1,500만", "30~60만", "⭐1순위"],
+                        ["🍷 와인바/위스키바", "AI 소믈리에 + 페어링 추천", "200~400만", "15~30만", "2순위"],
+                        ["🏛️ 박물관/미술관", "AI 도슨트 + 다국어 해설", "500~2,000만", "30~80만", "2순위"],
+                        ["💇 헤어 스튜디오", "AI 디자인 + AR 시뮬레이션", "200~400만", "15~30만", "2순위"]
+                    ]
+                }
+            },
+            // 슬라이드 10: 타겟별 핵심 한 줄
+            {
+                type: 'agenda',
+                title: "타겟별 가치 제안 (초안)",
+                subtitle: "이런 멘트로 접근해보면 어떨까요?",
+                sections: [
+                    {
+                        title: "⭐ 1순위 타겟",
+                        items: [
+                            "<strong>방탈출:</strong> \"사람 NPC 없이 24시간 운영. 인건비 0원, 몰입감은 그 이상.\"",
+                            "<strong>외국인 매장:</strong> \"영어 안돼도 외국인 매출 놓치지 않는다.\"",
+                            "<strong>키즈카페:</strong> \"놀이기구 안 바꿔도 콘텐츠가 매달 새로워진다.\""
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "📋 2순위 타겟",
+                        items: [
+                            "<strong>만화카페:</strong> \"수천 권 중 딱 맞는 만화를 30초 만에 찾아주고 위치까지 안내.\"",
+                            "<strong>와인바:</strong> \"AI가 소믈리에 역할. 객단가가 올라간다.\"",
+                            "<strong>박물관:</strong> \"원할 때, 원하는 언어로, 원하는 깊이의 해설을 바로 듣는다.\"",
+                            "<strong>헤어:</strong> \"상담 시간 80% 단축. 시술 전에 내 모습에서 미리 본다.\""
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 11: 반복 매출 구조
+            {
+                type: 'strategy',
+                title: "매출 구조 제안",
+                subtitle: "이런 수익 모델은 어떨까요?",
+                flowDiagram: {
+                    left: {
+                        title: "초기 셋업비 (1회)",
+                        subtitle: "300~2,000만",
+                        items: [
+                            "AI 솔루션 개발",
+                            "하드웨어 설치",
+                            "콘텐츠 초기 세팅",
+                            "교육 & 온보딩"
+                        ],
+                        color: "#EF4444"
+                    },
+                    right: {
+                        title: "월 구독료 (매달)",
+                        subtitle: "15~80만",
+                        items: [
+                            "콘텐츠 업데이트",
+                            "시스템 유지보수",
+                            "데이터 분석 리포트",
+                            "고객 많을수록 기본 수익 ↑"
+                        ],
+                        color: "#10B981"
+                    },
+                    arrow: "영업 1회 → 셋업비 수익 → 매달 구독 → 고객 쌓일수록 기본 수익 ↑"
+                }
+            },
+            // 슬라이드 12: 6개월 매출 시뮬레이션
+            {
+                type: 'kpi',
+                title: "6개월 매출 시뮬레이션 (예상)",
+                subtitle: "매월 2~4곳 신규 계약 시 이 정도 그림이 나올 수 있습니다",
+                kpis: [
+                    {
+                        label: "6개월 셋업비",
+                        value: "7,200만 원",
+                        target: "누적 신규 계약 수익",
+                        status: 'success'
+                    },
+                    {
+                        label: "6개월 구독 누적",
+                        value: "1,650만 원",
+                        target: "월 구독료 누적합",
+                        status: 'success'
+                    },
+                    {
+                        label: "6개월 합계",
+                        value: "8,850만 원",
+                        target: "셋업비 + 구독 합산",
+                        status: 'success'
+                    },
+                    {
+                        label: "6개월 후 월 구독만",
+                        value: "540만 원/월",
+                        target: "신규 계약 없이도 기본 수익",
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 13: 아웃바운드 실행 로드맵
+            {
+                type: 'timeline',
+                title: "아웃바운드 실행 로드맵 (안)",
+                subtitle: "진행한다면 이런 단계로 가져가면 어떨까요?",
+                timeline: [
+                    {
+                        date: "1~2주차",
+                        title: "1단계: 준비",
+                        description: "타겟별 매장 리스트업(각 10~20개) · 제안서 작성 · 데모 준비 · 파이프라인 셋업",
+                        status: 'current'
+                    },
+                    {
+                        date: "3~6주차",
+                        title: "2단계: 첫 영업",
+                        description: "주 5곳 방문 · 무료 파일럿 2건 확보 · 콜드메일/DM 발송",
+                        status: 'upcoming'
+                    },
+                    {
+                        date: "7~10주차",
+                        title: "3단계: 성공 사례",
+                        description: "유료 계약 3건 · 성공 사례 콘텐츠화(블로그/기사)",
+                        status: 'upcoming'
+                    },
+                    {
+                        date: "11주차~",
+                        title: "4단계: 스케일",
+                        description: "영업 확대 · 프랜차이즈 본사 공략 · 인바운드 연계",
+                        status: 'upcoming'
+                    }
+                ]
+            },
+            // 슬라이드 14: 실행 방향 제안
+            {
+                type: 'organization',
+                title: "실행 방향 제안",
+                subtitle: "방향이 정해지면 이런 것들부터 시작할 수 있을 것 같습니다",
+                sections: [
+                    {
+                        title: "📢 인바운드 쪽 (마케팅팀)",
+                        items: [
+                            "뉴스와이어 스타트업 지원 신청 (무료 보도자료)",
+                            "네이버 블로그 개설 + 첫 포스팅",
+                            "Google Search Console + 네이버 웹마스터 등록",
+                            "네이버 플레이스에 악센트 매장 3곳 등록",
+                            "커뮤니티 계정 생성 (디쿠, 인스티즈)",
+                            "인스타그램 릴스 3개 제작"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🤝 아웃바운드 쪽 (영업팀)",
+                        items: [
+                            "우선순위 타겟 매장 리스트업 각 10~20개",
+                            "타겟별 제안서 초안 작성",
+                            "데모 준비 (태블릿 기반)",
+                            "콜드 이메일/DM 템플릿 초안",
+                            "영업 파이프라인 시트 셋업"
+                        ],
+                        status: 'success'
+                    }
+                ]
+            },
+            // 슬라이드 15: 콜드 어프로치 참고 원칙
+            {
+                type: 'agenda',
+                title: "콜드 어프로치 참고 원칙",
+                subtitle: "조사하면서 정리해본 내용입니다 — 추가/수정 의견 있으시면 말씀해주세요",
+                sections: [
+                    {
+                        title: "📝 5가지 원칙 (초안)",
+                        items: [
+                            "<strong>1. 상대방의 고민부터 언급</strong> — 우리 자랑 X, 그들의 문제 O",
+                            "<strong>2. 구체적 숫자</strong> — \"190건 행사\", \"인건비 0원\"",
+                            "<strong>3. 리스크 제로 제안</strong> — \"1주일 무료 체험\"",
+                            "<strong>4. 짧게</strong> — 스크롤 없이 읽히는 길이",
+                            "<strong>5. CTA 명확</strong> — \"5분만 시간 내주시면 방문합니다\""
+                        ],
+                        status: 'success'
+                    }
+                ]
+            }
+        ]
+    },
     // 2.11 전체회의 (2월 2주차)
     {
         id: "2026-02-11",
