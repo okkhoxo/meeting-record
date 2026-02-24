@@ -1208,6 +1208,32 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                     <h2 className={styles.newSlideTitle} style={{ color: color }}>{slideData.title}</h2>
                     {slideData.subtitle && <p style={{ color: '#888', fontSize: '1.3rem', marginBottom: '1.5rem' }}>{slideData.subtitle}</p>}
 
+                    {/* 이미지가 있으면 표시 (단일 또는 복수) */}
+                    {slideData.images && slideData.images.length > 0 && (
+                        <div style={{ display: 'flex', gap: '1rem', marginBottom: '1.5rem' }}>
+                            {slideData.images.map((img: { src: string; caption?: string }, imgIdx: number) => (
+                                <div key={imgIdx} style={{ flex: 1, borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.1)' }}>
+                                    <img src={img.src} alt={img.caption || ''} style={{ width: '100%', maxHeight: '360px', objectFit: 'contain', display: 'block', background: '#0a0a0a' }} />
+                                    {img.caption && (
+                                        <div style={{ padding: '0.6rem 0.8rem', background: 'rgba(255,255,255,0.05)', color: '#aaa', fontSize: '0.85rem', textAlign: 'center' }}>
+                                            {img.caption}
+                                        </div>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                    {slideData.image && !slideData.images && (
+                        <div style={{ marginBottom: '1.5rem', borderRadius: '12px', overflow: 'hidden', border: '1px solid rgba(255,255,255,0.1)' }}>
+                            <img src={slideData.image} alt={slideData.caption || ''} style={{ width: '100%', maxHeight: '400px', objectFit: 'contain', display: 'block', background: '#0a0a0a' }} />
+                            {slideData.caption && (
+                                <div style={{ padding: '0.8rem 1rem', background: 'rgba(255,255,255,0.05)', color: '#aaa', fontSize: '0.95rem', textAlign: 'center' }}>
+                                    {slideData.caption}
+                                </div>
+                            )}
+                        </div>
+                    )}
+
                     <div style={{ display: 'flex', flexDirection: 'column', gap: '1.5rem' }}>
                         {slideData.sections.map((section, sIdx) => {
                             const sectionColor = section.status ? statusColors[section.status] : color;

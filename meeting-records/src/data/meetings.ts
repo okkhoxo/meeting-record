@@ -31,6 +31,7 @@ export interface MeetingRecord {
         linkUrl?: string;
         // 이미지 + 자막
         image?: string;
+        images?: { src: string; caption?: string }[];
         caption?: string;
         sections?: {
             title: string;
@@ -101,6 +102,267 @@ export interface MeetingRecord {
 }
 
 export const meetings: MeetingRecord[] = [
+    // 2.25 전체회의 (2월 4주차)
+    {
+        id: "2026-02-25",
+        date: "2026.02.25",
+        title: "2026년 2월 4주차 전체 회의",
+        subtitle: "임원진 회의 공유 & 팀별 진행상황",
+        attendees: ["유재영", "이동주", "유선화", "김주연", "김주희", "김정연", "류다혜", "김제연"],
+        meetingType: 'all',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "임원진 회의 공유사항" },
+            { id: 2, content: "영업팀 진행상황 공유" },
+            { id: 3, content: "매장 운영 진행상황 공유" },
+            { id: 4, content: "전체 특이사항" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "2026년 2월 4주차 전체 회의",
+                subtitle: "영업팀 & 매장 운영 진행상황 공유"
+            },
+            // 슬라이드 2: 오늘의 안건
+            {
+                type: 'agenda',
+                title: "오늘의 안건",
+                subtitle: "2026.02.25 (화)",
+                sections: [
+                    {
+                        title: "📋 회의 안건",
+                        items: [
+                            "<strong>1.</strong> 임원진 회의 공유사항",
+                            "<strong>2.</strong> 영업팀 진행상황 공유",
+                            "<strong>3.</strong> 매장 운영 진행상황 공유",
+                            "<strong>4.</strong> 전체 특이사항"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 3: 임원진 회의 공유사항
+            {
+                type: 'agenda',
+                title: "임원진 회의 공유사항",
+                subtitle: "2/23 임원진 회의 내용 공유",
+                sections: [
+                    {
+                        title: "🚨 현재 매출 상황",
+                        items: [
+                            "1월 대비 매출이 2/3에도 못 미치는 상황",
+                            "회사 순이익 없음 — 현재 마이너스 상태",
+                            "모두 조금 더 긴장하면서 빠르게 진행 부탁드립니다"
+                        ],
+                        status: 'danger'
+                    },
+                    {
+                        title: "⚠️ 핵심 문제",
+                        items: [
+                            "<strong>B2B 계약 0건</strong> — 아직 성과 없음",
+                            "<strong>매장 매출 감소</strong> — 하락 추세",
+                            "<strong>3월 학기 시작</strong> — 예약 부진 예상"
+                        ],
+                        status: 'danger'
+                    },
+                    {
+                        title: "💡 깊게 고민해야 할 3가지",
+                        items: [
+                            "<strong>1. 온라인 매출</strong> — 새로운 매출 채널 확보",
+                            "<strong>2. B2B</strong> — 계약 성사를 위한 구체적 액션",
+                            "<strong>3. 매장 (일반 예약 + 뿌덕3)</strong> — 예약 부진 대응 방안"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 4: 영업팀 - 크몽 리뷰 쌓기
+            {
+                type: 'agenda',
+                title: "영업팀 진행상황 — 크몽 리뷰 쌓기",
+                subtitle: "크몽 플랫폼 리뷰 확보 현황",
+                images: [
+                    { src: "/images/kmong-review-1.png", caption: "크몽 리뷰 ⭐ 5.0 — 예비 창업 패키지 합격 전략 컨설팅" },
+                    { src: "/images/kmong-review-2.png", caption: "크몽 리뷰 ⭐ 5.0 — AI 아이템 사업계획서 컨설팅 + MVP 제작" }
+                ],
+                sections: [
+                    {
+                        title: "📦 크몽 등록 현황",
+                        items: [
+                            "크몽 등록 완료",
+                            "리뷰 쌓기 진행 중"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📋 TO-DO",
+                        items: [
+                            "크몽 & 숨고 상단 노출 계획 수립",
+                            "크몽 & 숨고 3D 관련 진행상황 공유",
+                            "SEO 키워드 체크"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 5: 영업팀 - 숨고 리뷰 쌓기
+            {
+                type: 'agenda',
+                title: "영업팀 진행상황 — 숨고 리뷰 쌓기",
+                subtitle: "숨고 플랫폼 리뷰 확보 현황",
+                images: [
+                    { src: "/images/soomgo-review-3.png", caption: "숨고 리뷰 ⭐ 5.0 (숨고페이 거래 인증)" },
+                    { src: "/images/soomgo-review-1.png", caption: "숨고 리뷰 ⭐ 5.0 — 웹 개발" },
+                    { src: "/images/soomgo-review-2.png", caption: "숨고 리뷰 ⭐ 5.0 — 웹 개발" }
+                ],
+                sections: [
+                    {
+                        title: "📦 숨고 등록 현황",
+                        items: [
+                            "숨고 리뷰 쌓기 진행중",
+                            "리뷰 확보 → 상단 노출 → 고가 전환 전략"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📦 리뷰 내용",
+                        items: [
+                            "베이커리 카페 사이트 제작 — 매뉴 분위기를 잘 반영, 깔끔한 구성",
+                            "AI 기반 예술 교육 플랫폼 웹 개발 — 기대 이상의 결과물"
+                        ],
+                        status: 'success'
+                    }
+                ]
+            },
+            // 슬라이드 6: 영업팀 - 갤럭시 코퍼레이션 B2B 협업
+            {
+                type: 'agenda',
+                title: "영업팀 진행상황 — 갤럭시 코퍼레이션(김종국)",
+                subtitle: "B2B 협업 제안 건",
+                sections: [
+                    {
+                        title: "🤝 갤럭시 코퍼레이션 B2B 협업 제안",
+                        items: [
+                            "갤럭시 코퍼레이션(김종국) 측 B2B 협업 제안 진행중"
+                        ],
+                        status: 'success'
+                    }
+                ]
+            },
+            // 슬라이드 7: 영업팀 - 코리아 그랜드 세일 완료
+            {
+                type: 'kpi',
+                title: "영업팀 진행상황 — 코리아 그랜드 세일 완료",
+                subtitle: "2/14 ~ 2/17 진행 결과",
+                kpis: [
+                    { label: "2/14 (토)", value: "22명", target: "1타임 10명 + 2타임 12명", status: 'success' },
+                    { label: "2/15 (일)", value: "26명", target: "1타임 12명 + 2타임 14명", status: 'success' },
+                    { label: "2/16 (월)", value: "22명", target: "1타임 11명 + 2타임 11명", status: 'success' },
+                    { label: "2/17 (화)", value: "12명", target: "1타임 12명", status: 'warning' }
+                ],
+                sections: [
+                    {
+                        title: "📊 총 참여자",
+                        items: [
+                            "4일간 총 82명 참여"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "⚠️ 특이사항",
+                        items: [
+                            "스프링 캠프 — 유선화 영업 중"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 8: 영업팀 - 진행 중 영업 건
+            {
+                type: 'kpi',
+                title: "영업팀 진행상황 — 진행 중 영업 건",
+                subtitle: "예상 매출 합산 약 5,800만 ~ 6,000만원",
+                kpis: [
+                    { label: "청창사 최민경 대표", value: "2~3천만", target: "뷰티 브랜딩 컨설팅 AI 플랫폼 · 5월 이후 예상", status: 'warning' },
+                    { label: "국제작가축제", value: "2천만", target: "3/3 선 미팅 예정", status: 'success' },
+                    { label: "30주년 통번역협회", value: "800~1천만", target: "행사 진행 건", status: 'warning' }
+                ]
+            },
+            // 슬라이드 9: 영업팀 - 추가 건
+            {
+                type: 'agenda',
+                title: "영업팀 진행상황 — 추가 건",
+                subtitle: "",
+                sections: [
+                    {
+                        title: "🎯 타겟 마케팅",
+                        items: [
+                            "가장 가능성 높은 타겟 업체 선정 필요 (ex. 방탈출)"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📅 다음주 일정",
+                        items: [
+                            "<strong>3/3 (월) — 국제작가축제 선 미팅 진행 예정</strong>"
+                        ],
+                        status: 'success'
+                    }
+                ]
+            },
+            // 슬라이드 9: 매장 운영 - 매커니즘 & 재고 관리
+            {
+                type: 'organization',
+                title: "매장 운영 진행상황",
+                subtitle: "매커니즘 · 재고 · 스마트플레이스",
+                sections: [
+                    {
+                        title: "1️⃣ 매장 매커니즘 공유",
+                        items: [
+                            "악센트 매장 관리 가이드 업데이트",
+                            "알바분들 만나면서 매커니즘 & 청소 전달 진행"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "2️⃣ 매장 재고 관리",
+                        items: [
+                            "구글 스프레드시트로 재고 관리 진행중"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "3️⃣ 스마트플레이스 & 뿌디 관리",
+                        items: [
+                            "스마트플레이스 > 톡톡, 예약관리 체크중",
+                            "뿌디 오프라인 > 진행 완료",
+                            "뿌디 온라인 > 진행 완료"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 10: 뿌디 디퓨저 제작 현황
+            {
+                type: 'agenda',
+                title: "뿌디 디퓨저 제작 현황",
+                subtitle: "1/21 ~ 1/27 기준",
+                image: "/images/뿌디진행상황.jpeg",
+                caption: "뿌리는 디퓨저 제작 현황 — 총 제작 32개 + 진행중 6개",
+                sections: [
+                    {
+                        title: "📊 주간 실적",
+                        items: [
+                            "7일간 총 제작 32개 + 진행중 6개",
+                            "일요일(1/25) 최다 12건 제작"
+                        ],
+                        status: 'success'
+                    }
+                ]
+            },
+        ]
+    },
     // 2.23 임원진 회의 (2월 4주차)
     {
         id: "2026-02-23",
