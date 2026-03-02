@@ -102,6 +102,187 @@ export interface MeetingRecord {
 }
 
 export const meetings: MeetingRecord[] = [
+    // 3.2 임원진 회의 (3월 1주차)
+    {
+        id: "2026-03-02",
+        date: "2026.03.02",
+        title: "2026년 3월 1주차 임원진 회의",
+        subtitle: "입찰 준비 현황 · 신규 영업 건",
+        attendees: ["유재영", "이동주", "유선화", "김주연"],
+        meetingType: 'executive',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "공공입찰 검토 현황" },
+            { id: 2, content: "입찰 참여를 위한 서류 준비" },
+            { id: 3, content: "신규 영업 건 — 지방선거 AI 컨설팅" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "2026년 3월 1주차 임원진 회의",
+                subtitle: "입찰 준비 현황 · 신규 영업 건"
+            },
+            // 슬라이드 2: 오늘의 안건
+            {
+                type: 'agenda',
+                title: "오늘의 안건",
+                subtitle: "2026.03.02 (월)",
+                sections: [
+                    {
+                        title: "📋 회의 안건",
+                        items: [
+                            "<strong>1.</strong> 공공입찰 검토 현황",
+                            "<strong>2.</strong> 입찰 참여를 위한 서류 준비",
+                            "<strong>3.</strong> 신규 영업 건 — 지방선거 AI 컨설팅"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 3: 입찰 검토 — 한국로봇산업진흥원
+            {
+                type: 'kpi',
+                title: "입찰 검토 ① — 한국로봇산업진흥원",
+                subtitle: "AI 로봇 창의교실 체험관 고도화 컨설팅",
+                kpis: [
+                    { label: "발주기관", value: "로봇산업진흥원", target: "한국로봇산업진흥원", status: 'success' },
+                    { label: "사업예산", value: "2,215만", target: "VAT 포함 / 추정가 2,014만", status: 'success' },
+                    { label: "수행기간", value: "약 2개월", target: "계약일로부터", status: 'warning' },
+                    { label: "입찰 마감", value: "3.10(화)", target: "10:00 마감", status: 'danger' }
+                ],
+                sections: [
+                    {
+                        title: "📌 사업 내용",
+                        items: [
+                            "AI 로봇 창의교실 체험관(2026.1 완공) 내 AI 기술 감수",
+                            "제1전시관: ROVIS AI 기능 적용 방안 검토",
+                            "제2전시관: 'AI의 사고 및 인식 공간' 반응형 콘텐츠",
+                            "제3전시관: 로봇을 'AI의 신체적 확장'으로 해석하는 체험",
+                            "운영 시스템 고도화 (무인·반자동, IoT 센서 연계)",
+                            "인공지능 활용 교육 콘텐츠 기획 (초등·중학생 맞춤)"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "⚠️ 참가자격 — 자격 미충족",
+                        items: [
+                            "나라장터 학술연구용역 업종코드 1169 등록 필요 — ❌ 미등록",
+                            "소기업·소상공인 확인서 소지 필요",
+                            "공동계약 불가 / 하도급 불가"
+                        ],
+                        status: 'danger'
+                    },
+                    {
+                        title: "💡 네안데르 적합성",
+                        items: [
+                            "AI 체험 콘텐츠 기획 역량은 직결되나 업종코드 1169 미등록",
+                            "이번 마감에는 참여 어려움",
+                            "재공고(유찰 이력)로 경쟁 낮을 가능성 있음"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 4: 입찰 검토 — 인천광역시
+            {
+                type: 'kpi',
+                title: "입찰 검토 ② — 인천광역시",
+                subtitle: "행사·축제 운영 데이터 측정 및 분석 용역",
+                kpis: [
+                    { label: "발주기관", value: "인천광역시", target: "인천광역시", status: 'success' },
+                    { label: "기초금액", value: "4,350만", target: "VAT 포함", status: 'success' },
+                    { label: "수행기간", value: "~12월말", target: "계약체결일 ~ 2026.12.31", status: 'success' },
+                    { label: "입찰 마감", value: "3.10(화)", target: "17:00 마감 · 방문제출", status: 'danger' }
+                ],
+                sections: [
+                    {
+                        title: "✅ 충족 자격",
+                        items: [
+                            "수도권 소재 (인천/서울/경기) — ✅ 마포구",
+                            "단독이행만 가능 (공동도급·하도급 불허) — ✅"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "❌ 미충족 자격",
+                        items: [
+                            "소프트웨어사업자 업종코드 1426 신고 — 진행중",
+                            "직접생산확인증명서 [패키지SW] — ❌ 미발급",
+                            "중·소기업 또는 소상공인 확인서 — 확인 필요",
+                            "나라장터 등록 3.9(월) 18:00까지"
+                        ],
+                        status: 'danger'
+                    },
+                    {
+                        title: "💡 네안데르 적합성",
+                        items: [
+                            "높은 적합도 — 190건+ 행사 경험 + AI 데이터분석 역량 직결",
+                            "4,350만원 · ~12월 장기 용역 = 안정적 매출원",
+                            "재공고라 경쟁 낮을 가능성",
+                            "BUT SW사업자 신고 + 직생확인증명서 미보유로 이번엔 참여 불가"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 5: 입찰 서류 준비 현황
+            {
+                type: 'agenda',
+                title: "입찰 참여를 위한 서류 준비",
+                subtitle: "공공입찰 공부 중 — 필요 서류가 굉장히 많음",
+                sections: [
+                    {
+                        title: "📋 준비해야 할 핵심 서류",
+                        items: [
+                            "직접생산확인증명서 — 발급 필요",
+                            "소기업·소상공인 확인서 — 발급 필요",
+                            "업종코드 등록 (1169 학술연구, 1426 SW사업자 등)",
+                            "나라장터 입찰 등록"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "🎯 방향",
+                        items: [
+                            "우리가 참여 가능한 입찰 리스트를 쫙 정리",
+                            "필요 서류 미리 준비 → 다음 입찰부터 바로 참여 가능하도록"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 6: 신규 영업 — 지방선거 AI 컨설팅
+            {
+                type: 'strategy',
+                title: "신규 영업 — 지방선거 AI 컨설팅",
+                subtitle: "더불어민주당 4선 의원 · 강원도지사 출마 서포트",
+                goals: [
+                    {
+                        title: "영업 건 개요",
+                        icon: "🏛️",
+                        color: "#3B82F6",
+                        highlight: true,
+                        items: [
+                            "더불어민주당 4선 의원 — 강원도지사 출마",
+                            "AI 컨설팅 및 AI 개발 서포트",
+                            "3/9~10일 중 미팅 예정"
+                        ]
+                    },
+                    {
+                        title: "서비스 범위",
+                        icon: "🤖",
+                        color: "#8B5CF6",
+                        items: [
+                            "AI 슬로건 크래프트 서비스 제공",
+                            "선거 캠프 AI 컨설팅",
+                            "AI 기반 콘텐츠 개발"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
     // 2.25 전체회의 (2월 4주차)
     {
         id: "2026-02-25",
