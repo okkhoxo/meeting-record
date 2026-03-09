@@ -102,6 +102,117 @@ export interface MeetingRecord {
 }
 
 export const meetings: MeetingRecord[] = [
+    // 3.9 임원진 회의 (3월 2주차)
+    {
+        id: "2026-03-09",
+        date: "2026.03.09",
+        title: "2026년 3월 2주차 임원진 회의",
+        subtitle: "국제작가축제 진행상황 · 디딤돌 발표 평가 · 입찰 서류 진행",
+        attendees: ["유재영", "이동주", "유선화", "김주연"],
+        meetingType: 'executive',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "나라장터 입찰 서류 준비 현황" },
+            { id: 2, content: "국제작가축제 진행상황 공유" },
+            { id: 3, content: "디딤돌 발표 평가 공유" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "2026년 3월 2주차 임원진 회의",
+                subtitle: "국제작가축제 · 디딤돌 발표 · 입찰/영업 현황"
+            },
+            // 슬라이드 2: 오늘의 안건
+            {
+                type: 'agenda',
+                title: "오늘의 안건",
+                subtitle: "2026.03.09 (월)",
+                sections: [
+                    {
+                        title: "📋 회의 안건",
+                        items: [
+                            "<strong>1.</strong> 나라장터 입찰 서류 준비 현황",
+                            "<strong>2.</strong> 국제작가축제 진행상황 공유",
+                            "<strong>3.</strong> 디딤돌 발표 평가 공유"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 3: 나라장터 입찰 서류 준비 현황
+            {
+                type: 'agenda',
+                title: "나라장터 입찰 서류 준비 현황",
+                subtitle: "3월 목표: 서류 완비 & 마스터 → 4월 첫 수주",
+                sections: [
+                    {
+                        title: "✅ 완료 항목",
+                        items: [
+                            "나라장터 입찰 등록 완료",
+                            "업종코드 등록 진행 (1169 학술연구, 1426 SW사업자)"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "🔄 진행 중",
+                        items: [
+                            "직접생산확인증명서 발급 신청",
+                            "소기업·소상공인 확인서 발급",
+                            "참여 가능한 입찰 리스트 정리 중"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "👤 담당자",
+                        items: [
+                            "<strong>유재영, 김주희</strong> — 서류 준비 및 프로세스 학습 계속"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 4: 국제작가축제 진행상황 공유
+            {
+                type: 'agenda',
+                title: "국제작가축제 — 진행상황 공유",
+                subtitle: ""
+            },
+            // 슬라이드 6: 디딤돌 발표 평가 공유
+            {
+                type: 'agenda',
+                title: "디딤돌 발표 평가 공유",
+                subtitle: "정부지원사업 디딤돌 프로그램 발표 결과",
+                sections: [
+                    {
+                        title: "📋 발표 개요",
+                        items: [
+                            "디딤돌 프로그램 사업계획 발표 완료",
+                            "AI 기반 사업 모델 및 성장 전략 발표"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "💡 평가 피드백",
+                        items: [
+                            "발표 내용 및 심사위원 반응 공유",
+                            "보완 필요 사항 논의",
+                            "향후 개선 방향 도출"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "🎯 후속 조치",
+                        items: [
+                            "피드백 반영한 사업계획 보완",
+                            "선정 결과 대기 및 대응 방안 준비"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            }
+        ]
+    },
     // 3.4 전체회의 (3월 1주차)
     {
         id: "2026-03-04",
