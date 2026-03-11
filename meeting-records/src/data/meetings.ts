@@ -102,6 +102,162 @@ export interface MeetingRecord {
 }
 
 export const meetings: MeetingRecord[] = [
+    // 3.11 전체회의 (3월 2주차)
+    {
+        id: "2026-03-11",
+        date: "2026.03.11",
+        title: "2026년 3월 2주차 전체 회의",
+        subtitle: "영업팀 진행상황 & 매장 관리",
+        attendees: ["유재영", "이동주", "유선화", "김주연", "김주희", "김정연", "류다혜", "김제연"],
+        meetingType: 'all',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "나라장터 · 직접생산확인증명서 서류 현황" },
+            { id: 2, content: "국제작가축제 진행상황" },
+            { id: 3, content: "매장 관리 현황" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "2026년 3월 2주차 전체 회의",
+                subtitle: ""
+            },
+            // 슬라이드 2: 진행 상황 공유
+            {
+                type: 'agenda',
+                title: "이번 주 진행 상황 공유",
+                subtitle: "2026.03.11 (화)",
+                sections: [
+                    {
+                        title: "📋 공유 항목",
+                        items: [
+                            "<strong>1.</strong> 나라장터 · 직접생산확인증명서 서류 현황",
+                            "<strong>2.</strong> 국제작가축제 진행상황",
+                            "<strong>3.</strong> 매장 관리 현황"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 3: 나라장터 업종코드 등록
+            {
+                type: 'agenda',
+                title: "나라장터 — 업종코드 등록 완료",
+                subtitle: "신청일: 2026-03-10 · 전체 4개 업종코드 등록 완료",
+                images: [
+                    { src: "/images/2026-03-11/nara_market.png", caption: "나라장터 업종코드 등록 현황" }
+                ],
+                sections: [
+                    {
+                        title: "🎯 다음 단계",
+                        items: [
+                            "서류 승인 후 입찰 참여 가능한 건 리스트업",
+                            "4월 첫 입찰 수주 목표 유지"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 4: 직접생산확인증명서
+            {
+                type: 'agenda',
+                title: "직접생산확인증명서 — 13개 품목 신청 완료",
+                subtitle: "신청일: 2026-03-11 · 현재 서류검토 중",
+                images: [
+                    { src: "/images/2026-03-11/direct_production_cert.png", caption: "직접생산확인증명서 신청 현황" }
+                ],
+                sections: []
+            },
+            // 슬라이드 5: 국제작가축제 진행상황
+            {
+                type: 'agenda',
+                title: "국제작가축제 — 진행상황",
+                subtitle: "와우컬처랩 · 2026 서울국제작가축제 AI 콘텐츠",
+                sections: [
+                    {
+                        title: "📌 진행상황",
+                        items: [
+                            "기획안 0309 버전 제출",
+                            "견적서 1차 제출 완료"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "🎨 AI 콘텐츠 아이디어 (3가지 안)",
+                        items: [
+                            "<strong>1안.</strong> 커스텀 디퓨저 (책 형태)",
+                            "<strong>2안.</strong> 북 스캔 + 향수 기계 — 책 선택 → 감정 입력 → 자동 배합",
+                            "<strong>3안.</strong> 뇌파 측정 → 향수 증정 (가기만 해도 향수! 바이럴 기대)"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "💡 공간 콘셉트 방향",
+                        items: [
+                            "향 카페 st — 향을 맡으면서 책을 읽는 공간, 향 바리스타 콘셉트",
+                            "1층: 북적북적한 분위기 — 인스타 코지 느낌",
+                            "3층 동선 유도 — 향 카페를 1층/3층 배치 검토 중"
+                        ],
+                        status: 'warning'
+                    }
+                ],
+                images: [
+                    { src: "/images/2026-03-11/festival_idea_1.jpg", caption: "1안. 커스텀 디퓨저 (책 형태)" },
+                    { src: "/images/2026-03-11/festival_idea_2.jpg", caption: "2안. 북 스캔 + 향수 기계" },
+                    { src: "/images/2026-03-11/festival_idea_3.jpg", caption: "3안. 뇌파 측정 → 향수 증정" }
+                ]
+            },
+            // 슬라이드 6: 국제작가축제 견적서
+            {
+                type: 'agenda',
+                title: "국제작가축제 — 견적서 (제 25-75호)",
+                subtitle: "합계 34,900,000원 (부가세 별도) · 계약금 50%, 잔금 50%",
+                images: [
+                    { src: "/images/2026-03-11/festival_estimate.png", caption: "2026 서울국제작가축제 견적서 1차" }
+                ],
+                sections: []
+            },
+            // 슬라이드 7: 매장 관리 현황
+            {
+                type: 'agenda',
+                title: "매장 관리 현황",
+                subtitle: "재고 관리 · 매장 작업 · 뿌디 현황",
+                sections: [
+                    {
+                        title: "📦 재고 관리 변경",
+                        items: [
+                            "안전재고 중창 보관 후 매장 출고 방식으로 변경",
+                            "향료: 육안 체크 / 전수조사 주기: <strong>2주</strong>",
+                            "향료 1세트 추가 완료",
+                            "와우 오르간 교체 — 광구 시약병 도착 후 진행"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🔧 3/11 매장 작업 예정",
+                        items: [
+                            "맥 위치 출입문 앞으로 이동 (라인체크)",
+                            "외부 돌돌이 업데이트 (10ml 향수 완제품 제작)",
+                            "짐 보관용 바구니 설치 (의자 아래, 40×33cm)",
+                            "중앙 아일랜드 2개 버리고 2개만 유지",
+                            "직원용 옷걸이 나사 추가 / 10ml 컬러 3세트 비치"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "📊 뿌디 현황",
+                        items: [
+                            "예약 <strong>18건</strong> / 이벤트 <strong>20건</strong>",
+                            "스마트플레이스 및 뿌디 이상 무",
+                            "계단 청소 매일로 변경 / 청소 용품 추가 예정"
+                        ],
+                        status: 'success'
+                    }
+                ]
+            }
+        ]
+    },
     // 3.9 임원진 회의 (3월 2주차)
     {
         id: "2026-03-09",
