@@ -102,6 +102,181 @@ export interface MeetingRecord {
 }
 
 export const meetings: MeetingRecord[] = [
+    // 3.25 전체회의 (3월 4주차)
+    {
+        id: "2026-03-25",
+        date: "2026.03.25",
+        title: "2026년 3월 4주차 전체 회의",
+        subtitle: "영업팀 B2B 진행상황 & 매장 관리",
+        attendees: ["유재영", "이동주", "유선화", "김주연", "김주희", "김정연", "류다혜", "김제연"],
+        meetingType: 'all',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "크몽 & 숨고 광고 테스트 현황" },
+            { id: 2, content: "나라장터 · 직접생산확인증명서 진행상황" },
+            { id: 3, content: "신규 영업 건 공유 (안산 경진대회 · 반포잠원 · 왕십리)" },
+            { id: 4, content: "매장 관리 & 스케줄 조정" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "2026년 3월 4주차 전체 회의",
+                subtitle: ""
+            },
+            // 슬라이드 2: 오늘의 안건
+            {
+                type: 'agenda',
+                title: "이번 주 진행 상황 공유",
+                subtitle: "2026.03.25 (수)",
+                sections: [
+                    {
+                        title: "📋 공유 항목",
+                        items: [
+                            "<strong>1.</strong> 크몽 & 숨고 광고 테스트 현황",
+                            "<strong>2.</strong> 나라장터 · 직접생산확인증명서 진행상황",
+                            "<strong>3.</strong> 신규 영업 건 공유 (안산 경진대회 · 반포잠원 · 왕십리)",
+                            "<strong>4.</strong> 매장 관리 & 스케줄 조정"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 3: 크몽 & 숨고 광고 테스트
+            {
+                type: 'agenda',
+                title: "크몽 & 숨고 — 광고 테스트 방향",
+                subtitle: "숨고 집중 · 월 광고 예산 30만원 · 담당자 유재영 픽스",
+                sections: [
+                    {
+                        title: "🎯 전략 방향",
+                        items: [
+                            "<strong>숨고를 집중적으로</strong> 운영",
+                            "숨고 영업 보내기 담당자 픽스하여 계속 팔로우",
+                            "월 광고 예산: <strong>30만원</strong>으로 테스트"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📐 견적 관련",
+                        items: [
+                            "상세 견적 준비 — 10cm, 20cm, 30cm 사이즈별 견적",
+                            "추후 견적 보내는 건 담당자 픽스하여 진행"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 4: 나라장터 & 직접생산확인증명서
+            {
+                type: 'agenda',
+                title: "나라장터 · 직접생산확인증명서",
+                subtitle: "직생 승인 8일 전 — 계속 팔로우",
+                sections: [
+                    {
+                        title: "🔄 나라장터",
+                        items: [
+                            "직접생산확인증명서 승인 <strong>8일 전</strong> — 계속 팔로우하기",
+                            "공공데이터 포털(<strong>data.go.kr</strong>) API 키 발급 후 엑셀 대조",
+                            "우리에게 맞는 입찰 건을 <strong>자동으로 정리</strong>하는 시스템 구축 중",
+                            "직생 번호로도 가능한지 테스트 중"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "📄 직접생산확인증명서",
+                        items: [
+                            "승인까지 <strong>8일 전</strong> — 계속 팔로우"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 5: 신규 영업 건
+            {
+                type: 'agenda',
+                title: "신규 영업 건 공유",
+                subtitle: "안산 경진대회 · 반포잠원교육지원센터 · 왕십리 영화 관련",
+                sections: [
+                    {
+                        title: "🏆 2026 ANSAN START UP 청년창업 경진대회",
+                        items: [
+                            "초기기획 및 체험콘텐츠 추천안 제출",
+                            "수요일까지 자료 전부 공유 → <strong>완료</strong>"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "🏫 반포잠원교육지원센터",
+                        items: [
+                            "감정의정원 체험콘텐츠 제안서 제출",
+                            "영상작품상영(콜라보) 가견적 제출"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🎬 왕십리 영화 관련",
+                        items: [
+                            "포토부스 2대: <strong>200만원</strong> (하루)",
+                            "AI 콘텐츠: <strong>500만원</strong>",
+                            "향수: 확정 아님",
+                            "예상 총액: 약 <strong>900만원</strong>",
+                            "차주 확정되면 공유 예정"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 6: 매장 관리 & 스케줄
+            {
+                type: 'agenda',
+                title: "매장 관리 & 스케줄 조정",
+                subtitle: "복장·근무태도 관리 · 스케줄 픽스",
+                sections: [
+                    {
+                        title: "👔 매장 관리",
+                        items: [
+                            "<strong>복장 관리</strong> — 정돈 필요",
+                            "<strong>근무태도 관리</strong> — 점검 필요"
+                        ],
+                        status: 'danger'
+                    },
+                    {
+                        title: "📅 스케줄 픽스",
+                        items: [
+                            "매장 근무 일정과 학교 일정을 <strong>동일하게</strong> 맞출 필요",
+                            "주말 오프 가능 여부 확인",
+                            "→ <strong>오늘 중으로 정리하기</strong>"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 7: 기타 메모
+            {
+                type: 'agenda',
+                title: "기타 — 포토부스 레퍼런스 & 메타광고",
+                subtitle: "추가 논의 사항",
+                sections: [
+                    {
+                        title: "📸 포토부스 레퍼런스",
+                        items: [
+                            "셀피 스탠드 퍼니부스 포토키오스크 — 이동식 포토부스 제작 검토",
+                            "쿠팡 참고 (행사장 이동식 포토부스 인생네컷 기계)"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "💡 메타광고 B2B 영업",
+                        items: [
+                            "메타광고로 B2B를 영업하는 방안 논의"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            }
+        ]
+    },
     // 3.11 전체회의 (3월 2주차)
     {
         id: "2026-03-11",
