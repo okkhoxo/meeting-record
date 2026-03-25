@@ -272,6 +272,15 @@ export const meetings: MeetingRecord[] = [
                             "메타광고로 B2B를 영업하는 방안 논의"
                         ],
                         status: 'info'
+                    },
+                    {
+                        title: "📌 전체 특이사항 및 제안사항",
+                        items: [
+                            "뿌덕이 키링",
+                            "리뷰이벤트",
+                            "포토부스"
+                        ],
+                        status: 'info'
                     }
                 ]
             }
