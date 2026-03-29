@@ -102,6 +102,154 @@ export interface MeetingRecord {
 }
 
 export const meetings: MeetingRecord[] = [
+    // 3.30 임원진 회의 (3월 5주차)
+    {
+        id: "2026-03-30",
+        date: "2026.03.30",
+        title: "2026년 3월 5주차 임원진 회의",
+        subtitle: "1분기 KPI 회고 · 2분기 목표 수립 · AI 포토부스 B2B 전략",
+        attendees: ["유재영", "이동주", "유선화", "김주연"],
+        meetingType: 'executive',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "1분기 전체 회의 준비" },
+            { id: 2, content: "1분기 KPI 회고 및 2분기 목표 수립" },
+            { id: 3, content: "영업팀 진행상황 — AI 포토부스 B2B 전략" },
+            { id: 4, content: "제천국제음악영화제 견적" },
+            { id: 5, content: "IP 콜라보 체험형 콘텐츠 제작 논의" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "2026년 3월 5주차 임원진 회의",
+                subtitle: "1분기 회고 · 2분기 재설정 · AI 포토부스 B2B"
+            },
+            // 슬라이드 2: 오늘의 안건
+            {
+                type: 'agenda',
+                title: "오늘의 안건",
+                subtitle: "2026.03.30 (월)",
+                sections: [
+                    {
+                        title: "📋 회의 안건",
+                        items: [
+                            "<strong>1.</strong> 1분기 전체 회의 준비 (등산 + 회식)",
+                            "<strong>2.</strong> 1분기 KPI 회고 및 2분기 목표 수립",
+                            "<strong>3.</strong> 영업팀 진행상황 — AI 포토부스 B2B 전략",
+                            "<strong>4.</strong> 제천국제음악영화제 견적",
+                            "<strong>5.</strong> IP 콜라보 체험형 콘텐츠 제작 논의"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 3: 1분기 전체 회의 준비
+            {
+                type: 'agenda',
+                title: "1분기 전체 회의 준비",
+                subtitle: "등산 + 팀별 회의 + 회식 — 으쌰으쌰 분위기 조성",
+                sections: [
+                    {
+                        title: "🏔️ 진행 방식",
+                        items: [
+                            "등산 출발 전 <strong>팀별 회의</strong> 진행",
+                            "등산 후 하산하여 <strong>1분기 회식</strong>",
+                            "팀별 회의 내용을 모아서 전체 공유"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🎯 핵심 목표",
+                        items: [
+                            "1분기 KPI가 좋지 않을 것으로 예상",
+                            "2분기 KPI <strong>재설정 및 목표 수립</strong> 진행",
+                            "방식의 변화 혹은 새로운 방식 추구 논의",
+                            "<strong>으쌰으쌰 다시 열심히 해보는 분위기</strong> 만들기가 가장 중요!"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 4: AI 포토부스 B2B 판매/렌탈
+            {
+                type: 'agenda',
+                title: "AI 포토부스 B2B 판매/렌탈 전략",
+                subtitle: "제안서 수정 · 맞춤형 컨택 · 메타광고 촬영 콘텐츠",
+                sections: [
+                    {
+                        title: "🔮 사주 봐주는 포토부스",
+                        items: [
+                            "사진 출력 + 영수증 프린터 출력",
+                            "사주에 따른 <strong>나의 전생의 모습</strong> AI 생성",
+                            "분석보고서는 영수증으로 출력",
+                            "악센트 아이디 콘텐츠도 함께 변경"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📸 포토부스 제안서 & 메타광고 콘텐츠",
+                        items: [
+                            "제안서 수정 및 <strong>맞춤형 컨택</strong> 진행",
+                            "메타광고 촬영용 콘텐츠 리스트업",
+                            "예시: 꽃축제 → 얼굴을 꽃축제 테마로 변환",
+                            "예시: 선사축제 → 선사시대 사람으로 변환",
+                            "예시: 기업행사/영화 등 테마별 맞춤 콘텐츠",
+                            "가라(데모)로 만들어서 광고 촬영 후 돌리자!"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "💡 핵심 전략",
+                        items: [
+                            "<strong>AI 포토부스로 인맥을 만들고 뚫는다!!!</strong>"
+                        ],
+                        highlight: true,
+                        status: 'success'
+                    }
+                ]
+            },
+            // 슬라이드 5: 제천국제음악영화제
+            {
+                type: 'agenda',
+                title: "제천국제음악영화제",
+                subtitle: "예산 1,000~1,200만원 예상",
+                sections: [
+                    {
+                        title: "💰 예산",
+                        items: [
+                            "예상 금액: <strong>1,000 ~ 1,200만원</strong>",
+                            "AI 포토부스 제안서 수정 및 맞춤형 컨택 진행"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 6: 추가 논의사항
+            {
+                type: 'agenda',
+                title: "추가 논의사항",
+                subtitle: "IP 콜라보 · B2B 마케팅 전략",
+                sections: [
+                    {
+                        title: "🎨 IP 콜라보 체험형 콘텐츠",
+                        items: [
+                            "IP 콜라보 체험형 콘텐츠 제작에 대한 <strong>고민 필요</strong>"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📢 B2B 마케팅 전략",
+                        items: [
+                            "선화가 B2B를 마케팅한다면 어떻게 하고 싶은지?",
+                            "→ <strong>고민 후 공유</strong> 필요"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            }
+        ]
+    },
     // 3.25 전체회의 (3월 4주차)
     {
         id: "2026-03-25",
