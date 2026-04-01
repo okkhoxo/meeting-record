@@ -102,6 +102,371 @@ export interface MeetingRecord {
 }
 
 export const meetings: MeetingRecord[] = [
+    // 4.1 전체회의 (4월 1주차)
+    {
+        id: "2026-04-01",
+        date: "2026.04.01",
+        title: "2026년 4월 1주차 전체 회의",
+        subtitle: "영업팀 B2B 진행상황 · 매장 운영 업데이트 · AI 포토부스 피드백",
+        attendees: ["유재영", "이동주", "유선화", "김주연", "김주희", "김정연", "류다혜", "김제연"],
+        meetingType: 'all',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "B2B 영업 진행상황 (제천음악영화제 · 안산경진대회 · 종로책축제 · 다름다움 · 발레페스티벌)" },
+            { id: 2, content: "AI 포토부스 B2B 판매/렌탈 전략" },
+            { id: 3, content: "매장 운영 사이트 업데이트" },
+            { id: 4, content: "네이버 스마트플레이스 4인 쿠폰 이슈" },
+            { id: 5, content: "리뷰이벤트 피드백 (팟키링 & AI 포토부스)" },
+            { id: 6, content: "매장 관리 체크리스트" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "2026년 4월 1주차 전체 회의",
+                subtitle: "영업팀 B2B · 매장 운영 업데이트 · AI 포토부스 피드백"
+            },
+            // 슬라이드 2: 오늘의 안건
+            {
+                type: 'agenda',
+                title: "이번 주 진행 상황 공유",
+                subtitle: "2026.04.01 (화)",
+                sections: [
+                    {
+                        title: "📋 공유 항목",
+                        items: [
+                            "<strong>1.</strong> B2B 영업 진행상황 (제천음악영화제 · 안산경진대회 · 종로책축제 · 다름다움 · 발레페스티벌)",
+                            "<strong>2.</strong> AI 포토부스 B2B 판매/렌탈 전략",
+                            "<strong>3.</strong> 매장 운영 사이트 업데이트",
+                            "<strong>4.</strong> 네이버 스마트플레이스 4인 쿠폰 이슈",
+                            "<strong>5.</strong> 리뷰이벤트 피드백 (팟키링 & AI 포토부스)",
+                            "<strong>6.</strong> 매장 관리 체크리스트"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 3: 요청사항
+            {
+                type: 'agenda',
+                title: "요청사항",
+                subtitle: "AI 포토부스 관련",
+                sections: [
+                    {
+                        title: "💼 영업관련",
+                        items: [
+                            "AI 포토부스 관련 — 하단 별도 정리"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🏪 매장관련",
+                        items: [
+                            "AI 포토부스에 <strong>사용설명서 및 레퍼런스 이미지</strong> 붙여두기",
+                            "5분동안 기다림 이슈 있음 → <strong>현행 유지, 추후 사주 AI 포토로 변경할 수 있음</strong>"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 4: B2B 영업 진행상황
+            {
+                type: 'agenda',
+                title: "B2B 영업 진행상황",
+                subtitle: "왕십리 영화 행사 · 제천국제음악영화제 · 배준용씨 행사 · 체험형 컨텐츠 전건 수주",
+                sections: [
+                    {
+                        title: "🎬 제천국제음악영화제",
+                        items: [],
+                        status: 'info'
+                    },
+                    {
+                        title: "🎥 왕십리 영화 행사",
+                        items: [
+                            "포토부스 + 체험형 컨텐츠"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📌 배준용씨 행사 · 체험형 컨텐츠 전건 수주",
+                        items: [],
+                        highlight: true,
+                        status: 'success'
+                    },
+                    {
+                        title: "🏆 안산 청년창업 경진대회",
+                        items: [
+                            "체험형 컨텐츠 + 창업관련 아이디어"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📚 종로 책축제",
+                        items: [
+                            "총 예산 적음"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "🤝 다름다움 페스티벌",
+                        items: [
+                            "약자와의 동행 — <strong>서울시</strong>"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🩰 서울 발레페스티벌",
+                        items: [],
+                        status: 'info'
+                    },
+                ]
+            },
+            // 슬라이드 5: 직접생산확인증명서 이미지
+            {
+                type: 'agenda',
+                title: "직접생산확인증명서 — 발급 완료",
+                subtitle: "2026-03-31 확인",
+                images: [
+                    { src: "/images/2026-04-01/direct_production_cert.png", caption: "직접생산확인증명서 발급 완료 화면" }
+                ],
+                sections: []
+            },
+            // 슬라이드 6: AI 포토부스 B2B 전략
+            {
+                type: 'agenda',
+                title: "AI 포토부스 B2B 판매/렌탈 전략",
+                subtitle: "메타광고 · 축제/행사 컨택",
+                sections: [
+                    {
+                        title: "📢 B2B영업용 메타광고 제작 (with 마케팅팀)",
+                        items: [
+                            "매장용: 원래 릴스 찍던 느낌으로",
+                            "B2B용: neander lab에서 노출 희망",
+                            "내용 설명 vs 바이럴 형태 등 <strong>니즈 정리 후 마케팅팀과 회의</strong>"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🎪 축제/행사 컨택",
+                        items: [
+                            "축제나 행사 같은 곳에 <strong>적극 컨택</strong>"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 7: AI 포토부스 콘텐츠 아이디어
+            {
+                type: 'agenda',
+                title: "AI 포토부스 B2B — 콘텐츠 아이디어",
+                subtitle: "사주 포토부스 · 제안서 · 핵심 전략",
+                sections: [
+                    {
+                        title: "🔮 사주 봐주는 포토부스",
+                        items: [
+                            "사진 출력 + 영수증 프린터 출력",
+                            "사주에 따른 <strong>나의 전생의 모습</strong> AI 생성",
+                            "분석보고서는 영수증으로 출력",
+                            "악센트 아이디 콘텐츠도 함께 변경"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📸 제안서 & 메타광고 촬영용 콘텐츠 리스트업",
+                        items: [
+                            "꽃축제 → 얼굴을 꽃축제 테마로 변환",
+                            "선사축제 → 선사시대 사람으로 변환",
+                            "기업행사/영화 등 테마별 맞춤 콘텐츠",
+                            "가라(데모)로 만들어서 광고 촬영 후 돌리자!"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "💡 핵심 전략",
+                        items: [
+                            "<strong>AI 포토부스로 인맥을 만들고 뚫는다!!!</strong>"
+                        ],
+                        highlight: true,
+                        status: 'success'
+                    }
+                ]
+            },
+            // 슬라이드 8: 매장 운영 사이트 업데이트
+            {
+                type: 'agenda',
+                title: "매장 운영 사이트 — 업데이트 내용",
+                subtitle: "와우 오르간 교체 · 팟키링 안내 · AI프로그램 정보",
+                images: [
+                    { src: "/images/2026-04-01/store_organ_update.png", caption: "3/26 와우 오르간 교체 완료. 다음 교체일 6/26 (3개월 주기)" }
+                ],
+                sections: []
+            },
+            // 슬라이드 9: 매장 운영 사이트 업데이트 (계속)
+            {
+                type: 'agenda',
+                title: "매장 운영 사이트 — 업데이트 (계속)",
+                subtitle: "추가 업데이트 내역",
+                images: [
+                    { src: "/images/2026-04-01/store_update_2.png", caption: "매장 운영 사이트 업데이트 내역" },
+                    { src: "/images/2026-04-01/potkeyring_ment.png", caption: "팟키링 안내멘트 추가" },
+                    { src: "/images/2026-04-01/wow_ai_program.png", caption: "와우 AI프로그램 정보 추가" }
+                ],
+                sections: []
+            },
+            // 슬라이드 10: 네이버 스마트플레이스 4인 쿠폰
+            {
+                type: 'agenda',
+                title: "네이버 스마트플레이스 — 4인 쿠폰 이슈",
+                subtitle: "분석기간: 2026.03.17~03.31 · 수작업 검증 중",
+                images: [
+                    { src: "/images/2026-04-01/naver_coupon_1.png", caption: "네이버 예약 쿠폰 현황 1" },
+                    { src: "/images/2026-04-01/naver_coupon_2.png", caption: "네이버 예약 쿠폰 현황 2" },
+                    { src: "/images/2026-04-01/naver_coupon_3.png", caption: "네이버 예약 쿠폰 현황 3" }
+                ],
+                sections: [
+                    {
+                        title: "📊 현황",
+                        items: [
+                            "매일 확정되는 예약을 확인하고 <strong>수작업 중</strong>",
+                            "4명 미만 인원이 4인 할인 쿠폰 사용하는 사례 발생"
+                        ],
+                        status: 'danger'
+                    }
+                ]
+            },
+            // 슬라이드 11: 4인 쿠폰 해결 방안
+            {
+                type: 'agenda',
+                title: "4인 쿠폰 — 해결 방안",
+                subtitle: "4가지 방법 제안",
+                images: [
+                    { src: "/images/2026-04-01/naver_coupon_4.png", caption: "쿠폰 상세 현황" },
+                    { src: "/images/2026-04-01/naver_coupon_5.png", caption: "쿠폰 상세 현황" }
+                ],
+                sections: [
+                    {
+                        title: "⭐ 방법 1. 4인 전용 패키지 상품 등록 (추천)",
+                        items: [
+                            "최소 인원을 <strong>4명으로 설정한 할인 상품</strong> 등록",
+                            "[4인 단체] 10ml 향수 체험 → 19,200원/인 (최소 4명)",
+                            "[4인 단체] 50ml 향수 체험 → 38,400원/인 (최소 4명)",
+                            "4명 미만은 선택 불가 → 시스템이 인원 강제"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "⭐ 방법 3. 확정 단계에서 수동 검증 (현재 방법)",
+                        items: [
+                            "인원 확인 후 4명 미만이면 톡톡으로 정상가 안내",
+                            "기존 쿠폰 유지 가능하지만 <strong>수작업 필요</strong>"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "📝 결론",
+                        items: [
+                            "4월까지만 할거면 <strong>지금 방법 유지</strong>",
+                            "다음에 비슷한 쿠폰 하게 되면 참고해서 디벨롭"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 12: 리뷰이벤트 피드백 - 팟키링
+            {
+                type: 'agenda',
+                title: "리뷰이벤트 피드백 — 팟키링",
+                subtitle: "참여자 만족도 높음 · 자발적 참여는 적음",
+                sections: [
+                    {
+                        title: "📊 팟키링 피드백",
+                        items: [
+                            "전체 반응: <strong>보통</strong> — 여쭈어보면 절반은 참여, 절반은 패스",
+                            "참여자 만족도: 참여한 분들은 좋아함. <strong>귀엽다고 좋아해주심</strong>",
+                            "향수 연계: 만들었던 향이랑 같은 향 → <strong>더 좋아하시는 것 같음</strong>",
+                            "자발성: ⚠️ 먼저 하겠다는 분은 잘 없음 → <strong>권유 필요</strong>"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 13: 리뷰이벤트 피드백 - AI 포토부스
+            {
+                type: 'agenda',
+                title: "리뷰이벤트 피드백 — AI 포토부스",
+                subtitle: "이용률 저조하나 찍은 사람 만족도 높음",
+                sections: [
+                    {
+                        title: "📸 AI 포토부스 피드백",
+                        items: [
+                            "이용률: <strong style='color:#e74c3c'>저조</strong> — \"아무도 안찍어\" (but 리뷰이벤트 참여자는 신기해하며 즐겁게 체험)",
+                            "찍은 사람 만족도: <strong>되게 신기하고 즐겁게 체험, 좋아해주셨어요!</strong>",
+                            "이슈 1: 캐릭터 합성 시 저작권 필터 → 자동 재시도 → <strong>최대 5분 소요</strong>",
+                            "이슈 2: 본인 얼굴이 아니라 <strong>최애 인형 등을 찍는</strong> 경우 있음",
+                            "요청 1: 3장 → <strong>5장</strong> 찍고 싶다",
+                            "요청 2: <strong>전신샷 빼달라</strong>"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 14: AI 포토부스 개선 포인트
+            {
+                type: 'agenda',
+                title: "AI 포토부스 — 개선 포인트",
+                subtitle: "우선 (바로 가능) · 후순 (제연이형 협의)",
+                sections: [
+                    {
+                        title: "➖ 우선 (비용 없이 바로 가능)",
+                        items: [
+                            "<strong>이용 유도 방안</strong>: 잘 나온 결과물 전시 (\"이렇게 나와요\")",
+                            "향수 체험 대기 시간에 \"무료로 AI 사진도 찍어보세요\" 유도",
+                            "직원 표준 권유 멘트 마련",
+                            "<strong>이용 안내문 제작</strong>: \"본인 얼굴\" 촬영 안내 (인형/물건 X)",
+                            "촬영 → 스타일 선택 → 1~2분 대기 → 결과 출력 플로우 안내",
+                            "샘플 결과 사진 2~3장 같이 붙여두기"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "➖ 후순 (제연이형이랑 협의 필요)",
+                        items: [
+                            "<strong>합성 대기 시간 해결</strong> — 대기화면 개선",
+                            "<strong>촬영 옵션 조정</strong> — 5장 옵션 추가, 전신샷 제외"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 15: 매장 관리 체크리스트
+            {
+                type: 'agenda',
+                title: "매장 관리 체크리스트",
+                subtitle: "악센트 아이디 · 운영 개선 · DP존",
+                sections: [
+                    {
+                        title: "🖥️ 악센트 아이디",
+                        items: [
+                            "맥 위치 누가 옮겨둠 + 맥이 안 켜짐",
+                            "바꾸던지 없애던지.. 포토존 뭔가 더 생길 계획 확인 필요"
+                        ],
+                        status: 'danger'
+                    },
+                    {
+                        title: "📋 진행 중 체크리스트",
+                        items: [
+                            "악센트 아이디 운영 멘트 및 사진 추가 중",
+                            "오픈이 청소, 마감이 재고 충전할 수 있도록 방법 생각 중",
+                            "복장/청소/근무 태도 체크하는 방법 생각 중",
+                            "주기를 정해서 <strong>매장 피드백</strong>을 받아야겠음",
+                            "와우 DP존 MAC → 중고 컴퓨터에서 SSD 빼서 넣어볼까 (with 동주)"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            }
+        ]
+    },
     // 3.30 임원진 회의 (3월 5주차)
     {
         id: "2026-03-30",
