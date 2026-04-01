@@ -123,8 +123,7 @@ export const meetings: MeetingRecord[] = [
             // 슬라이드 1: 타이틀
             {
                 type: 'title',
-                title: "2026년 4월 1주차 전체 회의",
-                subtitle: "영업팀 B2B · 매장 운영 업데이트 · AI 포토부스 피드백"
+                title: "2026년 4월 1주차 전체 회의"
             },
             // 슬라이드 2: 오늘의 안건
             {
