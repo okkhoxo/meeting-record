@@ -102,6 +102,399 @@ export interface MeetingRecord {
 }
 
 export const meetings: MeetingRecord[] = [
+    // 4.2 전체회의 (4월 1주차 - 점심회의)
+    {
+        id: "2026-04-02",
+        date: "2026.04.02",
+        title: "2026년 4월 1주차 전체 회의",
+        attendees: ["유재영", "김주연", "유선화", "이동주", "김정연", "김주희", "김제연"],
+        meetingType: 'all',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "온라인 스토어 / 상세페이지 업그레이드" },
+            { id: 2, content: "유통 채널 확대 (자사몰 · 카카오 · 에이블리)" },
+            { id: 3, content: "IP 콜라보 (중국 공장 · 홀리커/클리커)" },
+            { id: 4, content: "인플루언서 협찬 현황" },
+            { id: 5, content: "네안데르 사이트 개편" },
+            { id: 6, content: "샘플링 프로세스 구체화" },
+            { id: 7, content: "매장 운영 / 팝업 스토어" },
+            { id: 8, content: "AI 포토부스 / 키오스크" },
+            { id: 9, content: "사주 포토부스 / 로봇" },
+            { id: 10, content: "프로모션 · 전체 방향성" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "2026년 4월 1주차 전체 회의"
+            },
+            // 슬라이드 2: 오늘의 안건
+            {
+                type: 'agenda',
+                title: "이번 주 진행 상황 공유",
+                subtitle: "2026.04.02 (수)",
+                sections: [
+                    {
+                        title: "📋 공유 항목",
+                        items: [
+                            "<strong>1.</strong> 온라인 스토어 / 상세페이지 업그레이드",
+                            "<strong>2.</strong> 유통 채널 확대 (자사몰 · 카카오 · 에이블리)",
+                            "<strong>3.</strong> IP 콜라보 (중국 공장 · 홀리커/클리커)",
+                            "<strong>4.</strong> 인플루언서 협찬 현황",
+                            "<strong>5.</strong> 네안데르 사이트 개편",
+                            "<strong>6.</strong> 샘플링 프로세스 구체화",
+                            "<strong>7.</strong> 매장 운영 / 팝업 스토어",
+                            "<strong>8.</strong> AI 포토부스 / 키오스크",
+                            "<strong>9.</strong> 사주 포토부스 / 로봇",
+                            "<strong>10.</strong> 프로모션 · 전체 방향성"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 3: 온라인 스토어 / 상세페이지
+            {
+                type: 'agenda',
+                title: "온라인 스토어 / 상세페이지",
+                subtitle: "상세 페이지 업그레이드",
+                sections: [
+                    {
+                        title: "🖼️ 상세 페이지 업그레이드",
+                        items: [
+                            "사진 추가하여 업데이트 예정",
+                            "데이터 사이언스 관점에서 <strong>어디서 머무는지 분석 가능</strong>"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 4: 유통 채널 확대
+            {
+                type: 'agenda',
+                title: "유통 채널 확대",
+                subtitle: "자사몰 · 카카오 · 에이블리 · 캐릭터 향수",
+                sections: [
+                    {
+                        title: "🏪 자사몰",
+                        items: [
+                            "콜드메일 발송 예정 + 매출 개선 목적",
+                            "IP 협찬 빌리는 게 빠르겠다는 판단"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "💛 카카오 입점",
+                        items: [
+                            "준비 과정 까다롭고 일정 불확실"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "🛍️ 에이블리",
+                        items: [
+                            "유통 채널 확대 시 상품 등록 검토",
+                            "자사몰에 올리고 스마트플레이스/스마트스토어 활용"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🧴 캐릭터별 향수",
+                        items: [
+                            "각각 하나씩 있고, 핸드메이드로 자사몰에서 판매 후 바로 발송"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📦 자사몰 유통 채널 위탁",
+                        items: [
+                            "자사몰이 활성화되지 않아 유통 채널 위탁도 검토",
+                            "우리 역량 사용 이해해보는 것도 방법"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 5: IP 콜라보
+            {
+                type: 'agenda',
+                title: "IP 콜라보",
+                subtitle: "중국 공장 브랜드 · 홀리커/클리커",
+                sections: [
+                    {
+                        title: "🏭 중국 공장 보유 브랜드",
+                        items: [
+                            "원가 저렴, 콜라보 시 가격대 적절",
+                            "IP 많아서 <strong>도움이 필요해 보임</strong>"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🎮 홀리커/클리커",
+                        items: [
+                            "IP 리스트 검토 중, 협찬 가능한 형태 정리 필요",
+                            "<strong>5월 5일</strong>에 할 수 있는 것 구분하여 정리"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 6: 인플루언서 협찬
+            {
+                type: 'agenda',
+                title: "인플루언서 협찬 현황",
+                subtitle: "업로드 2건 · 오프라인 방문 7건 · 총 10건",
+                sections: [
+                    {
+                        title: "📊 협찬 현황",
+                        items: [
+                            "업로드 완료 <strong>2건</strong> (지난주 대비), 1만 이상 터진 건 있음",
+                            "오프라인 방문 완료 <strong>7분</strong>, 배송 1건 + 수정 포함 총 3건 수정 남음",
+                            "총 <strong>10건</strong> → 앞으로 더 협찬 건으로 올라갈 예정"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📝 리뷰 노트",
+                        items: [
+                            "마케팅 노션에서 관리",
+                            "블로그/연락처/업로드 일시/방문 일정 정리됨"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 7: 네안데르 사이트 개편
+            {
+                type: 'agenda',
+                title: "네안데르 사이트 개편",
+                subtitle: "포트폴리오 정리 · IP 리스트 검토",
+                sections: [
+                    {
+                        title: "🌐 사이트 개편",
+                        items: [
+                            "포트폴리오 정리 요청 (사진 분야 중심)",
+                            "홀리커/클리커 관련 IP 리스트 검토 — 팝업 형태 등 다양한 협찬 방식 제안 필요",
+                            "회사 IP 외 다른 IP <strong>콜라보 자산 가능성</strong> 검토"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 8: 샘플링 프로세스
+            {
+                type: 'agenda',
+                title: "샘플링 프로세스 구체화",
+                subtitle: "4/3(금)까지 완료 목표",
+                sections: [
+                    {
+                        title: "📋 진행사항",
+                        items: [
+                            "<strong>4/3(금)까지 완료하여 공유</strong> — 마케팅 팀에서 작성",
+                            "시간 계산 포함, 가격 책정/배부 지점 등 조사",
+                            "선화와 합본을 <strong>토요일까지</strong> 완성 목표"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 9: 매장 운영 / 팝업
+            {
+                type: 'agenda',
+                title: "매장 운영 / 팝업",
+                subtitle: "팝업 협찬 · 팝업 스토어 · 홀리커/클리커 · 스탬프 반납",
+                sections: [
+                    {
+                        title: "🎪 팝업 협찬",
+                        items: [
+                            "단독 vs 체험형 컨텐츠 포함 방식 논의",
+                            "대행사 필요, 이팩트 여부 검토"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🏬 팝업 스토어 제안",
+                        items: [
+                            "매장에서 틱톡 튜토리얼 + 공간 꾸미기 + 캐릭터/궁합 컨텐츠 + 향수 체험",
+                            "<strong>팝업 스토어 운영 제안 완료</strong>"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "🎮 홀리커/클리커",
+                        items: [
+                            "향 또는 키 캡슐로 이름 변경 검토",
+                            "팝업은 <strong>7월 이후</strong> 검토"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📌 스탬프 반납",
+                        items: [
+                            "목요일 오후 반납",
+                            "금요일 7시로 스케줄 변경 가능"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 10: AI 포토부스 / 키오스크 (1)
+            {
+                type: 'agenda',
+                title: "AI 포토부스 / 키오스크",
+                subtitle: "사용 설명서 · 구성 · 네이버 쿠폰 · 할인 이벤트",
+                sections: [
+                    {
+                        title: "📖 사용 설명서",
+                        items: [
+                            "레퍼런스 이미지 붙여가며 설명하는 방식으로 개선"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📸 AI 포토부스 구성",
+                        items: [
+                            "프레임 제작 시 행사 <strong>주최자에게 디자인 요청/제공</strong>"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🔖 네이버 플레이스 4인 쿠폰",
+                        items: [
+                            "17일부터 기준 예약 신청의 <strong>15% 사용</strong>",
+                            "실제 해당 건은 성권뿐. 취소 비율 거의 50%"
+                        ],
+                        status: 'danger'
+                    },
+                    {
+                        title: "⚠️ 할인 이벤트 오류",
+                        items: [
+                            "매출에 피해 발생",
+                            "<strong>이번 달까지만 진행</strong> 후 디벨롭"
+                        ],
+                        status: 'danger'
+                    }
+                ]
+            },
+            // 슬라이드 11: AI 포토부스 / 키오스크 (2)
+            {
+                type: 'agenda',
+                title: "AI 포토부스 / 키오스크 (계속)",
+                subtitle: "파티즈 쿠폰 · 리뷰이벤트 · 메커니즘 · 포토존",
+                sections: [
+                    {
+                        title: "🎫 파티즈 플레이스 쿠폰",
+                        items: [
+                            "전체 적용 할인 <strong>지양</strong>하기로"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "⭐ 리뷰 이벤트",
+                        items: [
+                            "향수 케이스 증정 방식 검토",
+                            "리뷰 이벤트 <strong>상품 매력도</strong> 중요"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🔧 AI 포토부스 메커니즘",
+                        items: [
+                            "현재 불가한 부분 있어 디벨롭 고민 중",
+                            "주말 <strong>5분 리트라이</strong> 방식 적용",
+                            "리뷰 이벤트는 보류"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "🖼️ 포토존 변경",
+                        items: [
+                            "아이맥을 포토존으로 활용 계획",
+                            "주최자들에게 안내 필요",
+                            "<strong>아이맥 신규 구매/제작</strong> 필요"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 12: 사주 포토부스 / 로봇
+            {
+                type: 'agenda',
+                title: "사주 포토부스 / 로봇",
+                subtitle: "사주 로봇 · 사주 프린터 · 키오스크 목적",
+                sections: [
+                    {
+                        title: "🤖 사주 로봇 출시 필요",
+                        items: [
+                            "<strong>B2B 니즈 대응</strong>용 시연자료"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🖨️ 사주 프린터",
+                        items: [
+                            "사진 촬영 전 생년월일 입력 → 분석 후 보고서 + 이미지 출력",
+                            "무인 운영 시 <strong>안내 멘트 필요</strong>"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🎯 AI 포토 키오스크 목적",
+                        items: [
+                            "<strong>비포비(B4B) 목적</strong>이 큼",
+                            "대기시간 있어도 괜찮음"
+                        ],
+                        status: 'success'
+                    }
+                ]
+            },
+            // 슬라이드 13: 프로모션
+            {
+                type: 'agenda',
+                title: "프로모션",
+                subtitle: "배송비 무료 · 재구매 · 4인 패키지",
+                sections: [
+                    {
+                        title: "🚚 온라인 스토어",
+                        items: [
+                            "배송비 무료 진행 검토"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🔄 재구매 프로모션",
+                        items: [
+                            "1인 1개 기준, 앱에 적용 희망"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "👥 4인 전용 패키지",
+                        items: [
+                            "묶어서 문의 통한 금액 수령 방식 검토"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 14: 전체 방향성
+            {
+                type: 'agenda',
+                title: "전체 방향성",
+                subtitle: "B2B · B2C 접점 확대",
+                sections: [
+                    {
+                        title: "🎯 방향",
+                        items: [
+                            "B2B/B2C 모든 컨텐츠에서 <strong>접점 확대</strong> 노력",
+                            "각 팀(상품팀/마케팅팀/개발팀)이 각자 방식으로 성과 달성 위한 노력을 합치는 중"
+                        ],
+                        highlight: true,
+                        status: 'success'
+                    }
+                ]
+            }
+        ]
+    },
     // 4.1 전체회의 (4월 1주차)
     {
         id: "2026-04-01",
