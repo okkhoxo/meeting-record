@@ -25,7 +25,7 @@ export interface MeetingRecord {
     }[];
     // 새로운 슬라이드 구조용 필드 (확장)
     slides?: {
-        type: 'title' | 'achievements' | 'organization' | 'operations' | 'financial' | 'strategy' | 'vision' | 'timeline' | 'kpi' | 'comparison' | 'deadline' | 'summary' | 'orgchart' | 'intro' | 'business' | 'agenda';
+        type: 'title' | 'achievements' | 'organization' | 'operations' | 'financial' | 'strategy' | 'vision' | 'timeline' | 'kpi' | 'comparison' | 'deadline' | 'summary' | 'orgchart' | 'intro' | 'business' | 'agenda' | 'quote';
         title: string;
         subtitle?: string;
         linkUrl?: string;
@@ -98,10 +98,1447 @@ export interface MeetingRecord {
             color: string;
             highlight?: boolean;
         }[];
+        // 트리 구조도 (가족 관계도 스타일)
+        treeChart?: {
+            root: { name: string; subtitle?: string; color: string };
+            children: {
+                name: string;
+                color: string;
+                children: {
+                    name: string;
+                    items: string[];
+                }[];
+            }[];
+        };
     }[];
 }
 
 export const meetings: MeetingRecord[] = [
+    // 4.27 임원진 회의 — 방향성 논의 · 나라AI 현황 · 메타광고
+    {
+        id: "2026-04-27",
+        date: "2026.04.27",
+        title: "4월 4주차 임원진 회의",
+        subtitle: "방향성 논의 · 나라 AI 현황 · 메타 광고 전략",
+        attendees: ["유재영", "이동주", "유선화", "김주연"],
+        meetingType: 'executive',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "우리의 방향성에 대한 고민" },
+            { id: 2, content: "나라 AI 현황" },
+            { id: 3, content: "메타 광고 계획" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "4월 4주차 임원진 회의",
+                subtitle: "방향성 논의 · 나라 AI 현황 · 메타 광고 전략"
+            },
+            // 슬라이드 2: 방향성 논의 — 시간 순서 타임라인
+            {
+                type: 'timeline',
+                title: "우리의 방향성에 대한 고민",
+                subtitle: "시간 순서로 본 논의 과정 — 아직 결정된 사항은 아닙니다",
+                timeline: [
+                    {
+                        date: "출발점",
+                        title: "AI 체험형 콘텐츠 = 메인 THEME",
+                        description: "AI 체험형 콘텐츠를 회사의 메인 THEME으로 잡고 악센트 아이디, 와우, 온라인을 하고 있었음",
+                        status: 'completed'
+                    },
+                    {
+                        date: "문제 인식",
+                        title: "체험형 콘텐츠 니즈 파악 어려움",
+                        description: "메인 테마인 체험형 콘텐츠에 대한 시장 니즈가 명확히 파악되지 않음. B2B 영업이 들어오지 않는 상황 발생",
+                        status: 'completed'
+                    },
+                    {
+                        date: "대응 1차",
+                        title: "AI 포토부스로 영업 전환",
+                        description: "AI 포토부스로 영업 → 대행사 인맥 확보, 대행사 리스트업, 주무관 리스트업 완료. 콜드메일 발송 → 관심 회신 수신",
+                        status: 'completed'
+                    },
+                    {
+                        date: "대응 2차",
+                        title: "3가지 의견 등장",
+                        description: "① 기존 유지 + 기획팀 신설 → 기획 기반 영업·마케팅 vs ② 나라 AI로 메인 대체 vs ③ AI 조향사 집중. 수중에 있는 것을 디벨롭하려면 AI 조향사를 밀어야 한다는 의견",
+                        status: 'current'
+                    },
+                    {
+                        date: "방향 제안",
+                        title: "AI 조향사 중심 B2C + B2B 구조",
+                        description: "B2C: 매장(악센트 와우) 기반 운영 / B2B: AI 조향사 출강 및 콘텐츠 납품 (제천국제음악영화제, 국제작가축제 등 포함)",
+                        status: 'upcoming'
+                    }
+                ],
+                sections: [
+                    {
+                        title: "⚠️ 현재 상태",
+                        items: [
+                            "<strong>아직 결정된 사항이 아닙니다</strong> — 논의 과정을 시간 순서대로 공유하는 것입니다"
+                        ],
+                        highlight: true,
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 3: AI 조향사 사업 구조도 (트리)
+            {
+                type: 'agenda',
+                title: "AI 조향사 사업 구조 (안)",
+                subtitle: "네안데르 (악센트 아이디) 중심 — 미확정",
+                treeChart: {
+                    root: { name: "네안데르", subtitle: "악센트 아이디", color: "#F59E0B" },
+                    children: [
+                        {
+                            name: "B2C",
+                            color: "#8B5CF6",
+                            children: [
+                                {
+                                    name: "악센트 아이디 매장",
+                                    items: [
+                                        "AI 조향사 체험 프로그램 상시 운영",
+                                        "덕질 유도 → <strong>커플·일반까지 타겟 확장</strong>",
+                                        "<strong>IP화</strong> 브랜딩"
+                                    ]
+                                },
+                                {
+                                    name: "악센트아이디 온라인",
+                                    items: [
+                                        "온라인 채널 운영",
+                                        "기존 디자인 유지 X → 일반화",
+                                        "온라인 마케팅 연계"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "B2B",
+                            color: "#3B82F6",
+                            children: [
+                                {
+                                    name: "AI 조향사 출강",
+                                    items: [
+                                        "저렴한 <strong>대여 방식</strong> 진입 장벽 낮춤",
+                                        "학교·기업·축제 현장 출강",
+                                        "제천국제음악영화제·국제작가축제"
+                                    ]
+                                },
+                                {
+                                    name: "커스터마이징 콘텐츠 납품",
+                                    items: [
+                                        "클라이언트 맞춤형 AI 조향 콘텐츠",
+                                        "행사·브랜드 <strong>커스텀 체험</strong> 설계",
+                                        "기획 → 제작 → 현장 운영 원스톱"
+                                    ]
+                                },
+                                {
+                                    name: "브랜딩 & 마케팅",
+                                    items: [
+                                        "기사 보도 — AI 조향사 브랜딩",
+                                        "메타 광고 — 포트폴리오 기반 집행",
+                                        "출강·체험 포트폴리오 축적"
+                                    ]
+                                }
+                            ]
+                        },
+                        {
+                            name: "나라 AI",
+                            color: "#10B981",
+                            children: [
+                                {
+                                    name: "AI 영어 시험 솔루션",
+                                    items: [
+                                        "AI 내신 지문 분석",
+                                        "AI 시험 문제 생성",
+                                        "AI 시험지 자동 조판"
+                                    ]
+                                }
+                            ]
+                        }
+                    ]
+                },
+                sections: [
+                    {
+                        title: "⚠️ 미확정 — 논의 중인 구조입니다",
+                        items: [
+                            "AI 조향사를 밀었을 때의 <strong>사업 구조 안</strong>입니다"
+                        ],
+                        highlight: true,
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 4: 전환 — 나라 AI
+            {
+                type: 'quote',
+                title: "나라 AI",
+                subtitle: "학원 영업 현황 및 메타 광고 계획",
+                sections: [
+                    {
+                        title: "",
+                        items: [
+                            "나라 AI는 별도 트랙으로 진행 중입니다"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 5: 나라 AI — 학원 영업 현황
+            {
+                type: 'agenda',
+                title: "나라 AI — 학원 영업 현황",
+                subtitle: "대흥 영어학원 10곳 방문 + 목동 전화 영업 결과",
+                sections: [
+                    {
+                        title: "🚪 대흥 영어학원 10곳 방문 결과",
+                        items: [
+                            "10곳 모두 방문하여 조언을 구하고자 했으나 <strong>전부 잡상인 취급</strong>을 당함",
+                            "그럼에도 불구하고 이력서는 모두 전달하고 옴",
+                            "<strong>단 한 곳도 연락이 오지 않음</strong>"
+                        ],
+                        status: 'danger'
+                    },
+                    {
+                        title: "🎭 잠입 방문 에피소드",
+                        items: [
+                            "한 곳은 시험 삼아 <strong>수강생인 척</strong> 예약 후 방문",
+                            "처음부터 <strong>\"엥?\"</strong> 하는 반응",
+                            "\"사실은.. 저희가 AI로 영어시험 문제를 만드는데요..\" 라고 하자마자 <strong>즉시 쫓겨남</strong>"
+                        ],
+                        status: 'danger'
+                    },
+                    {
+                        title: "📞 목동 영어학원 전화 영업",
+                        items: [
+                            "목동 영어학원 전화번호 <strong>크롤링 리스트업 완료</strong>",
+                            "전화 돌리기 <strong>20건 진행 완료</strong>",
+                            "15건: \"원장선생님 전화번호는 개인정보라 알려드릴 수 없다\" 또는 <strong>전화 바로 끊음</strong>",
+                            "→ 조언을 구한다고 했음에도 불구하고 거절당함"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "💡 향후 방향 전환",
+                        items: [
+                            "<strong>메타 광고</strong>를 통해 사람을 모으는 게 더 나을 수 있는 상황",
+                            "<strong>오픈 채팅방</strong>에서 데모 테스트를 시키는 방향 검토"
+                        ],
+                        highlight: true,
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 5: 나라 AI — 메타 광고 계획
+            {
+                type: 'agenda',
+                title: "나라 AI — 메타 광고 계획",
+                subtitle: "3가지 기능 × 4개 영상 제작 → 메타 광고 집행",
+                sections: [
+                    {
+                        title: "🎬 광고 영상 소재 — 개별 기능 (3개)",
+                        items: [
+                            "<strong>영상 1)</strong> AI 내신 지문 분석 — 교과서 지문 업로드 → AI 핵심 포인트 추출",
+                            "<strong>영상 2)</strong> AI 시험 문제 생성 — 난이도별 자동 출제, 객관식/서술형",
+                            "<strong>영상 3)</strong> AI 시험지 자동 조판 — 문제 선택 → 시험지 PDF 즉시 생성"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🎬 광고 영상 소재 — 통합 (1개)",
+                        items: [
+                            "<strong>영상 4)</strong> 위 3가지 기능을 한번에 보여주는 <strong>종합 데모 영상</strong>"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "👥 제작 담당",
+                        items: [
+                            "<strong>유재영</strong> — 총 4개 영상 컷편집 제작",
+                            "<strong>유선화</strong> — 마무리 제작 및 최종 편집"
+                        ],
+                        highlight: true,
+                        status: 'success'
+                    }
+                ]
+            }
+        ]
+    },
+    // 4.22 전체회의 — 악센트·AI 포토부스·AI 조향사
+    {
+        id: "2026-04-22",
+        date: "2026.04.22",
+        title: "2026년 4월 4주차 전체 회의",
+        subtitle: "악센트 · AI 조향사 · AI 포토부스 · IP 콜라보",
+        attendees: ["유재영", "김주연", "유선화", "이동주", "김정연", "김주희", "김제연", "류다혜"],
+        meetingType: 'all',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "AI 포토부스" },
+            { id: 2, content: "악센트아이디 & 와우" },
+            { id: 3, content: "악센트 온라인" },
+            { id: 4, content: "악센트 IP 콜라보" },
+            { id: 5, content: "AI 조향사 (출강)" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "4월 4주차 전체 회의",
+                subtitle: "AI 포토부스 · 악센트 · AI 조향사 · IP 콜라보"
+            },
+            // 슬라이드 2: AI 포토부스
+            {
+                type: 'agenda',
+                title: "AI 포토부스",
+                subtitle: "1차 제안서 메일링 · 2차 디벨롭 전략",
+                sections: [
+                    {
+                        title: "📨 1차 제안서",
+                        items: [
+                            "1차 제안서 <strong>완성</strong>",
+                            "힉스필드 이미지 생성 — 아쉬운 점이 있지만 우선 진행",
+                            "해당 건으로 <strong>메일링 작업 필수</strong>"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "📝 2차 제안서 계획",
+                        items: [
+                            "1차 반응 피드백 수집",
+                            "추가 컨텐츠 및 추가 아이디어 바탕으로 <strong>디벨롭</strong>",
+                            "관심 보인 곳에 <strong>재전송</strong> 방식으로 진행"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 3: 악센트아이디 & 와우
+            {
+                type: 'agenda',
+                title: "악센트아이디 & 와우",
+                subtitle: "일반인 타겟 확장 · 생카 놀이터 방향성",
+                sections: [
+                    {
+                        title: "🏪 악센트 아이디 — 일반인 타겟",
+                        items: [
+                            "일반인 타겟을 할 수 없을지에 대한 고민",
+                            "AI 조향사 체험을 매장 내 상시 콘텐츠로 배치",
+                            "\"나의 사주 향기\" 같은 <strong>가벼운 진입점</strong>으로 일반인이 향수에 관심 갖게 유도"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🎪 악센트 와우 — 방향성 고민",
+                        items: [
+                            "K-컨텐츠를 계속 넣는 방식에 대한 고민",
+                            "악센트 와우를 <strong>생카 놀이터</strong>로 만드는 방향성"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 4: 악센트 온라인
+            {
+                type: 'agenda',
+                title: "악센트 온라인",
+                subtitle: "새로운 유통채널 · 협업을 통한 매출 증진",
+                sections: [
+                    {
+                        title: "🛒 새 유통채널 검토",
+                        items: [
+                            "<strong>29CM / W컨셉</strong> — 감성 브랜딩에 강한 플랫폼, 악센트 브랜드 톤과 맞음",
+                            "<strong>카카오톡 선물하기</strong> — 향수 선물 카테고리 상위, 미니 사이즈 기획세트로 입점"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🤝 협업 방향",
+                        items: [
+                            "새로운 유통채널을 뚫거나 협업을 통해 <strong>매출 증진</strong>을 시킬 만한 방법 고민"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 5: 악센트 IP 콜라보
+            {
+                type: 'agenda',
+                title: "악센트 IP 콜라보",
+                subtitle: "AI 조향사 기반 IP 콜라보",
+                sections: [
+                    {
+                        title: "🎯 AI 조향사 = IP 콜라보의 킬러 도구",
+                        items: [
+                            "<strong>웹툰/웹소설 콜라보</strong> — \"이 캐릭터의 향기\" 컨셉, 작품 세계관 → AI가 향 프로필 추출 → 한정판 향수",
+                            "<strong>아이돌/엔터 콜라보</strong> — \"최애의 향기\", 팬덤 기반 구매력 극대화",
+                            "<strong>게임 콜라보</strong> — 게임 캐릭터별 향수, MZ 타겟",
+                            "<strong>지역 축제/관광지 콜라보</strong> — \"제주의 향기\", \"경주의 향기\" 등 지역 특화 향수"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "⚡ 핵심 강점",
+                        items: [
+                            "콜라보마다 <strong>커스텀 레시피를 빠르게</strong> 만들 수 있다",
+                            "일반 조향사 의뢰 대비 속도·비용 우위"
+                        ],
+                        highlight: true,
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 6: AI 조향사 (출강)
+            {
+                type: 'agenda',
+                title: "AI 조향사 (출강)",
+                subtitle: "AI 조향사 × AI 포토부스 — 믹스 전략",
+                sections: [
+                    {
+                        title: "🔀 믹스 패키지 구상",
+                        items: [
+                            "AI 조향사 + AI 포토부스를 <strong>섞는 방식</strong>으로 진행",
+                            "사주/MBTI 입력 → AI 조향사가 \"나의 향기\" 추천 → AI 포토부스에서 그 컨셉으로 촬영",
+                            "결과물: <strong>미니 향수 + 포토카드 세트</strong>"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📣 마케팅 · 브랜딩 방향",
+                        items: [
+                            "<strong>B2B</strong>: 기업 행사·축제에 \"오감 체험 부스\" 원스톱 납품",
+                            "<strong>B2C</strong>: 악센트 와우 매장 내 상시 체험 프로그램",
+                            "<strong>SNS 바이럴</strong>: 포토부스 결과물 공유 → 조향 체험까지 연결",
+                            "\"향기 + 사진\" 동시 체험은 <strong>우리만의 차별점</strong>"
+                        ],
+                        highlight: true,
+                        status: 'success'
+                    }
+                ]
+            }
+        ]
+    },
+    // 4.20 임원진 회의 — 주간 진행 상황 공유
+    {
+        id: "2026-04-20",
+        date: "2026.04.20",
+        title: "4월 3주차 임원진 회의",
+        subtitle: "진행 상황 공유 · 특이사항 · 논의",
+        attendees: ["유재영", "이동주", "유선화", "김주연"],
+        meetingType: 'executive',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "나라 AI" },
+            { id: 2, content: "악센트아이디 & 와우" },
+            { id: 3, content: "악센트 온라인" },
+            { id: 4, content: "AI 조향사 (출강)" },
+            { id: 5, content: "AI 포토 오브제" },
+            { id: 6, content: "축제 행사 컨텐츠 납품" },
+            { id: 7, content: "ETC" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "4월 3주차 임원진 회의",
+                subtitle: "진행 상황 공유 · 특이사항 · 논의"
+            },
+            // 슬라이드 2: 나라 AI
+            {
+                type: 'agenda',
+                title: "나라 AI",
+                subtitle: "대흥 영어학원 영업 준비 현황",
+                sections: [
+                    {
+                        title: "📋 진행 상황",
+                        items: [
+                            "대흥 영어학원 (내신) <strong>10곳 리서치 완료</strong>",
+                            "대치써미트 제1관 · 에이닷영어 마포 · 미래인재학원 · 목동리젠영어 마포 · 지성영어전문학원",
+                            "이레영어 · 이와이영어교습소 · 애슐리영어학원 · 강북대치영어학원 · 대치강한영어",
+                            "전화 스크립트 · 문자 멘트 · 인터뷰 질문지 <strong>작성 완료</strong>"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "📅 이번 주 계획",
+                        items: [
+                            "내일(4/21) 10곳 메일 및 전화 발송 예정",
+                            "연락 온 곳 → 미팅 스케줄 확정",
+                            "연락 안 온 곳 → 무작정 방문 영업",
+                            "<strong>목~금(4/23~24) 이번 주 내 10곳 방문 완료</strong>가 목표"
+                        ],
+                        highlight: true,
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 3: 악센트아이디 & 와우
+            {
+                type: 'agenda',
+                title: "악센트아이디 & 와우",
+                subtitle: "AI 체험형 콘텐츠 방향성",
+                sections: [
+                    {
+                        title: "🎯 논의 사항",
+                        items: [
+                            "악센트 와우에 <strong>AI 체험형 콘텐츠</strong>(포토부스 오브제) 제작 및 배치",
+                            "악센트 와우를 <strong>생카 놀이터</strong>로 만드는 방향성에 대한 고민 필요",
+                            "AI 포토부스 · AI 오브제를 매장 내 체험 콘텐츠로 활용하는 구조"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 4: 악센트 온라인
+            {
+                type: 'agenda',
+                title: "악센트 온라인",
+                subtitle: "마케팅 현황 공유",
+                sections: [
+                    {
+                        title: "📣 현재 진행 중인 마케팅",
+                        items: [
+                            "<strong>인플루언서 마케팅</strong> 진행 중",
+                            "<strong>메타 광고</strong> 마케팅 진행 중",
+                            "<strong>리뷰노트 광고</strong> 진행 중"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 5: AI 조향사 (출강)
+            {
+                type: 'agenda',
+                title: "AI 조향사 (출강)",
+                subtitle: "선화학교 워크샵 후 신규 건",
+                sections: [
+                    {
+                        title: "📌 진행 현황",
+                        items: [
+                            "선화학교 대상 <strong>무료 워크샵 진행 완료</strong>",
+                            "워크샵 이후 새로운 건 진행 예정"
+                        ],
+                        status: 'success'
+                    }
+                ]
+            },
+            // 슬라이드 6: AI 포토 오브제
+            {
+                type: 'agenda',
+                title: "AI 포토 오브제",
+                subtitle: "제안서 작성 진행 중",
+                sections: [
+                    {
+                        title: "📝 진행 현황",
+                        items: [
+                            "제안서 작성 <strong>진행 중</strong>",
+                            "이미지 생성에 있어서 <strong>고충</strong>을 겪는 중"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 7: 축제 행사 컨텐츠 납품
+            {
+                type: 'agenda',
+                title: "축제 행사 컨텐츠 납품",
+                subtitle: "체험 프로그램 라인업",
+                images: [
+                    { src: "/images/2026-04-20/experience_program_1.png", caption: "AI 포토부스 · 나의 사주 나의 향기" }
+                ],
+                sections: [
+                    {
+                        title: "📸 AI 포토부스",
+                        items: [
+                            "CEO, 조선시대, 아이돌, 미래 모습, 돌사진 등 2가지 옵션 선택",
+                            "소요시간: 1팀당 약 3~5분 | 예산: <strong>1대 110만원</strong> (필름 300장, 부가세·설치비 포함)",
+                            "AI 활용 행사 전용 특별 프레임, 로고/해시태그 삽입 가능"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🧴 나의 사주, 나의 향기",
+                        items: [
+                            "사주 오행 분석 프로그램 → 나의 향기 챙겨가기",
+                            "소요시간: 1인당 약 3~5분 | 결과물: 결과카드 + 미니 향수",
+                            "예산: <strong>1개당 12,000원</strong>"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🎨 페이스페인팅 / 타투스티커",
+                        items: [
+                            "페이스페인팅: 어린이·가족 대상, 1인당 3~7분 | 서울 4시간 14만원",
+                            "타투스티커: 전연령·20대, 1인당 1~3분 | 서울 4시간 14만원"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🍭 캐릭터 솜사탕 / 캐리커쳐 / 풍선 삐에로",
+                        items: [
+                            "캐릭터 솜사탕: 토끼·곰 등 캐릭터 모양 | 서울 주말 4시간 <strong>60만원</strong>",
+                            "캐리커쳐: 전문 작가 그림 서비스, 1명당 5~10분 | 서울 4시간 <strong>15만원</strong>",
+                            "풍선 삐에로: 풍선 아트, 1명당 1~3분 | 서울 4시간 <strong>20만원</strong>"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 8: ETC
+            {
+                type: 'agenda',
+                title: "ETC",
+                subtitle: "외주용역 및 기타",
+                sections: [
+                    {
+                        title: "💰 외주용역 — AI 사주 (외국인 타겟)",
+                        items: [
+                            "목표 금액: <strong>500만원</strong>",
+                            "진행 가능성 <strong>높음</strong>",
+                            "→ <strong>빠른 MVP 제작 바람</strong> (담당: 김주연)"
+                        ],
+                        highlight: true,
+                        status: 'success'
+                    },
+                    {
+                        title: "🎨 외주용역 — 데이터아트",
+                        items: [
+                            "데이터아트 외주용역 진행 논의"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            }
+        ]
+    },
+    // 4.7 전체회의 — 1분기 결산
+    {
+        id: "2026-04-07",
+        date: "2026.04.07",
+        title: "2026년 1분기 결산 전체 회의",
+        subtitle: "영업팀 KPI 결산 · 매장 관리 현황 · 2분기 KPI 설정",
+        attendees: ["유재영", "김주연", "유선화", "이동주", "김정연", "김주희", "김제연", "류다혜"],
+        meetingType: 'all',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "영업팀 1분기 KPI 결산" },
+            { id: 2, content: "1분기 주요 업무 추진 실적" },
+            { id: 3, content: "매장 관리 업무 진행 상황" },
+            { id: 4, content: "영업팀 2분기 KPI 설정" },
+            { id: 5, content: "결론 및 방향성" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "2026년 1분기 결산",
+                subtitle: "영업팀 · 매장관리 · 2분기 방향"
+            },
+            // 슬라이드 2: 오프닝 — 칭찬부터
+            {
+                type: 'quote',
+                title: "먼저, 잘한 것부터 이야기합니다",
+                subtitle: "1분기 동안 우리가 만들어낸 것들이 있습니다",
+                sections: [
+                    {
+                        title: "",
+                        items: [
+                            "숫자로 보면 부족하지만,",
+                            "체계를 잡고, 사람을 만나고, 기반을 깔았습니다."
+                        ],
+                        status: 'success'
+                    }
+                ]
+            },
+            // 슬라이드 3: 체계 구축
+            {
+                type: 'achievements',
+                title: "체계를 만들었습니다",
+                subtitle: "사람 · 시스템 · 인프라 | 담당자: 유재영",
+                sections: [
+                    {
+                        title: "👥 조직 재편",
+                        items: [
+                            "새로운 팀원을 영입하고 조직을 재편했습니다",
+                            "김정연 → <strong>마케팅 업무 영입</strong>",
+                            "류다혜 → <strong>생카 업무 전환</strong>",
+                            "김제연 → <strong>프리랜서 개발 및 하드웨어 제작자 영입</strong>"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "⚙️ 매장 체계화",
+                        items: [
+                            "뿌디 제작 프로세스 체계화",
+                            "톡톡 · 피드백 · 매장관리 시스템 구축"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "🏛️ 나라장터 기본 세팅 완료",
+                        items: [
+                            "업종코드 4개 + 직접생산확인서 13개 품목 <strong>전면 통과</strong>",
+                            "숨고 · 크몽 입점 승인 완료"
+                        ],
+                        status: 'success'
+                    }
+                ]
+            },
+            // 슬라이드 4: 사람을 만났다
+            {
+                type: 'achievements',
+                title: "사람을 많이 만나려 노력했습니다",
+                subtitle: "오프라인 미팅 15회 이상 · 제안서 다수 송부",
+                sections: [
+                    {
+                        title: "🏛️ 공공 / 지자체 / 축제",
+                        items: [
+                            "안산청년창업경진대회 (제안서 송부)",
+                            "국제작가축제 (제안서 송부)",
+                            "제천국제음악영화제 (제안서 송부)",
+                            "코리아 그랜드 세일 (<strong>운영 완료</strong>)"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🏢 기업 / 협회 / 교육",
+                        items: [
+                            "반포잠원교육센터 (제안서 송부)",
+                            "통번역협회 20주년 (제안서 송부)",
+                            "갤럭시코퍼레이션 — 김종국 (제안서 송부)",
+                            "주식회사 퍼스타 — 크몽 유입 (제안서 송부)",
+                            "알약 이스트소프트 박람회 (제안서 송부)"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📄 영업 자산",
+                        items: [
+                            "AI 포토부스 제안서 작성 완료",
+                            "오얼모얼(Oar More) 소개서 디벨롭"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 5: 매장 관리 — 김주희
+            {
+                type: 'achievements',
+                title: "매장 관리 — 전부 달성",
+                subtitle: "총괄 매니저 김주희",
+                sections: [
+                    {
+                        title: "🌐 매장 관리 웹사이트 구축",
+                        items: ["매장 관리 체계를 웹으로 구축 완료"],
+                        status: 'success'
+                    },
+                    {
+                        title: "📊 재고 · 공간 관리 데이터화",
+                        items: [
+                            "엑셀 마스터 장부 + 실물 사진 기록",
+                            "아이디점: 공간·패키지·팟키링·환불규정·짐보관 매뉴얼",
+                            "와우점: 공간·리모컨·운영멘트·내부창고 가이드"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "🧹 운영 · 현장 관리",
+                        items: [
+                            "청소·근무태도·톡톡·뿌디 제작·스케줄·빵꾸 대응",
+                            "특이사항 커버 체계 구축"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "📋 할인 프로모션 분석",
+                        items: [
+                            "쿠폰 분석 데이터 + 전체 최종 데이터 <strong>PDF 문서화</strong>"
+                        ],
+                        status: 'success'
+                    }
+                ]
+            },
+            // 슬라이드 6: 전환 — 그런데...
+            {
+                type: 'quote',
+                title: "그런데...",
+                subtitle: "솔직해져야 할 시간입니다",
+                sections: [
+                    {
+                        title: "",
+                        items: [
+                            "체계는 잡았고, 사람은 만났고, 기반은 깔았습니다.",
+                            "하지만 숫자는 거짓말을 하지 않습니다."
+                        ],
+                        status: 'danger'
+                    }
+                ]
+            },
+            // 슬라이드 7: KPI 결산 숫자
+            {
+                type: 'kpi',
+                title: "영업팀 1분기 KPI 결산",
+                subtitle: "목표 대비 달성 현황",
+                kpis: [
+                    { label: "웹개발 외주", value: "0원", target: "목표 3개월 내 300만", status: 'danger' },
+                    { label: "AI 체험형 콘텐츠 영업", value: "0건", target: "6건 확정 예정", status: 'danger' },
+                    { label: "나라장터 행정처리", value: "100%", target: "서류·승인 전면 완료", status: 'success' }
+                ],
+                sections: [
+                    {
+                        title: "📌 솔직한 평가",
+                        items: [
+                            "웹개발 외주는 <strong>실적이 없습니다</strong>. 목표 대비 0원.",
+                            "AI 체험형 콘텐츠 영업 <strong>0건</strong> — 6건 확정 예정이지만 1분기 안에 돈이 된 건 없습니다",
+                            "나라장터 행정처리는 <strong>완벽하게 해냈습니다</strong>"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 8: 반성 — 왜
+            {
+                type: 'quote',
+                title: "왜 이런 결과가 나왔을까",
+                subtitle: "",
+                sections: [
+                    {
+                        title: "",
+                        items: [
+                            "다양한 시도를 했습니다. 크몽, 숨고, 콜드메일, 지인 컨택...",
+                            "그런데 상대방의 <strong>뾰족한 니즈</strong>를 건드리지 못했습니다.",
+                            "\"AI 체험형 콘텐츠\"는 너무 범용적이었습니다.",
+                            "\"이것도 되고 저것도 돼요\"는 아무도 사지 않았습니다."
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 9: 반성 — 노력과 타겟
+            {
+                type: 'strategy',
+                title: "솔직한 반성",
+                subtitle: "스스로에게 물었습니다",
+                sections: [
+                    {
+                        title: "🚪 발로 뛰었는가?",
+                        items: [
+                            "\"어떻게든 한번만 만나게 해주세요\"를 해봤는가?",
+                            "아테리어 시절 카페를 직접 뚫었던 것처럼 <strong>문을 두들겼는가?</strong>",
+                            "메일 보내고 기다리는 건 영업이 아닙니다"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "🎯 상대가 너무 크지 않았나?",
+                        items: [
+                            "소속사, 대행사 등 <strong>우리 규모에 안 맞는 타겟</strong>을 잡은 건 아닌지",
+                            "지원사업 컨설팅 3건 — 제조업 등 개발이 필요 없는 경우가 많아 실패"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "🔄 관계는 좋은데 확장이 안 됐다",
+                        items: [
+                            "작년에 함께한 곳과 관계는 유지 중, 하지만 <strong>거기서 성장이 안 됐습니다</strong>",
+                            "관계를 <strong>확장</strong>하는 방법을 찾아야 합니다"
+                        ],
+                        status: 'danger'
+                    }
+                ]
+            },
+            // 슬라이드 10: 전환 — 그래서
+            {
+                type: 'quote',
+                title: "그래서, 바꿉니다",
+                subtitle: "덜어낼 건 덜어내고, 뾰족하게 집중합니다",
+                sections: [
+                    {
+                        title: "",
+                        items: [
+                            "이미 가진 건 유지하면서,",
+                            "새로운 건 하나씩 빠르게 테스트하고 빠르게 전환합니다.",
+                            "동시에 다 하는 게 아니라, <strong>순차적으로</strong>."
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 11: 2분기 KPI — 조정
+            {
+                type: 'strategy',
+                title: "영업팀 2분기 KPI",
+                subtitle: "현실적 조정 + 신규 목표",
+                sections: [
+                    {
+                        title: "⬇️ [하향] 웹개발 외주: 월 300만 원",
+                        items: [
+                            "기존 2분기 목표(월 500만)에서 현실 고려해 <strong>하향 조정</strong>"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "⬆️ [상향] 나라장터: 입찰 5건 · 수주 1건",
+                        items: [
+                            "1개월 전수 조사 결과, 당사 적합 건 5건 미만 확인",
+                            "<strong>'5건 입찰, 1건 수주'</strong>를 현실적 목표로 확정"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "🔄 [유지] AI 체험형 콘텐츠: 신규 3건 + 클로징 5건",
+                        items: [
+                            "신규 확정 3건 추가 + 1분기 이월 5건을 <strong>확실한 계약으로 클로징</strong>"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🆕 [신규] AI 포토부스: 2분기 내 10건 납품",
+                        items: [
+                            "<strong>가장 중요한 목표</strong> — 킬러 상품으로 집중합니다"
+                        ],
+                        highlight: true,
+                        status: 'danger'
+                    }
+                ]
+            },
+            // 슬라이드 12: 과정 지표
+            {
+                type: 'kpi',
+                title: "과정도 관리합니다",
+                subtitle: "2분기 Process KPI",
+                kpis: [
+                    { label: "신규 미팅", value: "12회", target: "분기 내 (월 4회)", status: 'success' },
+                    { label: "콜드메일", value: "262곳", target: "리스트업 대행사 전체", status: 'success' }
+                ],
+                sections: [
+                    {
+                        title: "📬 대행사 262곳 전체에 AI 포토부스 제안서 발송",
+                        items: [
+                            "이번엔 메일만 보내고 끝나는 게 아니라, <strong>발로 뜁니다</strong>"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 13: 마무리
+            {
+                type: 'quote',
+                title: "2분기에는<br/>뿌린 씨앗을 거둘 수 있게끔<br/>하겠습니다",
+                subtitle: "",
+                sections: [
+                    {
+                        title: "",
+                        items: [],
+                        status: 'success'
+                    }
+                ]
+            }
+        ]
+    },
+    // 4.13 임원진 회의 — 2분기 방향성
+    {
+        id: "2026-04-13",
+        date: "2026.04.13",
+        title: "2분기 방향성",
+        subtitle: "같은 방향 · 두 축 · 프로젝트 단위로 움직인다",
+        attendees: ["유재영", "이동주", "유선화", "김주연"],
+        meetingType: 'executive',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "1분기 핵심 반성 요약" },
+            { id: 2, content: "구조적 문제 — 팀이 따로 논다" },
+            { id: 3, content: "2분기 두 축 — 나라 AI · 네안데르" },
+            { id: 4, content: "나라 AI — 새 법인, 사교육 플랫폼" },
+            { id: 5, content: "네안데르 — AI 포토부스 · AI 조향사 · 악센트" },
+            { id: 6, content: "일하는 방식을 바꾼다" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "2분기에 대한 고민",
+                subtitle: "같은 방향 · 두 축 · 프로젝트 단위로 움직인다"
+            },
+            // 슬라이드 2: 1분기 반성 요약 (짧게)
+            {
+                type: 'quote',
+                title: "1분기를 한 문장으로",
+                subtitle: "몰입할 수 있는 우리만의 아이템이 없었다",
+                sections: [
+                    {
+                        title: "",
+                        items: [
+                            "다양한 시도를 했지만, 우리가 진짜 <strong>몰두</strong>할 수 있는 게 뭔지 몰랐다.",
+                            "그래서 찾아가기로 했습니다.",
+                            "우리만의 아이템을 찾아가는 과정의 첫 번째 프로젝트 — <strong>나라 AI</strong>"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 3: 구조적 문제
+            {
+                type: 'quote',
+                title: "지금 우리의 문제",
+                subtitle: "",
+                sections: [
+                    {
+                        title: "",
+                        items: [
+                            "영업팀은 B2B, 마케팅팀은 B2C — <strong>이분화</strong>되어 있다.",
+                            "개발팀은 개발만, 재무팀은 재무만.",
+                            "각자 맡은 일은 하는데, <strong>같은 방향으로 안 간다.</strong>",
+                            "",
+                            "B2B에도 마케팅이 필요하고, B2C에도 영업이 필요하다.",
+                            "팀 단위가 아니라 <strong>프로젝트 단위</strong>로 움직여야 한다."
+                        ],
+                        status: 'danger'
+                    }
+                ]
+            },
+            // 슬라이드 4: 바뀌는 방식
+            {
+                type: 'comparison',
+                title: "일하는 방식을 바꿉니다",
+                subtitle: "팀 단위 → 프로젝트 단위",
+                comparison: {
+                    headers: ["❌ 지금 (팀 단위)", "✅ 앞으로 (프로젝트 단위)"],
+                    rows: [
+                        ["영업팀 = B2B만", "하나의 목표에 전원이 붙는다"],
+                        ["마케팅팀 = B2C만", "그 안에서 각자 역할을 맡는다"],
+                        ["개발팀 = 개발만", "B2B에도 마케팅, B2C에도 영업"],
+                        ["따로 놀고 시너지 없음", "같은 방향, 같은 목표"]
+                    ]
+                }
+            },
+            // 슬라이드 5: 2분기 두 축 개요
+            {
+                type: 'quote',
+                title: "2분기, 두 축으로 갑니다",
+                subtitle: "",
+                sections: [
+                    {
+                        title: "",
+                        items: [
+                            "<strong>① 나라 AI</strong> — 새 법인. 사교육 문제생성 플랫폼.",
+                            "<strong>② 네안데르</strong> — AI 포토부스 · AI 조향사 출강 · 악센트 매출 증대.",
+                            "",
+                            "임원진 리소스: 나라 AI <strong>4</strong> : 네안데르 <strong>6</strong>"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 6: 나라 AI — 개요
+            {
+                type: 'intro',
+                title: "나라 AI",
+                subtitle: "사교육 문제생성 플랫폼 · 새 법인 설립 · 컨트롤 타워: 김주연"
+            },
+            // 슬라이드 7: 나라 AI — 모델
+            {
+                type: 'strategy',
+                title: "나라 AI — 사업 모델",
+                subtitle: "서울 25개 구 × 3팀 독점",
+                sections: [
+                    {
+                        title: "📚 서비스",
+                        items: [
+                            "AI 자동 문제생성 플랫폼",
+                            "영어로 시작 → <strong>국어 · 수학</strong>으로 확장",
+                            "구 단위 <strong>독점 3팀</strong>만 유지 — 희소성"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📣 마케팅 전략 — 니즈를 먼저 만든다",
+                        items: [
+                            "메타광고: AI 자동 문제생성 영상 촬영 → 서울부터 시작",
+                            "\"구당 1팀 무료 진행\" → 신청 폭주",
+                            "\"아쉽게도 마감됐습니다. 3팀 확장 시 연락드리겠습니다\"",
+                            "→ <strong>영업 가능한 데이터베이스</strong>가 쌓인다"
+                        ],
+                        highlight: true,
+                        status: 'success'
+                    },
+                    {
+                        title: "🚀 핵심 포인트",
+                        items: [
+                            "노베이스로 학원에 뛰어드는 게 아니라",
+                            "<strong>니즈를 만들고 → 그 데이터로 영업</strong>하는 구조"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 8: 나라 AI — 역할 분담
+            {
+                type: 'strategy',
+                title: "나라 AI — 전원 투입",
+                subtitle: "컨트롤 타워: 김주연 | 임원진 리소스 40%",
+                sections: [
+                    {
+                        title: "🎯 김주연 — 컨트롤 타워 + 개발",
+                        items: ["나라 AI 전체 총괄", "플랫폼 제작 (이미 진행 중)"],
+                        status: 'success'
+                    },
+                    {
+                        title: "📣 유선화 — 마케팅",
+                        items: ["메타광고 기획 · 니즈 파악 · 영상 제작"],
+                        status: 'info'
+                    },
+                    {
+                        title: "🤝 유재영 — 영업",
+                        items: ["데이터 기반 학원 영업 · 발로 뛰기"],
+                        status: 'info'
+                    },
+                    {
+                        title: "📊 이동주 — 재무 · QA · 운영",
+                        items: ["예산 설계 (선화와 합동) · 품질 관리"],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 9: 네안데르 — 개요
+            {
+                type: 'intro',
+                title: "네안데르",
+                subtitle: "AI 포토부스 · AI 조향사 출강 · 악센트 매출 증대"
+            },
+            // 슬라이드 10: 네안데르 — AI 포토부스 + 조향사 출강
+            {
+                type: 'strategy',
+                title: "네안데르 — B2B 전략",
+                subtitle: "무료로 니즈 데이터를 모으고, 영업으로 전환한다",
+                sections: [
+                    {
+                        title: "📸 AI 포토부스",
+                        items: [
+                            "체험형 콘텐츠 영업을 위한 <strong>수단</strong>",
+                            "무료 제공 → 니즈 있는 기업 데이터 확보 → 영업 전환"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🧪 AI 조향사 출강 (NEW)",
+                        items: [
+                            "새로운 B2B 수단 — 오히려 <strong>연락이 더 많이 올 수 있음</strong>",
+                            "무료 출강 제공 → 데이터 수집 → 유료 전환"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "🎯 공통 전략",
+                        items: [
+                            "나라 AI와 같은 원리 — <strong>니즈를 먼저 만들고, 데이터로 영업</strong>",
+                            "노베이스 영업이 아니라, 이미 관심 있는 곳을 찾아가는 것"
+                        ],
+                        highlight: true,
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 11: 네안데르 — 악센트 매출 증대
+            {
+                type: 'strategy',
+                title: "악센트 아이디 · 와우",
+                subtitle: "현행 유지 + IP 콜라보로 매출 증대",
+                sections: [
+                    {
+                        title: "🏪 현행 유지",
+                        items: [
+                            "악센트 아이디 · 와우 매장 운영 유지",
+                            "김주희 총괄 매니저 체계 그대로"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "🤝 IP 콜라보 확대",
+                        items: [
+                            "다양한 방식의 IP 콜라보 진행",
+                            "온라인 매출을 키워나가는 방향"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "⚠️ 중요한 포인트",
+                        items: [
+                            "IP 콜라보는 <strong>마케팅팀만의 일이 아니다</strong>",
+                            "영업팀과 같이 논의하고, 같이 밀어야 한다",
+                            "B2B와 B2C를 나누지 않는다 — <strong>프로젝트 단위</strong>"
+                        ],
+                        highlight: true,
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 12: 전체 구조 요약
+            {
+                type: 'comparison',
+                title: "2분기 전체 구조",
+                subtitle: "두 축 · 프로젝트 단위 · 전원 투입",
+                comparison: {
+                    headers: ["프로젝트", "핵심 전략", "역할"],
+                    rows: [
+                        ["나라 AI (신규 법인)", "메타광고 → 니즈 DB → 발로 뛰는 영업", "전원 (40%)"],
+                        ["AI 포토부스 B2B", "무료 제공 → 데이터 → 영업 전환", "재영·선화·동주"],
+                        ["AI 조향사 출강", "무료 출강 → 데이터 → 유료 전환", "재영·선화·동주"],
+                        ["악센트 아이디/와우", "현행 유지 + IP 콜라보 매출 증대", "주희·선화·재영"]
+                    ]
+                }
+            },
+            // 슬라이드 13: 마무리
+            {
+                type: 'quote',
+                title: "같은 방향을 봅니다",
+                subtitle: "팀이 아니라 프로젝트. 분리가 아니라 협업.",
+                sections: [
+                    {
+                        title: "",
+                        items: [
+                            "각자 맡은 역할은 다르지만,",
+                            "같은 목표를 향해 움직입니다.",
+                            "",
+                            "2분기, <strong>되는 게 있는 분기</strong>로 만듭니다."
+                        ],
+                        status: 'success'
+                    }
+                ]
+            }
+        ]
+    },
+    // 4.6 임원진 회의 — 1분기 회고 & 선택과 집중
+    {
+        id: "2026-04-06",
+        date: "2026.04.06",
+        title: "2026년 1분기 회고",
+        subtitle: "각성 · 반성 · 선택과 집중",
+        attendees: ["유재영", "이동주", "유선화", "김주연"],
+        meetingType: 'executive',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "각성 — 지금 상황 직시" },
+            { id: 2, content: "반성 — 영업팀 KPI 0% 달성" },
+            { id: 3, content: "구조적 문제 — 왜 안 됐는가" },
+            { id: 4, content: "선택과 집중 — 덜어낼 것, 집중할 것" },
+            { id: 5, content: "2분기 방향성" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "2026년 1분기 회고",
+                subtitle: "칭찬 · 반성 · 선택과 집중"
+            },
+            // 슬라이드 2: 1분기에 잘한 것 — 사람
+            {
+                type: 'achievements',
+                title: "1분기, 잘한 것부터",
+                subtitle: "사람을 만나고, 체계를 잡고, 기반을 깔았다",
+                sections: [
+                    {
+                        title: "🤝 사람을 많이 만나려 노력했다",
+                        items: [
+                            "크몽 · 숨고 · 대행사 · 소속사 콜드메일링 · 지인 컨택",
+                            "서울국제작가축제 · 제천 · 왕십리 등 영업 파이프라인 구축",
+                            "지원사업 컨설팅 3건 시도 (외주개발 연결 전략)"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "⚙️ 체계를 구축했다",
+                        items: [
+                            "새로운 사람을 뽑고 조직을 재편",
+                            "매장 자동화 — 뿌디, 톡톡, 피드백, 매장관리 시스템",
+                            "정연 → 영업 전환, 류다혜 → 생카 업무 전환"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "🏛️ 기반을 깔았다",
+                        items: [
+                            "나라장터 업종코드 4개 + 직접생산확인증명서 13개 품목 완료",
+                            "서울혁신챌린지 <strong>1차 합격</strong> (1억 규모)",
+                            "뿌덕 시즌3 완성 / AI 프로그램 이슈 전부 해결"
+                        ],
+                        status: 'success'
+                    }
+                ]
+            },
+            // 슬라이드 3: 그런데 — 숫자
+            {
+                type: 'kpi',
+                title: "그런데...",
+                subtitle: "숫자는 거짓말을 안 한다",
+                kpis: [
+                    { label: "1분기 영업 계약", value: "0건", target: "진행 예정 B2B 5건", status: 'danger' },
+                    { label: "체계·목표·비전 수립", value: "30%", target: "올해 안에 완성", status: 'warning' }
+                ],
+                sections: [
+                    {
+                        title: "💀 현실",
+                        items: [
+                            "매출 적자, 2월은 1월의 <strong>2/3에도 못 미침</strong>",
+                            "노력은 했는데 <strong>돈이 된 게 없다</strong>",
+                            "각성해야 한다"
+                        ],
+                        status: 'danger'
+                    }
+                ]
+            },
+            // 슬라이드 4: 반성 — 왜 안 됐나
+            {
+                type: 'strategy',
+                title: "자기 반성 — 왜 안 됐나",
+                subtitle: "시도는 많았지만 결과가 없었던 이유",
+                sections: [
+                    {
+                        title: "😶 너무 범용적이었다",
+                        items: [
+                            "상대방의 <strong>뾰족한 니즈를 건드리지 못했다</strong>",
+                            "\"AI 체험형 컨텐츠\" — 뭘 해주는 건지 명확하지 않음",
+                            "\"이것도 되고 저것도 돼요\"는 아무도 안 산다"
+                        ],
+                        status: 'danger'
+                    },
+                    {
+                        title: "🚪 노력이 부족했다",
+                        items: [
+                            "\"어떻게든 한번만 만나게 해주세요\"를 해봤는가?",
+                            "아테리어 시절 카페를 직접 뚫었던 것처럼 <strong>발로 뛰었는가?</strong>",
+                            "메일 보내고 기다리는 건 영업이 아니다"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "🎯 상대가 너무 컸다",
+                        items: [
+                            "소속사, 대행사 등 <strong>너무 높은 존재</strong>와의 콜라보를 원한 건 아닌가",
+                            "지원사업 컨설팅 3건도 제조업 등 개발이 필요 없는 곳이 많았음"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 5: 반성 — 확장과 구조
+            {
+                type: 'strategy',
+                title: "자기 반성 — 확장과 구조",
+                subtitle: "관계는 좋은데 확장이 안 된다",
+                sections: [
+                    {
+                        title: "🔄 확장이 안 됐다",
+                        items: [
+                            "작년에 함께한 곳과 좋은 관계는 유지 중",
+                            "하지만 <strong>거기서 확장이 되진 않았다</strong>",
+                            "배준용씨도 현실적으로 연간 5건 × 1,000만원 정도",
+                            "매력적인 아이템이 아닐 수도 있다는 가능성"
+                        ],
+                        status: 'danger'
+                    },
+                    {
+                        title: "🔧 \"다 해주는 사람\"이 되어버렸다",
+                        items: [
+                            "개발도 해주고, 행사도 해주고, 컨텐츠도 해주고...",
+                            "<strong>뭘 잘하는 회사인지 시장이 모른다</strong>"
+                        ],
+                        status: 'danger'
+                    },
+                    {
+                        title: "🧩 팀이 따로 논다",
+                        items: [
+                            "팀마다 각각 떨어져서 하는 느낌이 매우 강함",
+                            "<strong>한 가지 방향성으로 안 간다</strong>"
+                        ],
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 6: 그래서 어떻게
+            {
+                type: 'vision',
+                title: "그래서 어떻게 할 건가",
+                subtitle: "덜어낼 건 덜어내고, 추가할 건 추가하고, 빠르게 전환한다",
+                goals: [
+                    {
+                        title: "투 트랙",
+                        items: ["이미 가지고 있는 건 유지하면서", "새로운 건 빠르게 테스트하고 빠르게 전환"],
+                        icon: "🛤️",
+                        color: "#3B82F6",
+                        highlight: true
+                    },
+                    {
+                        title: "동시가 아니라 순차",
+                        items: ["빠르게 테스트를 '동시에' 하는 게 아니라", "하나씩 치고 빠지고, 되면 밀고 안 되면 접기"],
+                        icon: "🎯",
+                        color: "#10B981"
+                    },
+                    {
+                        title: "뾰족하게",
+                        items: ["\"다 해줄게요\"가 아니라", "\"이거 하나는 확실합니다\"로 바꿔야 한다"],
+                        icon: "📌",
+                        color: "#EF4444"
+                    },
+                    {
+                        title: "같은 방향",
+                        items: ["팀마다 따로 놀지 않고", "하나의 목표를 향해 전사가 움직이기"],
+                        icon: "🧭",
+                        color: "#8B5CF6"
+                    }
+                ]
+            },
+            // 슬라이드 7: 덜어낼 것 vs 집중할 것
+            {
+                type: 'comparison',
+                title: "선택과 집중",
+                subtitle: "덜어낼 것 vs 집중할 것",
+                comparison: {
+                    headers: ["🔴 덜어낼 것", "🟢 집중할 것"],
+                    rows: [
+                        ["유튜브 — 체계도 없고 업로드도 0", "B2B 파이프라인 닫기 (발로 뛰어서)"],
+                        ["채널 동시다발 — 메인 하나를 정해야", "나라장터 공공입찰 (서류 끝남, 즉시 실행)"],
+                        ["AI 컨텐츠 풀메뉴 — 킬러로 좁히기", "서울혁신챌린지 (1차 합격, 1억 규모)"],
+                        ["지원사업 올인 — 자체 매출이 메인", "검색 가시성 SEO (안 하면 영원히 0)"],
+                        ["소규모 채널 (Frip, TripAdvisor 등)", "킬러 상품 확정 + 뾰족한 제안서"]
+                    ]
+                }
+            },
+            // 슬라이드 8: 마무리
+            {
+                type: 'summary',
+                title: "1분기는 혹독했다. 방향을 다시 잡을 필요가 있다.",
+                sections: [
+                    {
+                        title: "👍 잘한 것",
+                        items: [
+                            "사람을 만나려 노력했고, 체계를 잡았고, 기반을 깔았다",
+                            "하지만 이건 <strong>최소한</strong>이지 칭찬은 아니다"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🪞 반성",
+                        items: [
+                            "너무 범용적이었고, 노력이 부족했고, 타겟이 높았고, 팀이 따로 놀았다",
+                            "\"다 해주는 사람\"에서 벗어나야 한다"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "🎯 2분기 원칙",
+                        items: [
+                            "<strong>덜어낼 건 덜어내고, 뾰족하게 집중한다</strong>",
+                            "이미 가진 건 유지 + 새로운 건 하나씩 빠르게 테스트 & 전환",
+                            "팀 전체가 <strong>같은 방향</strong>을 본다"
+                        ],
+                        status: 'success'
+                    }
+                ]
+            }
+        ]
+    },
     // 4.2 전체회의 (4월 1주차 - 점심회의)
     {
         id: "2026-04-02",

@@ -11,6 +11,7 @@ interface SlideDeckProps {
 }
 
 const slideIcons: Record<string, string> = {
+    'quote': '💬',
     'title': '📋',
     'achievements': '✅',
     'organization': '👥',
@@ -30,6 +31,7 @@ const slideIcons: Record<string, string> = {
 };
 
 const slideColors: Record<string, string> = {
+    'quote': '#F59E0B',
     'title': '#3B82F6',
     'achievements': '#10B981',
     'organization': '#8B5CF6',
@@ -112,6 +114,103 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                     <h1 className={styles.titleSlideMain}>{slideData.title}</h1>
                     {slideData.subtitle && (
                         <p className={styles.titleSlideSubtitle}>{slideData.subtitle}</p>
+                    )}
+                </div>
+            );
+        }
+
+        // 💬 Quote 슬라이드 - 감정/메시지 전달용
+        if (slideData.type === 'quote') {
+            const gradientColors: Record<string, string> = {
+                'danger': 'linear-gradient(135deg, #EF4444 0%, #DC2626 100%)',
+                'warning': 'linear-gradient(135deg, #F59E0B 0%, #D97706 100%)',
+                'success': 'linear-gradient(135deg, #10B981 0%, #059669 100%)',
+                'info': 'linear-gradient(135deg, #3B82F6 0%, #2563EB 100%)',
+            };
+            const quoteStatus = slideData.sections?.[0]?.status || 'info';
+            const gradient = gradientColors[quoteStatus] || gradientColors['info'];
+            return (
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    height: '100%',
+                    padding: '4rem 8rem',
+                    position: 'relative',
+                    overflow: 'hidden',
+                    textAlign: 'center'
+                }}>
+                    {/* 배경 글로우 */}
+                    <div style={{
+                        position: 'absolute',
+                        width: '600px',
+                        height: '600px',
+                        borderRadius: '50%',
+                        background: `radial-gradient(circle, ${quoteStatus === 'danger' ? 'rgba(239,68,68,0.08)' : quoteStatus === 'warning' ? 'rgba(245,158,11,0.08)' : quoteStatus === 'success' ? 'rgba(16,185,129,0.08)' : 'rgba(59,130,246,0.08)'} 0%, transparent 70%)`,
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        zIndex: 0
+                    }} />
+
+                    {/* 메인 타이틀 (큰 글씨) */}
+                    <h1 style={{
+                        fontSize: '3.5rem',
+                        fontWeight: 900,
+                        background: gradient,
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text',
+                        marginBottom: '2rem',
+                        letterSpacing: '-0.02em',
+                        lineHeight: 1.3,
+                        zIndex: 1,
+                        maxWidth: '900px'
+                    }}
+                    dangerouslySetInnerHTML={{ __html: slideData.title }}
+                    />
+
+                    {/* 서브타이틀 */}
+                    {slideData.subtitle && (
+                        <p style={{
+                            fontSize: '1.5rem',
+                            color: '#888',
+                            fontWeight: 300,
+                            letterSpacing: '0.02em',
+                            marginBottom: '2.5rem',
+                            lineHeight: 1.6,
+                            maxWidth: '700px',
+                            zIndex: 1
+                        }}
+                        dangerouslySetInnerHTML={{ __html: slideData.subtitle }}
+                        />
+                    )}
+
+                    {/* 구분선 */}
+                    <div style={{
+                        width: '80px',
+                        height: '4px',
+                        background: gradient,
+                        borderRadius: '2px',
+                        marginBottom: '2.5rem',
+                        zIndex: 1
+                    }} />
+
+                    {/* 하단 아이템들 */}
+                    {slideData.sections?.[0]?.items && (
+                        <div style={{ zIndex: 1, maxWidth: '700px' }}>
+                            {slideData.sections[0].items.map((item, iIdx) => (
+                                <p key={iIdx} style={{
+                                    fontSize: '1.2rem',
+                                    color: '#aaa',
+                                    lineHeight: 1.8,
+                                    marginBottom: '0.5rem'
+                                }}
+                                dangerouslySetInnerHTML={{ __html: item }}
+                                />
+                            ))}
+                        </div>
                     )}
                 </div>
             );
@@ -317,7 +416,7 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                             gap: '0.8rem'
                                         }}>
                                             <span style={{ color: area.color, fontSize: '0.8rem' }}>●</span>
-                                            {item}
+                                            <span dangerouslySetInnerHTML={{ __html: item }} />
                                         </li>
                                     ))}
                                 </ul>
@@ -357,7 +456,7 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                     </div>
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                                         {slideData.flowDiagram.left.items.map((item, i) => (
-                                            <div key={i} style={{ fontSize: '0.85rem', color: '#aaa' }}>{item}</div>
+                                            <div key={i} style={{ fontSize: '0.85rem', color: '#aaa' }}dangerouslySetInnerHTML={{ __html: item }} />
                                         ))}
                                     </div>
                                 </div>
@@ -402,7 +501,7 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                     </div>
                                     <div style={{ display: 'flex', flexDirection: 'column', gap: '0.4rem' }}>
                                         {slideData.flowDiagram.right.items.map((item, i) => (
-                                            <div key={i} style={{ fontSize: '0.85rem', color: '#aaa' }}>{item}</div>
+                                            <div key={i} style={{ fontSize: '0.85rem', color: '#aaa' }}dangerouslySetInnerHTML={{ __html: item }} />
                                         ))}
                                     </div>
                                 </div>
@@ -530,6 +629,169 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                             </div>
                         ))}
                     </div>
+                </div>
+            );
+        }
+
+        // 🆕 TreeChart 슬라이드 - 가족 관계도 스타일 트리 구조
+        if (slideData.treeChart) {
+            const tree = slideData.treeChart;
+            return (
+                <div className={styles.slideContent}>
+                    <h2 style={{
+                        fontSize: '2.5rem',
+                        fontWeight: 800,
+                        textAlign: 'center',
+                        marginBottom: '0.5rem',
+                        background: 'linear-gradient(135deg, #fff 0%, #888 100%)',
+                        WebkitBackgroundClip: 'text',
+                        WebkitTextFillColor: 'transparent',
+                        backgroundClip: 'text'
+                    }}>{slideData.title}</h2>
+                    {slideData.subtitle && (
+                        <p style={{ textAlign: 'center', color: '#666', fontSize: '1.2rem', marginBottom: '2rem' }}>
+                            {slideData.subtitle}
+                        </p>
+                    )}
+
+                    <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '0' }}>
+                        {/* 루트 노드 */}
+                        <div style={{
+                            background: `linear-gradient(135deg, ${tree.root.color}30 0%, ${tree.root.color}15 100%)`,
+                            border: `2px solid ${tree.root.color}`,
+                            borderRadius: '20px',
+                            padding: '1rem 2.5rem',
+                            textAlign: 'center',
+                            boxShadow: `0 8px 32px ${tree.root.color}40`,
+                            position: 'relative'
+                        }}>
+                            <div style={{ fontSize: '1.4rem', fontWeight: 800, color: '#fff' }}>{tree.root.name}</div>
+                            {tree.root.subtitle && (
+                                <div style={{ fontSize: '0.85rem', color: tree.root.color, marginTop: '0.3rem' }}>{tree.root.subtitle}</div>
+                            )}
+                        </div>
+
+                        {/* 루트 → 1차 연결선 (세로) */}
+                        <div style={{ width: '2px', height: '24px', background: `linear-gradient(180deg, ${tree.root.color}, #444)` }} />
+
+                        {/* 1차 가로 연결선 */}
+                        <div style={{
+                            width: '85%',
+                            height: '2px',
+                            background: 'linear-gradient(90deg, #444 0%, #888 50%, #444 100%)'
+                        }} />
+
+                        {/* 1차 자식 */}
+                        <div style={{
+                            display: 'flex',
+                            justifyContent: 'center',
+                            gap: '1.5rem',
+                            width: '95%'
+                        }}>
+                            {tree.children.map((child, cIdx) => (
+                                <div key={cIdx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1 }}>
+                                    {/* 세로 연결선 */}
+                                    <div style={{ width: '2px', height: '24px', background: `linear-gradient(180deg, #888, ${child.color})` }} />
+
+                                    {/* 1차 자식 카드 */}
+                                    <div style={{
+                                        background: `linear-gradient(135deg, ${child.color}25 0%, ${child.color}10 100%)`,
+                                        border: `2px solid ${child.color}`,
+                                        borderRadius: '14px',
+                                        padding: '0.6rem 1.5rem',
+                                        textAlign: 'center',
+                                        boxShadow: `0 4px 20px ${child.color}30`
+                                    }}>
+                                        <div style={{ fontSize: '1.1rem', fontWeight: 700, color: '#fff' }}>{child.name}</div>
+                                    </div>
+
+                                    {/* 2차 자식이 있으면 */}
+                                    {child.children.length > 0 && (
+                                        <>
+                                            {/* 세로 연결선 */}
+                                            <div style={{ width: '2px', height: '16px', background: `linear-gradient(180deg, ${child.color}, ${child.color}60)` }} />
+
+                                            {/* 2차 가로 연결선 (자식이 2개 이상일 때) */}
+                                            {child.children.length > 1 && (
+                                                <div style={{
+                                                    width: '90%',
+                                                    height: '2px',
+                                                    background: `linear-gradient(90deg, ${child.color}40 0%, ${child.color} 50%, ${child.color}40 100%)`
+                                                }} />
+                                            )}
+
+                                            {/* 2차 자식들 */}
+                                            <div style={{
+                                                display: 'flex',
+                                                justifyContent: 'center',
+                                                gap: '0.5rem',
+                                                width: '100%'
+                                            }}>
+                                                {child.children.map((leaf, lIdx) => (
+                                                    <div key={lIdx} style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', flex: 1 }}>
+                                                        {/* 세로 연결선 */}
+                                                        <div style={{ width: '2px', height: '12px', background: `${child.color}60` }} />
+
+                                                        {/* 2차 자식 카드 */}
+                                                        <div style={{
+                                                            background: `linear-gradient(135deg, ${child.color}15 0%, ${child.color}05 100%)`,
+                                                            border: `1px solid ${child.color}60`,
+                                                            borderRadius: '10px',
+                                                            padding: '0.6rem 0.8rem',
+                                                            textAlign: 'left',
+                                                            width: '100%'
+                                                        }}>
+                                                            <div style={{
+                                                                fontSize: '0.85rem',
+                                                                fontWeight: 700,
+                                                                color: child.color,
+                                                                marginBottom: '0.4rem',
+                                                                textAlign: 'center',
+                                                                whiteSpace: 'nowrap'
+                                                            }}>{leaf.name}</div>
+                                                            <div style={{ display: 'flex', flexDirection: 'column', gap: '0.2rem' }}>
+                                                                {leaf.items.map((item, iIdx) => (
+                                                                    <div key={iIdx} style={{
+                                                                        fontSize: '0.7rem',
+                                                                        color: '#aaa',
+                                                                        paddingLeft: '0.7rem',
+                                                                        position: 'relative',
+                                                                        lineHeight: 1.4,
+                                                                        whiteSpace: 'nowrap',
+                                                                        overflow: 'hidden',
+                                                                        textOverflow: 'ellipsis'
+                                                                    }}>
+                                                                        <span style={{ position: 'absolute', left: 0, color: child.color }}>·</span>
+                                                                        <span dangerouslySetInnerHTML={{ __html: item }} />
+                                                                    </div>
+                                                                ))}
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                ))}
+                                            </div>
+                                        </>
+                                    )}
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* sections (경고 등) */}
+                    {slideData.sections && slideData.sections.map((section, sIdx) => (
+                        <div key={sIdx} style={{
+                            marginTop: '2rem',
+                            padding: '1rem 1.5rem',
+                            background: section.status ? `${statusColors[section.status]}15` : '#ffffff08',
+                            borderRadius: '12px',
+                            border: `1px solid ${section.status ? statusColors[section.status] + '40' : '#333'}`
+                        }}>
+                            {section.title && <div style={{ fontWeight: 700, color: section.status ? statusColors[section.status] : '#fff', marginBottom: '0.5rem' }}>{section.title}</div>}
+                            {section.items.map((item, iIdx) => (
+                                <div key={iIdx} style={{ fontSize: '0.9rem', color: '#aaa', lineHeight: 1.6 }} dangerouslySetInnerHTML={{ __html: item }} />
+                            ))}
+                        </div>
+                    ))}
                 </div>
             );
         }
@@ -745,7 +1007,7 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                             gap: '0.8rem'
                                         }}>
                                             <span style={{ color: goal.color, fontSize: '1.2rem' }}>→</span>
-                                            {item}
+                                            <span dangerouslySetInnerHTML={{ __html: item }} />
                                         </li>
                                     ))}
                                 </ul>
@@ -791,9 +1053,7 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                 <h3 className={styles.sectionTitle} style={{ color: '#10B981', fontSize: '1.8rem' }}>{section.title}</h3>
                                 <ul className={styles.sectionList}>
                                     {section.items.map((item, iIdx) => (
-                                        <li key={iIdx} style={{ '--accent-color': '#10B981', fontSize: '1.3rem' } as React.CSSProperties}>
-                                            {item}
-                                        </li>
+                                        <li key={iIdx} style={{ '--accent-color': '#10B981', fontSize: '1.3rem' } as React.CSSProperties} dangerouslySetInnerHTML={{ __html: item }} />
                                     ))}
                                 </ul>
                             </div>
@@ -823,9 +1083,7 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                                     '--accent-color': isReduced ? '#666' : '#F59E0B',
                                                     fontSize: '1rem',
                                                     padding: '0.4rem 0'
-                                                } as React.CSSProperties}>
-                                                    {item}
-                                                </li>
+                                                } as React.CSSProperties} dangerouslySetInnerHTML={{ __html: item }} />
                                             ))}
                                         </ul>
                                     </div>
@@ -853,18 +1111,18 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                     {slideData.subtitle && <p style={{ color: '#888', fontSize: '1.3rem', marginBottom: '1.5rem' }}>{slideData.subtitle}</p>}
 
                     {/* KPI Cards */}
-                    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${slideData.kpis.length}, 1fr)`, gap: '1.5rem', marginBottom: '2rem' }}>
+                    <div style={{ display: 'grid', gridTemplateColumns: `repeat(${Math.min(slideData.kpis.length, 4)}, 1fr)`, gap: '1rem', marginBottom: '2rem' }}>
                         {slideData.kpis.map((kpi, kIdx) => (
                             <div key={kIdx} style={{
                                 background: `linear-gradient(135deg, ${statusColors[kpi.status]}15 0%, ${statusColors[kpi.status]}05 100%)`,
                                 border: `2px solid ${statusColors[kpi.status]}40`,
                                 borderRadius: '16px',
-                                padding: '1.5rem',
+                                padding: '1.2rem',
                                 textAlign: 'center'
                             }}>
-                                <div style={{ color: '#888', fontSize: '1rem', marginBottom: '0.5rem' }}>{kpi.label}</div>
-                                <div style={{ color: statusColors[kpi.status], fontSize: '2.5rem', fontWeight: 800, marginBottom: '0.5rem' }}>{kpi.value}</div>
-                                {kpi.target && <div style={{ color: '#666', fontSize: '0.9rem' }}>{kpi.target}</div>}
+                                <div style={{ color: '#888', fontSize: '0.85rem', marginBottom: '0.4rem' }}>{kpi.label}</div>
+                                <div style={{ color: statusColors[kpi.status], fontSize: '1.8rem', fontWeight: 800, marginBottom: '0.3rem' }}>{kpi.value}</div>
+                                {kpi.target && <div style={{ color: '#666', fontSize: '0.8rem' }}>{kpi.target}</div>}
                             </div>
                         ))}
                     </div>
@@ -889,7 +1147,9 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                                         }}>
                                                             {item}
                                                         </a>
-                                                    ) : item}
+                                                    ) : (
+                                                        <span dangerouslySetInnerHTML={{ __html: item }} />
+                                                    )}
                                                 </li>
                                             );
                                         })}
@@ -965,7 +1225,7 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                     <h3 className={styles.sectionTitle}>{section.title}</h3>
                                     <ul className={styles.sectionList}>
                                         {section.items.map((item, iIdx) => (
-                                            <li key={iIdx} style={{ '--accent-color': color } as React.CSSProperties}>{item}</li>
+                                            <li key={iIdx} style={{ '--accent-color': color } as React.CSSProperties}dangerouslySetInnerHTML={{ __html: item }} />
                                         ))}
                                     </ul>
                                 </div>
@@ -1048,7 +1308,7 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                     <h3 className={styles.sectionTitle}>{section.title}</h3>
                                     <ul className={styles.sectionList}>
                                         {section.items.map((item, iIdx) => (
-                                            <li key={iIdx} style={{ '--accent-color': color } as React.CSSProperties}>{item}</li>
+                                            <li key={iIdx} style={{ '--accent-color': color } as React.CSSProperties}dangerouslySetInnerHTML={{ __html: item }} />
                                         ))}
                                     </ul>
                                 </div>
@@ -1129,11 +1389,12 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                         }}>{item.date}</div>
                                         <div style={{
                                             color: '#fff',
-                                            fontSize: '1.2rem',
+                                            fontSize: '1rem',
                                             fontWeight: 700,
-                                            marginBottom: '0.5rem'
+                                            marginBottom: '0.5rem',
+                                            whiteSpace: 'nowrap'
                                         }}>{item.title}</div>
-                                        <div style={{ color: '#888', fontSize: '0.95rem', lineHeight: 1.5 }}>{item.description}</div>
+                                        <div style={{ color: '#888', fontSize: '0.8rem', lineHeight: 1.6 }}>{item.description}</div>
                                     </div>
                                 </div>
                             ))}
@@ -1181,7 +1442,7 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                                 alignItems: 'flex-start',
                                                 gap: '0.5rem'
                                             }}>
-                                                <span style={{ color: sectionColor }}>→</span> {item}
+                                                <span style={{ color: sectionColor }}>→</span> <span dangerouslySetInnerHTML={{ __html: item }} />
                                             </li>
                                         ))}
                                     </ul>
@@ -1358,7 +1619,7 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                                     }}>
                                                         {item}
                                                     </a>
-                                                ) : item}
+                                                ) : <span dangerouslySetInnerHTML={{ __html: item }} />}
                                             </li>
                                         );
                                     })}
@@ -1459,9 +1720,7 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                 <h3 className={styles.sectionTitle}>{achievement.title}</h3>
                                 <ul className={styles.sectionList}>
                                     {achievement.content.map((item, iIdx) => (
-                                        <li key={iIdx} style={{ '--accent-color': '#10B981' } as React.CSSProperties}>
-                                            {item}
-                                        </li>
+                                        <li key={iIdx} style={{ '--accent-color': '#10B981' } as React.CSSProperties} dangerouslySetInnerHTML={{ __html: item }} />
                                     ))}
                                 </ul>
                             </div>
@@ -1491,9 +1750,7 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                 <h3 className={styles.sectionTitle}>{note.title}</h3>
                                 <ul className={styles.sectionList}>
                                     {note.content.map((item, iIdx) => (
-                                        <li key={iIdx} style={{ '--accent-color': '#F59E0B' } as React.CSSProperties}>
-                                            {item}
-                                        </li>
+                                        <li key={iIdx} style={{ '--accent-color': '#F59E0B' } as React.CSSProperties} dangerouslySetInnerHTML={{ __html: item }} />
                                     ))}
                                 </ul>
                             </div>
