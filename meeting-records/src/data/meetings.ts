@@ -114,6 +114,295 @@ export interface MeetingRecord {
 }
 
 export const meetings: MeetingRecord[] = [
+    // 5.11 임원진 회의 — 현대백화점 투자 · 종로 열린책마루 · 악센트 아이디 · AI 조향사
+    {
+        id: "2026-05-11",
+        date: "2026.05.11",
+        title: "5월 2주차 임원진 회의",
+        subtitle: "현대백화점 투자 · 종로 열린책마루 · 악센트 아이디 · AI 조향사",
+        attendees: ["유재영", "이동주", "유선화", "김주연"],
+        meetingType: 'executive',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "현대백화점 투자 관련 이슈 공유" },
+            { id: 2, content: "종로 열린책마루" },
+            { id: 3, content: "악센트 아이디 연장 여부" },
+            { id: 4, content: "AI 조향사 출강·행사 진행 회의" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "5월 2주차 임원진 회의",
+                subtitle: "현대백화점 투자 · 종로 열린책마루 · 악센트 아이디 · AI 조향사"
+            },
+            // 슬라이드 2: 현대백화점 투자 — 신주발행 개요
+            {
+                type: 'agenda',
+                title: "현대백화점 투자 — 신주발행 정보",
+                subtitle: "제3자 배정 유상증자 (사내이사 김주연 대상)",
+                sections: [
+                    {
+                        title: "📋 신주발행 개요",
+                        items: [
+                            "<strong>증자금액:</strong> 25,008,750원",
+                            "<strong>신주의 종류:</strong> 보통주식",
+                            "<strong>신주배정 수:</strong> 1,053주",
+                            "<strong>발행가액:</strong> 금 23,750원 (액면가 500원 기준 할증발행)",
+                            "<strong>배정방법:</strong> 제3자 배정 — 사내이사 김주연 대상"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📅 일정",
+                        items: [
+                            "<strong>청약일:</strong> 2026년 5월 12일 (며칠 미뤄도 무방)",
+                            "<strong>주금납입처:</strong> 주식회사 네안데르 법인계좌",
+                            "<strong>주금납입일:</strong> 2026년 5월 13일 (청약일 다음 날)"
+                        ],
+                        highlight: true,
+                        status: 'warning'
+                    },
+                ]
+            },
+            // 슬라이드 3: 현대백화점 투자 — 서류 준비 문의
+            {
+                type: 'agenda',
+                title: "현대백화점 투자 — 서류 준비 관련",
+                subtitle: "법무사 문의 사항 · 기간단축동의서 처리",
+                sections: [
+                    {
+                        title: "📝 기간단축동의서",
+                        items: [
+                            "기존 주주 전원(유재영, 유선화, 이동주)의 <strong>'기간단축동의서'</strong> 접수",
+                            "2주 통지 기간을 생략하고 <strong>즉시 등기 진행</strong> 목적"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📮 법무사 확인 요청 사항",
+                        items: [
+                            "법인 서류 + 유선화·이동주 개인 인감도장·인감증명서 동봉 발송 시 <strong>기간단축 서류까지 한 번에 처리 가능 여부</strong> 확인",
+                            "<strong>총 예상 비용(견적서)</strong> 회신 요청"
+                        ],
+                        highlight: true,
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 4: 팀원별 준비 서류 — 법인 + 유재영·이동주
+            {
+                type: 'agenda',
+                title: "팀원별 준비 서류 ①",
+                subtitle: "법인 준비물 · 유재영 · 이동주",
+                sections: [
+                    {
+                        title: "🏢 네안데르 법인 준비물",
+                        items: [
+                            "<strong>법인인감도장</strong> — 유재영 대표 명의로 등록된 법인인감",
+                            "<strong>잔고증명서 원본</strong> — 김주연 입금(25,008,750원) 다음 날 발급",
+                            "법인 정관 사본",
+                            "주주명부 사본 — 증자 전 기준 (유재영 18,000주 / 유선화 1,000주 / 이동주 1,000주)",
+                            "사업자등록증 사본"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🧑‍💼 유재영 (각자대표 겸 주주)",
+                        items: [
+                            "개인 인감도장",
+                            "개인 인감증명서 1통",
+                            "주민등록초본 1통 (과거 주소 변동 내역 전부 포함)",
+                            "신분증 사본"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "🧑‍💼 이동주 (각자대표 겸 주주)",
+                        items: [
+                            "개인 인감도장",
+                            "개인 인감증명서 1통",
+                            "주민등록초본 1통 (과거 주소 변동 내역 전부 포함)",
+                            "신분증 사본"
+                        ],
+                        status: 'success'
+                    }
+                ]
+            },
+            // 슬라이드 5: 팀원별 준비 서류 — 유선화·김주연
+            {
+                type: 'agenda',
+                title: "팀원별 준비 서류 ②",
+                subtitle: "유선화 · 김주연 (신규 투자자)",
+                sections: [
+                    {
+                        title: "👩‍💼 유선화 (기존 주주)",
+                        items: [
+                            "개인 인감도장 — 기간단축동의서에 도장만 찍으면 됨",
+                            "개인 인감증명서 1통",
+                            "초본·신분증은 <strong>불필요</strong>"
+                        ],
+                        status: 'success'
+                    },
+                    {
+                        title: "👩‍💼 김주연 (신규 투자자)",
+                        items: [
+                            "<strong>투자금 입금:</strong> 네안데르 법인 계좌로 25,008,750원 이체",
+                            "개인 도장 (인감도장 권장)",
+                            "주민등록초본 1통 (과거 주소 변동 내역 전부 포함)",
+                            "신분증 사본"
+                        ],
+                        highlight: true,
+                        status: 'warning'
+                    },
+                    {
+                        title: "📌 공통 주의사항",
+                        items: [
+                            "모든 발급 서류는 <strong>최근 3개월 이내</strong> 발급분",
+                            "<strong>주민번호 뒷자리 포함</strong> 필수"
+                        ],
+                        highlight: true,
+                        status: 'danger'
+                    }
+                ]
+            },
+            // 슬라이드 6: 지분 희석 비율
+            {
+                type: 'comparison',
+                title: "지분 희석 — 증자 전후 비교",
+                subtitle: "기존 주주 20,000주 → 증자 후 총 21,053주",
+                comparison: {
+                    headers: ["주주", "증자 전 (주)", "증자 전 (%)", "증자 후 (주)", "증자 후 (%)"],
+                    rows: [
+                        ["유재영", "18,000", "90.0%", "18,000", "85.5%"],
+                        ["유선화", "1,000", "5.0%", "1,000", "4.75%"],
+                        ["이동주", "1,000", "5.0%", "1,000", "4.75%"],
+                        ["김주연 (신규)", "—", "—", "1,053", "5.0%"]
+                    ]
+                },
+            },
+            // 슬라이드 7: 예상 비용
+            {
+                type: 'agenda',
+                title: "유상증자 등기 — 예상 비용",
+                subtitle: "법무사 견적 회신 대기 중 · 아래는 일반적 비용 구조",
+                sections: [
+                    {
+                        title: "🏛️ 공과금 (법정 비용)",
+                        items: [
+                            "<strong>등록면허세:</strong> 증자금액의 0.4% = 약 100,035원",
+                            "<strong>지방교육세:</strong> 등록면허세의 20% = 약 20,007원",
+                            "<strong>등기신청 수수료:</strong> 약 6,000원"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📝 법무사 수수료",
+                        items: [
+                            "유상증자 등기 대행 수수료 — <strong>50~80만원 내외</strong> (법무사별 상이)",
+                            "기간단축동의서 처리 포함 여부 확인 필요"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "💰 합계 (추정)",
+                        items: [
+                            "공과금 약 12.6만원 + 법무사 수수료 50~80만원 = <strong>총 약 63~93만원 예상</strong>",
+                            "⚠️ 법무사 견적서 회신 후 확정 예정"
+                        ],
+                        highlight: true,
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 7: 종로 열린책마루
+            {
+                type: 'agenda',
+                title: "종로구 야외도서관 '종로 열린책마루'",
+                subtitle: "2026년 운영 일정 — 예산 430만원",
+                images: [
+                    { src: "/images/2026-05-11/jongno-mbti-drink.jpg", caption: "나의 MBTI를 분석한 후 나에게 맞는 시집과 음료(차) 제공" },
+                    { src: "/images/2026-05-11/jongno-kiosk.jpg", caption: "키오스크를 활용하여 독서 취향을 추천받는 AI시스템" }
+                ],
+                sections: [
+                    {
+                        title: "💰 예산",
+                        items: [
+                            "<strong>총 예산: 430만원</strong>"
+                        ],
+                        highlight: true,
+                        status: 'warning'
+                    },
+                    {
+                        title: "📅 5월",
+                        items: [
+                            "<strong>5월 24일(일)</strong> — 부처님오신날 / 청운문학도서관 일대",
+                            "<strong>5월 30일(토)</strong> — 청운문학도서관 일대"
+                        ],
+                        status: 'warning'
+                    },
+                    {
+                        title: "📅 6월",
+                        items: [
+                            "<strong>6월 13일(토)</strong> — 현충일 / 마로니에공원 일대"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📅 10월",
+                        items: [
+                            "<strong>10월 3일(토)</strong> — 개천절 / 청운문학도서관 일대",
+                            "<strong>10월 10일(토)</strong> — 마로니에공원 일대"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 7: 악센트 아이디 연장 여부
+            {
+                type: 'deadline',
+                title: "악센트 아이디 — 연장 여부 회신",
+                subtitle: "건물주에게 6월 1일까지 회신 필수",
+                deadlines: [
+                    {
+                        task: "악센트 아이디 매장 임대 연장 여부 — 건물주 회신",
+                        date: "2026-06-01",
+                        assignee: "임원진 결정",
+                        priority: 'critical'
+                    }
+                ],
+                sections: [
+                    {
+                        title: "⚠️ 논의 필요",
+                        items: [
+                            "<strong>6월 1일까지</strong> 건물주에게 연장 여부 회신 필수",
+                            "임원진 간 연장/퇴점 방향 결정 필요"
+                        ],
+                        highlight: true,
+                        status: 'danger'
+                    }
+                ]
+            },
+            // 슬라이드 8: AI 조향사 출강·행사 진행 회의
+            {
+                type: 'agenda',
+                title: "AI 조향사 출강 · 행사 진행",
+                subtitle: "출강 및 행사 운영 관련 논의",
+                sections: [
+                    {
+                        title: "🎯 논의 사항",
+                        items: [
+                            "AI 조향사 <strong>출강 프로세스</strong> 정비",
+                            "행사 진행 시 <strong>인력 배치 및 역할 분담</strong>",
+                            "출강·행사 <strong>견적 기준</strong> 논의",
+                            "향후 출강·행사 <strong>파이프라인 공유</strong>"
+                        ],
+                        status: 'info'
+                    }
+                ]
+            }
+        ]
+    },
     // 4.27 임원진 회의 — 방향성 논의 · 나라AI 현황 · 메타광고
     {
         id: "2026-04-27",
