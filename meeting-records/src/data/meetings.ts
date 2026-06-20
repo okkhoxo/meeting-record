@@ -1,3 +1,15 @@
+// 마케팅 우선순위 보드용 실행안 아이템 (인터랙티브 — 추가/수정/삭제/보류/저장)
+export interface PriorityItem {
+    id: string;
+    title: string;       // 실행안 이름
+    desc?: string;        // 한 줄 설명
+    channel?: string;     // 구분 (유입 / 가두리 / 영업 / 콘텐츠·바이럴 / 오프라인 / 상품·가격 / 해외 등)
+    assignee?: string;    // 담당
+    deadline?: string;    // 마감일 (예: 6/30, 7/1, 이번 주, 상시, 즉시)
+    priority: 'critical' | 'high' | 'medium' | 'low';
+    status: 'active' | 'hold';  // 진행 | 보류
+}
+
 export interface MeetingRecord {
     id: string;
     date: string;
@@ -25,10 +37,14 @@ export interface MeetingRecord {
     }[];
     // 새로운 슬라이드 구조용 필드 (확장)
     slides?: {
-        type: 'title' | 'achievements' | 'organization' | 'operations' | 'financial' | 'strategy' | 'vision' | 'timeline' | 'kpi' | 'comparison' | 'deadline' | 'summary' | 'orgchart' | 'intro' | 'business' | 'agenda' | 'quote';
+        type: 'title' | 'achievements' | 'organization' | 'operations' | 'financial' | 'strategy' | 'vision' | 'timeline' | 'kpi' | 'comparison' | 'deadline' | 'summary' | 'orgchart' | 'intro' | 'business' | 'agenda' | 'quote' | 'priorityBoard';
         title: string;
         subtitle?: string;
         linkUrl?: string;
+        // 마케팅 우선순위 보드 전용 (인터랙티브)
+        boardId?: string;          // localStorage 키 + 요약 페이지 식별자 (예: 'accent-id', 'smoat')
+        boardAccent?: string;      // 보드 테마 컬러
+        priorityItems?: PriorityItem[];  // 초기 시드 실행안
         // 이미지 + 자막
         image?: string;
         images?: { src: string; caption?: string }[];
@@ -114,6 +130,907 @@ export interface MeetingRecord {
 }
 
 export const meetings: MeetingRecord[] = [
+    // 6.19 기반 마케팅 회의(오늘 6.20 작성) — 악센트 아이디 마케팅 4대 결정 · 악센트 와우 보류 · 스모트 3출처 통합 · 인터랙티브 우선순위·마감일 보드(추가/수정/삭제/보류/저장)
+    {
+        id: "2026-06-20-marketing",
+        date: "2026.06.20",
+        title: "마케팅 우선순위 · 마감 회의",
+        subtitle: "6/19 기반 · 악센트 아이디 4대 결정 · 스모트 우선순위 · 인터랙티브 보드",
+        attendees: ["유재영", "이동주", "유선화", "김주연"],
+        meetingType: 'executive',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "악센트 아이디 마케팅 4대 결정 — ① 미끼상품(6,000원) 정기상품화 ② 해외·커플 타겟 ③ 뿌덕 4탄(사주) ④ 자체 릴스" },
+            { id: 2, content: "악센트 와우 — 추후 변경 관련 회의 후 방향 확정 (현재 보류)" },
+            { id: 3, content: "스모트 — 6/19 유선화·김주연 마케팅 + 10대 실행안 통합" },
+            { id: 4, content: "마케팅 우선순위 보드(인터랙티브) — 악센트 아이디·스모트 각각 추가/수정/삭제/보류/저장 + 마감일 설정" }
+        ],
+        slides: [
+            // 1. 타이틀
+            {
+                type: 'title',
+                title: "마케팅 우선순위 · 마감 회의",
+                subtitle: "6/19 기반 · 악센트 아이디 4대 결정 · 스모트 우선순위 · 마감일 설정"
+            },
+            // 2. 악센트 아이디 — 마케팅 4대 결정
+            {
+                type: 'summary',
+                title: "악센트 아이디 — 마케팅 4대 결정",
+                subtitle: "6/19 회의 — 팝업에서 검증한 '가격 매력'을 정기 매출로 전환한다",
+                sections: [
+                    {
+                        title: "🎁 미끼상품 → 향수 추가구매 (정기상품화)",
+                        status: 'success',
+                        highlight: true,
+                        items: [
+                            "팝업 성공으로 확인 — <strong>어린 친구들이 가격에 매력</strong>을 느낀다",
+                            "<strong>6,000원</strong> 디퓨저·키캡·클리커를 <strong>미끼상품</strong>으로 판매",
+                            "구매 흐름에서 <strong>향수 추가구매</strong>를 유도 → <strong>정기 상품</strong>으로 구성"
+                        ]
+                    },
+                    {
+                        title: "🌏 해외 타겟 · 💑 커플 타겟",
+                        status: 'info',
+                        items: [
+                            "<strong>해외 타겟</strong> — OTA(Klook·KKday·Trazy) + 영·중·일 + 인플루언서 매일 발송",
+                            "<strong>커플 타겟</strong> — 생카 의존 탈피, 커플·일반 비중 30%↑",
+                            "비수기를 채울 두 축을 동시에 가동"
+                        ]
+                    },
+                    {
+                        title: "🔮 뿌덕 4탄 · 🎬 자체 릴스",
+                        status: 'warning',
+                        items: [
+                            "<strong>뿌덕 4탄</strong> — '사주 컨텐츠'로 진행 (최애 향 + 사주 결합)",
+                            "<strong>자체 릴스 컨텐츠 제작</strong> — 찍을 이유가 명확한 체험형 숏폼",
+                            "콘텐츠는 우리 손으로 빠르게·꾸준히 찍어낸다"
+                        ]
+                    }
+                ]
+            },
+            // 3. 악센트 아이디 — 인터랙티브 마케팅 우선순위·마감 보드
+            {
+                type: 'priorityBoard',
+                title: "악센트 아이디 — 마케팅 우선순위 보드",
+                subtitle: "추가 · 수정 · 삭제 · 보류 · 저장 + 📅 마감일 설정 — 저장하면 마지막에 '한눈에 보기'가 추가됩니다",
+                boardId: 'accent-id',
+                boardAccent: '#EC4899',
+                priorityItems: [
+                    { id: 'aid-1', title: "미끼상품 → 향수 추가구매 (정기상품화)", desc: "6,000원 디퓨저·키캡·클리커로 유입 → 향수 추가구매 유도. 정기 상품으로 구성", channel: "상품·가격", assignee: "유선화·유재영", deadline: "이번 주", priority: 'critical', status: 'active' },
+                    { id: 'aid-2', title: "해외 타겟 마케팅", desc: "글로벌 OTA(Klook·KKday·Trazy) 입점 + 영·중·일 다국어 + 해외 인플루언서 매일 발송", channel: "해외", assignee: "유재영·유선화", deadline: "상시", priority: 'high', status: 'active' },
+                    { id: 'aid-3', title: "커플 타겟 마케팅", desc: "생카 의존 탈피 — 커플·일반 고객 비중 30%↑", channel: "타겟", assignee: "유선화", deadline: "2026.06.30", priority: 'high', status: 'active' },
+                    { id: 'aid-4', title: "자체 릴스 컨텐츠 제작", desc: "AI 조향사·체험형 숏폼 — 찍을 이유가 명확한 1일/주기 릴스", channel: "콘텐츠·바이럴", assignee: "유선화", deadline: "상시", priority: 'high', status: 'active' },
+                    { id: 'aid-5', title: "뿌덕 4탄 — 사주 컨텐츠", desc: "최애 향 + 사주 결합 굿즈/체험 콘텐츠로 4탄 진행", channel: "콘텐츠·바이럴", assignee: "유선화", deadline: "2026.07.10", priority: 'medium', status: 'active' },
+                    { id: 'aid-6', title: "악센트 와우 — 변경안", desc: "추후 변경 관련 회의에서 방향 확정 후 진행", channel: "악센트 와우", assignee: "전원", deadline: "추후 회의", priority: 'medium', status: 'hold' }
+                ]
+            },
+            // 4. 악센트 와우 — 추후 변경 (보류)
+            {
+                type: 'quote',
+                title: "악센트 와우,<br/>추후 변경 회의로",
+                subtitle: "방향이 정해진 뒤 움직인다 — 지금은 <strong>보류</strong>",
+                sections: [
+                    {
+                        title: "",
+                        status: 'warning',
+                        items: [
+                            "악센트 와우는 <strong>추후 변경 관련 회의</strong>를 별도로 진행한다",
+                            "변경안 확정 전까지 리소스를 끌지 않는다 — 보드에서도 <strong>'보류'</strong> 처리",
+                            "악센트 아이디 4대 결정에 먼저 집중"
+                        ]
+                    }
+                ]
+            },
+            // 5. 스모트 — 3개 출처 통합
+            {
+                type: 'summary',
+                title: "스모트 — 마케팅·영업 통합",
+                subtitle: "0619 유선화 + 0619 김주연 + 10대 실행안 — 영업과 마케팅을 구분하지 않는다",
+                sections: [
+                    {
+                        title: "📣 유입 · 가두리 (핵심)",
+                        status: 'info',
+                        highlight: true,
+                        items: [
+                            "<strong>메타 광고</strong> — 증명설계형 A/B (이긴 가설만 예산↑)",
+                            "<strong>오픈채팅 황금고블린</strong> — 지문→웹툰 가두리 (6/18~19 실증 완료)",
+                            "<strong>VS AI 블라인드 · 웹툰 클립 · 1일 1콘텐츠</strong>"
+                        ]
+                    },
+                    {
+                        title: "🥾 영업 · 오프라인",
+                        status: 'success',
+                        items: [
+                            "<strong>원장 발영업</strong> + 제안서 → 원장 10개 락인",
+                            "<strong>세미나 + 피드백 크레딧</strong> 프로모션 (유선화)",
+                            "카페 침투 · 정보성 문자 · 학원 방문 · 전단지"
+                        ]
+                    },
+                    {
+                        title: "⚠️ 보류",
+                        status: 'warning',
+                        items: [
+                            "<strong>기능설명 위주 블로그·인스타</strong> — ver1.0 고정 후(7/1 이후)",
+                            "<strong>'학교 맞춤 시험지 제작'</strong> — 구조적 모순, 재검토"
+                        ]
+                    }
+                ]
+            },
+            // 6. 스모트 — 인터랙티브 마케팅 우선순위·마감 보드 (3출처 통합)
+            {
+                type: 'priorityBoard',
+                title: "스모트 — 마케팅 우선순위 보드",
+                subtitle: "0619 유선화·김주연 마케팅 + 10대 실행안 통합 — 추가·수정·삭제·보류·저장 + 📅 마감일",
+                boardId: 'smoat',
+                boardAccent: '#10B981',
+                priorityItems: [
+                    { id: 'smt-1', title: "메타 광고 — 증명설계형 A/B", desc: "영상 1개당 가설 1개(무엇을 증명?) 부착. 이긴 가설만 예산↑, 진 가설은 끔", channel: "유입", assignee: "유선화·유재영", deadline: "2026.06.30", priority: 'critical', status: 'active' },
+                    { id: 'smt-2', title: "오픈채팅 황금고블린 정례화", desc: "선착순 N명 지문 10개 → 웹툰 제공으로 가두리. 6/18~19 실증 완료", channel: "가두리", assignee: "김주연", deadline: "상시", priority: 'critical', status: 'active' },
+                    { id: 'smt-3', title: "VS AI 블라인드 테스트", desc: "'휘문고 기출 vs AI 기출, 맞출 수 있나' — 통념 파괴 릴스", channel: "유입", assignee: "유선화", deadline: "상시", priority: 'high', status: 'active' },
+                    { id: 'smt-4', title: "지문 웹툰 30초 클립", desc: "'이건 처음 본다' 후킹 + 오픈채팅 미끼로 이중 사용", channel: "유입·가두리", assignee: "유선화·김주연", deadline: "상시", priority: 'high', status: 'active' },
+                    { id: 'smt-5', title: "1일 1콘텐츠 (릴스·카드뉴스)", desc: "개발 업데이트마다 1건, 꾸준함으로 알고리즘·신뢰 축적", channel: "유입", assignee: "유선화", deadline: "상시", priority: 'high', status: 'active' },
+                    { id: 'smt-6', title: "원장 발영업 + 제안서", desc: "핏 케이스 원장 1:1 컨택, 학군지 독점 어필 → 원장 10개 락인", channel: "영업", assignee: "유재영", deadline: "2026.07.01", priority: 'high', status: 'active' },
+                    { id: 'smt-7', title: "세미나 + 피드백 크레딧 프로모션", desc: "1:1 온보딩 세미나(무료 30명) → 2개월 피드백 5회 시 크레딧 락인·바이럴", channel: "락인·바이럴", assignee: "유선화", deadline: "2026.07.01", priority: 'medium', status: 'active' },
+                    { id: 'smt-8', title: "깜짝 크레딧 선착순 이벤트", desc: "오픈채팅 활성화용 무료 크레딧 리워드", channel: "리텐션", assignee: "김주연", deadline: "상시", priority: 'medium', status: 'active' },
+                    { id: 'smt-9', title: "발영업 다큐 유튜브", desc: "영업 현장을 날것으로 기록 → 원장·강사 신뢰 적립", channel: "콘텐츠·신뢰", assignee: "유재영", deadline: "2026.07.15", priority: 'medium', status: 'active' },
+                    { id: 'smt-10', title: "카페 침투", desc: "강사 카페·단톡 주기 활동, '7월까지 무료' 후킹 + 뱃지 획득", channel: "오프라인", assignee: "유재영·김주연", deadline: "상시", priority: 'medium', status: 'active' },
+                    { id: 'smt-11', title: "정보성 문자", desc: "서비스·기능 안내 (수신동의 전 광고문자는 불법 / 정보성은 합법, 어드민 수집 반영)", channel: "오프라인", assignee: "김주연", deadline: "상시", priority: 'medium', status: 'active' },
+                    { id: 'smt-12', title: "학원 방문 + 원장 면담", desc: "전단지 배포 + 원장 면담", channel: "오프라인", assignee: "유재영", deadline: "상시", priority: 'medium', status: 'active' },
+                    { id: 'smt-13', title: "유튜브 — 'AI문제 vs 실제시험, 구별 가능?'", desc: "선생님·학생이 구별할 수 있을까 — 통념 파괴 실험 콘텐츠", channel: "콘텐츠", assignee: "유선화", deadline: "2026.07.20", priority: 'low', status: 'active' },
+                    { id: 'smt-14', title: "학교 앞 전단지", desc: "학생→학원 선생님 전달 시 사탕 리워드", channel: "오프라인", assignee: "전원", deadline: "방학", priority: 'low', status: 'active' },
+                    { id: 'smt-15', title: "기능설명 위주 블로그·인스타 발행", desc: "ver1.0 고정 전엔 곧 어긋남 → 7/1 이후로 연기 (획기적 후킹이 먼저)", channel: "콘텐츠", assignee: "유선화", deadline: "7/1 이후", priority: 'low', status: 'hold' },
+                    { id: 'smt-16', title: "'학교 맞춤 시험지 제작' 기획", desc: "구조적 모순(결국 외부 AI로 제작) → 동형 시험지 고도화 전까지 보류", channel: "기획", assignee: "—", deadline: "재검토", priority: 'low', status: 'hold' }
+                ]
+            },
+            // 7. 핵심 마감일
+            {
+                type: 'deadline',
+                title: "핵심 마감일",
+                subtitle: "보드에서 각 실행안의 마감일을 직접 설정·조정하세요 (📅 날짜 선택 가능)",
+                deadlines: [
+                    { task: "악센트 미끼상품 정기상품 구성", assignee: "유선화·유재영", date: "이번 주", priority: 'critical' },
+                    { task: "스모트 메타 광고 크리에이티브 준비", assignee: "유선화·유재영", date: "6.30", priority: 'critical' },
+                    { task: "스모트 원장 10개 락인 (발영업)", assignee: "유재영", date: "7.1", priority: 'high' },
+                    { task: "악센트 뿌덕 4탄(사주) 제작", assignee: "유선화", date: "7.10", priority: 'medium' }
+                ]
+            },
+            // 8. 마무리
+            {
+                type: 'quote',
+                title: "정한 우선순위대로,<br/>마감일 안에 💪",
+                subtitle: "악센트 아이디 4대 결정 · 스모트 통합 — <strong>보드에서 살아있는 계획으로</strong>",
+                sections: [
+                    {
+                        title: "",
+                        status: 'info',
+                        items: [
+                            "우선순위는 ↑↓로 조정하고, <strong>마감일은 📅로 설정</strong>한다",
+                            "저장하면 <strong>'한눈에 보기'</strong>로 팀 전체가 같은 그림을 본다",
+                            "정해진 것은 정해진 대로, 마감 안에 끝낸다"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    // 6.20 임원진 회의 — 악센트 아이디 운영 유지 확정(월세동결·1년계약·관광벤처 4천만원) · BEP 직시 · 새 KPI(외국인10%·일반커플30%) · 스모트 대공세(9대 실행안) · 우선순위·마감일
+    {
+        id: "2026-06-20",
+        date: "2026.06.20",
+        title: "6월 3주차 임원진 회의",
+        subtitle: "악센트 아이디 운영 유지 확정 · BEP 직시 · 새 KPI 설정 · 스모트 대공세",
+        attendees: ["유재영", "이동주", "유선화", "김주연"],
+        meetingType: 'executive',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "악센트 아이디 운영 재논의 — 월세 동결·1년 계약·관광벤처 4,000만원 → 유지 확정" },
+            { id: 2, content: "BEP 직시 — 2명 감축에도 월 −2,000만원, 4,000만원은 두 달이면 사라진다" },
+            { id: 3, content: "절대 안주 금지 — 악센트 아이디 부활 + 스모트 탄생 동시 추진" },
+            { id: 4, content: "악센트 아이디·와우 새 KPI — 외국인 10%↑, 일반·커플 30%↑ (비수기 커버)" },
+            { id: 5, content: "스모트 대공세 — 9대 실행안 + 우선순위·마감일 설정" }
+        ],
+        slides: [
+            // 1. 타이틀
+            {
+                type: 'title',
+                title: "6월 3주차 임원진 회의",
+                subtitle: "악센트 아이디 부활 · BEP 직시 · 새 KPI · 스모트 대공세"
+            },
+            // 2. 승전보 — 악센트 아이디가 살아났다
+            {
+                type: 'quote',
+                title: "악센트 아이디,<br/>다시 살아날 수 있을까요?",
+                subtitle: "월세 동결 · 1년 계약 · 관광벤처 초기 <strong>4,000만원</strong> 지원금 확보",
+                sections: [
+                    {
+                        title: "",
+                        status: 'success',
+                        items: [
+                            "20개 넘는 정부지원사업을 써내려간 <strong>김주연 군에게 박수</strong> 👏 고생 많으셨습니다",
+                            "한 건 쓸 때마다 <strong>200만원씩 벌어온 셈</strong> — 그게 4,000만원의 무게 (위안이… 되나? ㅎㅎ)",
+                            "이제 다시, 악센트 아이디 운영을 논의합니다 — 찬·반, 생각이 바뀐 분은 말씀해주세요"
+                        ]
+                    }
+                ]
+            },
+            // 3. 안건 1 — 운영 유지 확정
+            {
+                type: 'summary',
+                title: "① 악센트 아이디 운영 — 유지 확정",
+                subtitle: "재논의 결과, 살린다. 남은 질문은 단 하나 — '어떻게 살릴 것인가'",
+                sections: [
+                    {
+                        title: "🏠 월세 동결 · 1년 계약",
+                        status: 'success',
+                        items: [
+                            "임대인과 재협상 → <strong>월세 동결</strong>",
+                            "<strong>1년 계약</strong>으로 운영 안정성 확보",
+                            "홍대 월세만 월 <strong>517만원</strong> — 동결의 무게가 크다"
+                        ]
+                    },
+                    {
+                        title: "🎫 관광벤처 합격 · 4,000만원",
+                        status: 'success',
+                        items: [
+                            "초기 관광벤처 <strong>합격</strong>",
+                            "초기 지원금 <strong>4,000만원</strong> 확보",
+                            "김주연군이 20개+ 지원사업을 쏟아부은 결과"
+                        ]
+                    },
+                    {
+                        title: "🗳️ 재논의 → 유지 결정",
+                        status: 'info',
+                        items: [
+                            "찬·반, 심경 변화 재확인",
+                            "악센트 아이디 <strong>운영 유지로 결정</strong> 👏",
+                            "방향: 부활 — '어떻게 살릴 것인가'로 전환"
+                        ]
+                    }
+                ]
+            },
+            // 4. 안건 2 — BEP 직시 (큰 숫자)
+            {
+                type: 'kpi',
+                title: "② BEP 직시 — 안주는 없다",
+                subtitle: "2명을 감축했음에도 매달 −2,000만원. 4,000만원은 두 달이면 사라진다",
+                kpis: [
+                    { label: "월 매출 (5월 실적)", value: "2,260만", target: "통합거래장 총수입 기준", status: 'warning' },
+                    { label: "월 비용 (6월 예상)", value: "4,490만", target: "홍대 1,844 + 본사 2,647", status: 'danger' },
+                    { label: "월 순손익 (경상)", value: "−2,000만", target: "매달 반복되는 적자", status: 'danger' },
+                    { label: "인건비 감축 효과", value: "−147만", target: "2명 감축에도 이 정도", status: 'danger' }
+                ],
+                sections: [
+                    {
+                        title: "🧨 구조적 적자라는 진실",
+                        status: 'danger',
+                        items: [
+                            "2명을 줄였지만 월 비용은 <strong>147만원</strong> 줄었을 뿐",
+                            "매출이 비용을 못 따라가는 <strong>구조적 적자</strong>",
+                            "성수기로 버티고, 비수기엔 그대로 −2,000만원"
+                        ]
+                    },
+                    {
+                        title: "⏳ 4,000만원의 진짜 무게",
+                        status: 'warning',
+                        items: [
+                            "4,000만원 ÷ 월 2,000만원 적자 = <strong>단 2개월</strong>",
+                            "지원금은 우리 <strong>결손을 책임질 수 없다</strong>",
+                            "지금 움직이지 않으면 가을이 위험하다"
+                        ]
+                    }
+                ]
+            },
+            // 5. BEP 상세 — 어디서 새는가 (비용종합 정리)
+            {
+                type: 'comparison',
+                title: "BEP 상세 — 어디서 새는가",
+                subtitle: "단위: 만원 · 6월 예상(2명 감축 반영) 기준 · 2605홍대및본사BEP 정리",
+                comparison: {
+                    headers: ["항목", "홍대 매장", "본사", "합계"],
+                    rows: [
+                        ["인건비", "975", "1,551", "2,526"],
+                        ["운영비 (월세·구독 등)", "707", "571", "1,278"],
+                        ["재무비용 (세금·이자)", "—", "380", "380"],
+                        ["마케팅·영업·기타", "162", "145", "307"],
+                        ["월 비용 합계", "1,844", "2,647", "4,490"]
+                    ]
+                },
+                sections: [
+                    {
+                        title: "💡 핵심 인사이트",
+                        status: 'info',
+                        highlight: true,
+                        items: [
+                            "홍대 <strong>월세만 517만원</strong> — 동결이 그래서 컸다",
+                            "본사 <strong>인건비+세금</strong>이 전체 비용의 절반 이상",
+                            "비용은 거의 고정 — <strong>답은 결국 매출</strong>밖에 없다"
+                        ]
+                    }
+                ]
+            },
+            // 6. 안건 3 — 절대 안주하지 않는다
+            {
+                type: 'quote',
+                title: "절대, 안주하지 않는다",
+                subtitle: "악센트 아이디의 <strong>부활</strong>과 스모트의 <strong>탄생</strong>을 동시에",
+                sections: [
+                    {
+                        title: "",
+                        status: 'warning',
+                        items: [
+                            "빠르게 · 체계적으로 · 다양하게 — 많이 시도한다",
+                            "두 개의 불씨를 동시에 지키고 동시에 키운다",
+                            "지원금에 기대 멈추는 순간, 모든 게 무너진다"
+                        ]
+                    }
+                ]
+            },
+            // 7. 안건 4 — 새 KPI (외국인·일반·커플)
+            {
+                type: 'kpi',
+                title: "④ 악센트 아이디·와우 — 새 KPI",
+                subtitle: "성수기 매장은 훌륭하다. 문제는 비수기 — 반드시 커버를 친다",
+                kpis: [
+                    { label: "외국인 비중", value: "10%↑", target: "현재 → 두 자릿수로", status: 'warning' },
+                    { label: "일반·커플 비중", value: "30%↑", target: "생카 의존 탈피", status: 'warning' },
+                    { label: "핵심 타겟 연령", value: "15~29", target: "중·고·대학생 ~ 20대 후반", status: 'success' }
+                ],
+                sections: [
+                    {
+                        title: "🎯 타겟 확장 — 비수기를 채울 사람들",
+                        status: 'info',
+                        items: [
+                            "중학생·고등학생·대학생 <strong>덕후</strong>층",
+                            "갓 대학 졸업한 친구들 ~ <strong>20대 후반</strong>",
+                            "커플·일반 고객 비중 <strong>30% 이상</strong>으로"
+                        ]
+                    },
+                    {
+                        title: "🌏 외국인 타겟 마케팅",
+                        status: 'success',
+                        highlight: true,
+                        items: [
+                            "외국인 비중 <strong>10% 이상</strong>으로 확대",
+                            "개발·운영·마케팅 <strong>모든 축에서 중요</strong> — 플랜 세우고 실행",
+                            "<strong>제안</strong>: 매일 해외 인플루언서에게 발송 — <strong>유재영·유선화 서포팅</strong>"
+                        ]
+                    },
+                    {
+                        title: "🌏 해외 딥리서치 — 검증된 결론",
+                        status: 'warning',
+                        items: [
+                            "글로벌 OTA(Klook·KKday·Trazy) 입점이 외국인 매출의 <strong>입구이자 기본기</strong>",
+                            "<strong>영·중·일 다국어</strong>가 승부처 — 영어조차 안 되면 진입 실패",
+                            "우리 무기는 <strong>AI 조향사 + 뿌덕</strong> — 다음 슬라이드에서 상세히 👉"
+                        ]
+                    }
+                ]
+            },
+            // 7b. 해외 타겟 — 경쟁사가 증명한 공식 (딥리서치)
+            {
+                type: 'comparison',
+                title: "해외 타겟 — 경쟁사가 증명한 공식",
+                subtitle: "딥리서치(22개 출처·83개 클레임·적대적 3표 검증) — 외국인 매출의 입구는 이미 정해져 있다",
+                comparison: {
+                    headers: ["경쟁사", "OTA 채널", "언어", "가격·구성"],
+                    rows: [
+                        ["그리디센츠", "Klook · Tripadvisor · IG", "4개국어", "5만원 / 70분 / 홍대"],
+                        ["닷노트 (.Note)", "Tripadvisor", "13개국어", "다국어 극단 전략"],
+                        ["Parfum9", "Trazy", "영 · 한", "홍대 인근"],
+                        ["K-scent 클래스", "Viator · Klook", "영어권", "5만원 / 50ml + 웰컴티"]
+                    ]
+                },
+                sections: [
+                    {
+                        title: "📌 검증된 3대 공식",
+                        status: 'info',
+                        highlight: true,
+                        items: [
+                            "① 글로벌 OTA(Klook·KKday·Trazy·Viator) 입점 = <strong>외국인 매출의 입구·기본기</strong>",
+                            "② <strong>다국어가 승부처</strong> — 영·중·일 최소, 닷노트는 13개국어까지",
+                            "③ 포지셔닝은 <strong>'K-scent(한국적 향) + 한국 여행 기념품'</strong>으로 수렴"
+                        ]
+                    },
+                    {
+                        title: "⚠️ 추가 확인 사항",
+                        status: 'warning',
+                        items: [
+                            "121르말뒤페이는 자동 리서치 검증 실패 → <strong>수동 정밀조사(미스터리쇼핑)</strong> 필요",
+                            "자극적 % 통계(31.4%·41.8% 등)는 교차검증 기각 → <strong>단정 인용 금지</strong>, 방향성만 활용"
+                        ]
+                    }
+                ]
+            },
+            // 7c. 악센트 아이디 — 우리만의 무기 & 실행 전략
+            {
+                type: 'summary',
+                title: "악센트 아이디 — 우리만의 무기",
+                subtitle: "경쟁사가 갖지 못한 두 무기로, 검증된 공식 위에 차별화를 얹는다",
+                sections: [
+                    {
+                        title: "🤖 AI 조향사 = 차별화 무기",
+                        status: 'success',
+                        items: [
+                            "AWS re:Invent 2025 'Fragrance Lab' <strong>1만 명</strong> 실증 — 기술 세션보다 많은 관중",
+                            "현대백화점 신촌점 <strong>'AI 조향사' 팝업</strong> 운영 — 국내에서도 검증된 포맷",
+                            "외국인에게 '한국에서만 하는 미래형 체험' = <strong>찍을 이유(숏폼) 명확</strong>"
+                        ]
+                    },
+                    {
+                        title: "💜 뿌덕·SPOT = 타겟 적중",
+                        status: 'info',
+                        items: [
+                            "경쟁사는 '향수 만들기'에서 끝 — 우리는 <strong>최애 향 + 굿즈화</strong>까지 연결",
+                            "K-pop 인바운드 수요는 검증됨 (Klook에 K-pop 향수 상품 이미 존재)",
+                            "⚠️ <strong>IP·초상권 우회 설계 필수</strong> — '팬의 2차 창작을 돕는' 포맷으로"
+                        ]
+                    },
+                    {
+                        title: "🎯 실행 우선순위",
+                        status: 'warning',
+                        items: [
+                            "① <strong>OTA 멀티입점 + 영·중·일</strong> (최우선·가장 확실)",
+                            "② <strong>AI 조향사 × K-scent</strong> 포지셔닝 (프리미엄 7~9만원 라인)",
+                            "③ 뿌덕 K-pop 팬덤 → ④ 숏폼 UGC(틱톡·샤오홍슈·Lemon8) → ⑤ 영어응대=평점=전환"
+                        ]
+                    }
+                ]
+            },
+            // 8. 안건 5 — 스모트 대공세 원칙
+            {
+                type: 'summary',
+                title: "⑤ 스모트 — 대공세의 원칙",
+                subtitle: "영업과 마케팅을 구분하지 않는다. 최대한 많은 고객을 들어오게 한다",
+                sections: [
+                    {
+                        title: "🛡️ 개발팀을 지치게 하지 않는다",
+                        status: 'info',
+                        items: [
+                            "개발팀은 <strong>서비스 고도화</strong>를 잘 하고 있다",
+                            "번아웃 나는 구조를 만들지 않는다"
+                        ]
+                    },
+                    {
+                        title: "⚡ 유재영·유선화 — 더 빠르게·다양하게",
+                        status: 'success',
+                        items: [
+                            "마케팅·영업 관점에서 <strong>다양한 시도</strong>",
+                            "속도와 다양성을 두 사람이 끌어올린다"
+                        ]
+                    },
+                    {
+                        title: "🎛️ 김주연 — 컨트롤타워",
+                        status: 'warning',
+                        items: [
+                            "각 시도의 <strong>마감일을 정확히</strong> 정한다",
+                            "안 그러면 늘어진다 — 데드라인이 곧 추진력"
+                        ]
+                    }
+                ]
+            },
+            // 9. 스모트 9대 실행안
+            {
+                type: 'agenda',
+                title: "스모트 — 10대 실행안",
+                subtitle: "유선화·유재영이 함께 디벨롭하며 우선순위를 찾아간다",
+                sections: [
+                    {
+                        title: "🍷 기말고사 이후 방학 = 독이 든 성배",
+                        status: 'warning',
+                        highlight: true,
+                        items: [
+                            "시험이 끝나서 당장 시험지를 만들 일은 줄겠지만?",
+                            "오히려 선생님들에겐 <strong>시간이 남는다</strong>",
+                            "이 기회를 반드시 잘 살려야 한다! 💪"
+                        ]
+                    },
+                    {
+                        title: "📣 콘텐츠 · 바이럴",
+                        status: 'info',
+                        items: [
+                            "① <strong>새 광고영상</strong> 제작",
+                            "② <strong>1일 1릴스</strong> — 게시물 차곡차곡, 기능설명 너머의 획기적 후킹 필요",
+                            "③ <strong>오픈채팅방 활성화</strong> — 영어지문을 무료 <strong>웹툰</strong>으로 생성해주며 유입",
+                            "④ <strong>블로그 웹툰</strong> 연재 + 중간중간 변형 모의고사 공유",
+                            "⑤ <strong>세미나</strong> — 확실한 리워드로 락인하고 바이럴까지"
+                        ]
+                    },
+                    {
+                        title: "🥾 오프라인 · 세일즈",
+                        status: 'success',
+                        highlight: true,
+                        items: [
+                            "⑥ <strong>카페 침투</strong> — 주기적 활동으로 뱃지 획득",
+                            "⑦ <strong>정보성 문자</strong> — 서비스·기능 안내 (광고문자는 수신동의 전까지 불법 / 정보성은 합법 · 어드민에 마케팅 수신동의 수집 반영 완료)",
+                            "⑧ <strong>학교 앞 전단지</strong> — 학생→학원 선생님 전달 시 사탕 리워드",
+                            "⑨ <strong>학원 방문</strong> — 전단지 배포 + 원장 면담",
+                            "⑩ <strong>유튜브</strong> — 'AI문제 시험 vs 실제 시험, 선생님·학생은 구별할 수 있을까?'"
+                        ]
+                    },
+                    {
+                        title: "⚠️ 당장은 보류 — 우선순위 낮음",
+                        status: 'warning',
+                        items: [
+                            "<strong>기능 설명 위주의 블로그 발행 · 인스타그램 발행</strong>은 당장 하는 게 유의미해 보이진 않음",
+                            "기능 설명을 넘어선 <strong>획기적 후킹</strong>이 먼저 — 거기에 리소스를 집중"
+                        ]
+                    }
+                ]
+            },
+            // 10. 우선순위·마감일 — 다음 액션
+            {
+                type: 'deadline',
+                title: "우선순위 · 마감일 — 다음 액션",
+                subtitle: "마감일·우선순위는 유선화·유재영이 디벨롭하며 확정 (영업·마케팅 구분 없이)",
+                deadlines: [
+                    { task: "9대 실행안 우선순위·마감일 확정", assignee: "유선화·유재영", date: "이번 주", priority: 'critical' },
+                    { task: "매일 해외 인플루언서 발송 시작", assignee: "유재영·유선화", date: "즉시", priority: 'critical' },
+                    { task: "각 실행안 데드라인 컨펌 (컨트롤타워)", assignee: "김주연", date: "상시", priority: 'high' },
+                    { task: "새 광고영상 1편 + 1일 1릴스 가동", assignee: "유선화·유재영", date: "우선순위 상", priority: 'high' }
+                ]
+            },
+            // 11. 마무리 — 울림
+            {
+                type: 'quote',
+                title: "지금부터,<br/>다시 으쌰으쌰 💪",
+                subtitle: "악센트 아이디의 <strong>부활</strong>, 스모트의 <strong>탄생</strong> — 우리 손으로",
+                sections: [
+                    {
+                        title: "",
+                        status: 'info',
+                        items: [
+                            "더 빠르게 · 더 다양하게 · 더 많이 시도한다",
+                            "성수기로 벌고, 비수기를 반드시 커버한다",
+                            "이번 분기, 적자 구조를 우리가 끝낸다"
+                        ]
+                    }
+                ]
+            }
+        ]
+    },
+    // 6.1 임원진 회의 — 김주희 퇴사·인력 재배치 · 악센트 운영(폐업 vs 연장) · 악센트 아이디 부활 · 정기회의 부활 vs 관망 · 김제연 처우
+    {
+        id: "2026-06-01",
+        date: "2026.06.01",
+        title: "6월 1주차 임원진 회의",
+        subtitle: "김주희 퇴사·인력 재배치 · 악센트 운영 방향 · 악센트 아이디 부활 · 정기회의 부활 vs 관망 · 김제연 처우",
+        attendees: ["유재영", "이동주", "유선화", "김주연"],
+        meetingType: 'executive',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "김주희 퇴사 및 매장 인력 재배치" },
+            { id: 2, content: "악센트 운영 방향 — 8.1자 폐업 vs 1년 연장" },
+            { id: 3, content: "6월 악센트 아이디 부활 플랜 (국내 바이럴·콘텐츠·해외 마케팅)" },
+            { id: 4, content: "정기 회의(수요일) 부활 vs 7/1까지 관망" },
+            { id: 5, content: "김제연 관광벤처 결과별 처우 방안" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "6월 1주차 임원진 회의"
+            },
+            // 슬라이드 2: 안건 1 — 김주희 퇴사 & 인력 재배치
+            {
+                type: 'comparison',
+                title: "김주희 퇴사 & 매장 인력 재배치",
+                subtitle: "촬영 일정으로 정기 출근 불가 → 퇴사 · 주 2~3일 아르바이트 전환",
+                comparison: {
+                    headers: ["구분", "기존", "6월 이후"],
+                    rows: [
+                        ["김주희", "정기 출근", "퇴사 → 주 2~3일 아르바이트 전환 (가능)"],
+                        ["김명연", "주 2일 출근", "주 1일 출근으로 축소 (건강·컨디션 난조)"],
+                        ["비는 1일", "—", "김주희 아르바이트로 보완"]
+                    ]
+                },
+                sections: [
+                    {
+                        title: "📌 퇴사 사유 및 조건",
+                        items: [
+                            "촬영 일정으로 인한 <strong>정기 출근 불가</strong> → 퇴사 결정",
+                            "아르바이트 형태로 <strong>주 2~3일 근무는 가능</strong>",
+                            "퇴직금 <strong>400만원</strong> 지급 예정"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "🔄 인력 메커니즘 — 공백 보완",
+                        items: [
+                            "김명연 건강·컨디션 이슈로 주 2일 중 <strong>1일만 출근</strong> 예정",
+                            "비는 1일 자리를 <strong>김주희 아르바이트</strong>가 채워 매장 운영 공백 최소화"
+                        ],
+                        highlight: true,
+                        status: 'success'
+                    }
+                ]
+            },
+            // 슬라이드 3: 안건 2-1 — 악센트 운영 두 갈래 시나리오
+            {
+                type: 'comparison',
+                title: "악센트 운영 — 두 갈래 시나리오 대비",
+                subtitle: "악센트 아이디 · 악센트 와우, 8월 1일 분기점에서 미리 대비",
+                comparison: {
+                    headers: ["기준", "시나리오 A — 폐업", "시나리오 B — 연장"],
+                    rows: [
+                        ["시점", "8월 1일자 폐업", "1년 계약 연장"],
+                        ["대상", "악센트 아이디 + 악센트 와우 동시 정리", "운영 지속 (구조 재편 전제)"],
+                        ["핵심 과제", "예약·환불·이관 대비책 마련", "아이디·와우 통합 여부 결정"],
+                        ["리스크", "예약 고객 신뢰·브랜드 공백", "고정비 지속·인력 부담"]
+                    ]
+                },
+                sections: [
+                    {
+                        title: "📣 공통 선제 조치 — 미리 준비",
+                        items: [
+                            "생일카페(생카) 주최자들에게 운영 변동을 <strong>사전 고지</strong> 필요",
+                            "두 시나리오 모두 환불·예약 이관 등 <strong>대비를 미리 진행</strong>"
+                        ],
+                        highlight: true,
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 4: 안건 2-2 — 연장 시 운영 재편안
+            {
+                type: 'agenda',
+                title: "악센트 — 연장 시 운영 재편안",
+                subtitle: "폐업하지 않을 경우, 어떤 구조로 운영할 것인가",
+                sections: [
+                    {
+                        title: "🏗️ 공간 통합안",
+                        items: [
+                            "악센트 와우는 <strong>생일카페 전용 공간</strong> → 폐지 검토",
+                            "와우를 없애고 <strong>악센트 아이디로 확장·통합</strong> (현재 한 층에 분리만 되어 있어 통합 용이)",
+                            "통합 후 <strong>키오스크 도입</strong>으로 운영 자동화"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "💰 인력 효율안 & 업무 이관",
+                        items: [
+                            "인력을 <strong>최대한 줄이면서 순수익을 올리는</strong> 방향 검토",
+                            "별도 운영 vs 한 곳으로 통합 — 어느 쪽으로 갈지 미리 결정",
+                            "동주 담당 업무를 <strong>다혜에게 100% 이관</strong>할지 등 메커니즘 설계 필요"
+                        ],
+                        highlight: true,
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 5: 안건 3-1 — 악센트 아이디 6월 부활 (국내)
+            {
+                type: 'agenda',
+                title: "6월 악센트 아이디 부활 — 국내 바이럴 & 콘텐츠",
+                subtitle: "향 키캡 클릭커 바이럴 점화 · 정연과 2일 1영상 도전",
+                sections: [
+                    {
+                        title: "🔥 향 나는 키캡 클릭커 바이럴",
+                        items: [
+                            "현재 인스타 공지 '좋아요 100개 달성 시 상품 판매' → <strong>좋아요 정체</strong> 상태",
+                            "좋아요 확보(구매 포함)로 <strong>100개 목표 조기 달성</strong> → 판매·바이럴 즉시 점화",
+                            "향이 나는 키캡 클릭커를 6월 부활의 <strong>시그니처 상품</strong>으로"
+                        ],
+                        status: 'danger'
+                    },
+                    {
+                        title: "🎬 콘텐츠 — 정연과 '2일 1영상' 도전",
+                        items: [
+                            "악센트 아이디 <strong>커플 타겟</strong> 및 <strong>온라인 판매</strong> 강화 목적",
+                            "정연과 함께 '2일에 영상 1개' 챌린지 도전 제안",
+                            "꾸준한 업로드로 노출·전환 확대"
+                        ],
+                        highlight: true,
+                        status: 'info'
+                    }
+                ]
+            },
+            // 슬라이드 6: 안건 3-2 — 해외 타겟 마케팅
+            {
+                type: 'agenda',
+                title: "악센트 아이디 — 해외 타겟 마케팅",
+                subtitle: "K-POP × AI 조향사 콘텐츠 시너지로 해외 시장 공략",
+                sections: [
+                    {
+                        title: "🌏 해외 시장 진입 전략",
+                        items: [
+                            "경쟁사 <strong>그리디센트 · 121르말뒤페이</strong>는 해외를 주력 타겟으로 운영 중",
+                            "<strong>K-POP × 우리의 AI 조향사 콘텐츠</strong>가 결합되면 강력한 시너지 기대"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "✅ 실행 액션",
+                        items: [
+                            "구글 리뷰 채우기",
+                            "인스타그램 <strong>영어 버전</strong> 업로드",
+                            "국내 거주 중인 <strong>해외 인플루언서</strong> 타겟 협업"
+                        ],
+                        highlight: true,
+                        status: 'success'
+                    }
+                ]
+            },
+            // 슬라이드 7: 안건 4 — 정기 회의 부활 vs 관망
+            {
+                type: 'comparison',
+                title: "정기 회의 부활 vs 7/1까지 관망",
+                subtitle: "김정연·류다혜 근속 여부에 따른 분기 — 두 사람과 함께 갈 것인가",
+                comparison: {
+                    headers: ["판단", "정기 회의 부활 (수요일)", "7/1까지 관망"],
+                    rows: [
+                        ["전제", "김정연·류다혜와 함께 간다", "두 사람 퇴사가 확실시"],
+                        ["기조", "다시 으쌰으쌰 · 팀 결속 재가동", "불확실성 해소까지 리소스 보존"],
+                        ["행동", "수요일 정기 회의 재개", "근속 의사 확인까지 현 체제 유지"]
+                    ]
+                },
+                sections: [
+                    {
+                        title: "🧭 선결 과제 — 김정연 동기 회복",
+                        items: [
+                            "회사의 <strong>방향성에 대한 김정연의 의문</strong> 해소 필요",
+                            "본인의 <strong>역할과 책임에 대한 의문</strong> 해소 필요",
+                            "두 사람의 <strong>근속 의사 확인</strong>이 회의 부활 여부의 분기점"
+                        ],
+                        highlight: true,
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 8: 안건 5 — 김제연 관광벤처 처우
+            {
+                type: 'comparison',
+                title: "김제연 관광벤처 결과별 처우 방안",
+                subtitle: "예비 합격 시는 합의 완료 · 탈락 시 처우는 임원진 의견 필요",
+                comparison: {
+                    headers: ["관광벤처 결과", "처우 방안", "상태"],
+                    rows: [
+                        ["예비 합격", "지원금을 재원으로 고정 급여 제공", "이미 합의 완료 ✓"],
+                        ["탈락", "고정 급여 제공 + 4대보험 가입", "제안 — 임원진 의견 필요"]
+                    ]
+                },
+                sections: [
+                    {
+                        title: "💬 논의 요청",
+                        items: [
+                            "탈락 시 <strong>고정 급여 + 4대보험 가입</strong>안에 대한 임원진 의견 제시 요청",
+                            "예비 합격 시 지원금 기반 고정 급여 제공은 <strong>이미 합의된 내용</strong>"
+                        ],
+                        highlight: true,
+                        status: 'info'
+                    }
+                ]
+            }
+        ]
+    },
+    // 5.16 임원진 회의 — AI 조향사 B2B · 매장 관리 역할분배 · 매장 출근 인력 · 8월 연장 플랜
+    {
+        id: "2026-05-16",
+        date: "2026.05.16",
+        title: "5월 3주차 임원진 회의",
+        subtitle: "AI 조향사 B2B · 매장 관리 역할분배 · 매장 출근 인력 · 8월 연장 플랜",
+        attendees: ["유재영", "이동주", "유선화", "김주연"],
+        meetingType: 'executive',
+        isArchived: false,
+        agendaItems: [
+            { id: 1, content: "AI 조향사 B2B 기획 — 현대백화점 팝업 연계 세일즈" },
+            { id: 2, content: "매장 관리 역할 분배 (톡톡·일정관리·뿌디 제작)" },
+            { id: 3, content: "6월부터 매장 2일 출근 인력 확보" },
+            { id: 4, content: "8월 매장 연장 여부 및 플랜" }
+        ],
+        slides: [
+            // 슬라이드 1: 타이틀
+            {
+                type: 'title',
+                title: "5월 3주차 임원진 회의",
+                subtitle: "AI 조향사 B2B · 매장 관리 역할분배 · 매장 출근 인력 · 8월 연장 플랜"
+            },
+            // 슬라이드 2: AI 조향사 B2B 기획
+            {
+                type: 'agenda',
+                title: "AI 조향사 B2B 기획",
+                subtitle: "현대백화점 팝업 연계 세일즈 전략 · 법적 처리 방안",
+                sections: [
+                    {
+                        title: "🎯 기획 방향",
+                        items: [
+                            "AI 조향사 B2B 세일즈 <strong>기획 필요</strong>",
+                            "현대백화점 팝업과 함께 고민하며 세일즈 진행",
+                            "B2B 패키지 구성 및 가격 체계 수립"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "⚖️ 법적 처리 이슈",
+                        items: [
+                            "B2B 계약 시 <strong>법적 처리 방안</strong> 검토 필요",
+                            "계약서 형태, 책임 범위, 지식재산권 등 확인",
+                            "법무 자문 또는 표준 계약서 템플릿 마련"
+                        ],
+                        highlight: true,
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 3: 매장 관리 역할 분배
+            {
+                type: 'agenda',
+                title: "매장 관리 역할 분배",
+                subtitle: "톡톡 · 일정 관리 · 뿌디 제작 및 관리",
+                sections: [
+                    {
+                        title: "📋 분배 필요 업무",
+                        items: [
+                            "<strong>톡톡 관리:</strong> 고객 응대 및 문의 처리",
+                            "<strong>일정 관리:</strong> 매장 운영 스케줄 관리",
+                            "<strong>뿌디 제작 및 관리:</strong> 제품 제작·재고 관리"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "✅ Action Item",
+                        items: [
+                            "각 업무별 담당자 지정 필요",
+                            "역할 분배 후 업무 매뉴얼 정리"
+                        ],
+                        highlight: true,
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 4: 6월 매장 출근 인력
+            {
+                type: 'agenda',
+                title: "6월 매장 출근 인력 확보",
+                subtitle: "주 2일 출근 가능 인력 · 신규 아르바이트 채용",
+                sections: [
+                    {
+                        title: "👥 인력 현황",
+                        items: [
+                            "6월부터 매장 <strong>2일 출근</strong> 할 사람 필요",
+                            "신규 아르바이트 채용 진행 예정"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "💬 김주희 설득 중",
+                        items: [
+                            "김주희 설득 진행 중",
+                            "손님이라도 받아달라고 요청",
+                            "뉴 알바 뽑기로 병행 추진"
+                        ],
+                        highlight: true,
+                        status: 'warning'
+                    }
+                ]
+            },
+            // 슬라이드 5: 8월 매장 연장 플랜
+            {
+                type: 'agenda',
+                title: "8월 매장 연장 여부 및 플랜",
+                subtitle: "악센트 와우 운영 방향 · 선화 플랜 요청",
+                sections: [
+                    {
+                        title: "🏪 매장 연장 시 고려사항",
+                        items: [
+                            "8월 매장 연장 여부 결정 필요",
+                            "연장 시 구체적 <strong>플랜 수립 필수</strong>",
+                            "악센트 와우를 어떻게 운영할지 방향 설정"
+                        ],
+                        status: 'info'
+                    },
+                    {
+                        title: "📝 담당 배정",
+                        items: [
+                            "<strong>선화</strong>가 매장 연장 시 플랜을 짜주기로",
+                            "악센트 와우 운영 전략 포함하여 기획"
+                        ],
+                        highlight: true,
+                        status: 'success'
+                    }
+                ]
+            }
+        ]
+    },
     // 5.11 임원진 회의 — 현대백화점 투자 · 종로 열린책마루 · 악센트 아이디 · AI 조향사
     {
         id: "2026-05-11",

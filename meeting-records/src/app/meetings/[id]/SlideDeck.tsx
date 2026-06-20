@@ -1,10 +1,17 @@
 'use client';
 
 import { useState, useEffect, useCallback } from 'react';
-import { MeetingRecord } from '@/data/meetings';
+import { MeetingRecord, PriorityItem } from '@/data/meetings';
 import styles from './page.module.css';
 import { ArrowLeft, ChevronLeft, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
+import MarketingPriorityBoard, { loadSavedBoardItems, loadBoardDirty, priorityMeta } from './MarketingPriorityBoard';
+
+interface SavedBoard {
+    title: string;
+    accent: string;
+    items: PriorityItem[];
+}
 
 interface SlideDeckProps {
     meeting: MeetingRecord;
@@ -66,9 +73,76 @@ const priorityColors: Record<string, { bg: string; text: string; border: string 
 
 export default function SlideDeck({ meeting }: SlideDeckProps) {
     const [currentSlide, setCurrentSlide] = useState(0);
+    // 저장(commit)된 우선순위 보드 → 마지막에 '한눈에 보기' 요약 페이지로 추가됨
+    const [savedBoards, setSavedBoards] = useState<Record<string, SavedBoard>>({});
+    // 보드별 미저장 수정 여부 (요약 페이지의 stale 경고용)
+    const [dirtyBoards, setDirtyBoards] = useState<Record<string, boolean>>({});
 
     // slides 필드가 있으면 새 구조 사용, 없으면 기존 구조로 슬라이드 생성
     const hasNewStructure = meeting.slides && meeting.slides.length > 0;
+
+    // priorityBoard 슬라이드 목록 (요약 페이지 생성 기준)
+    const boardSlides = (meeting.slides || []).filter(s => s.type === 'priorityBoard' && s.boardId);
+
+    // 마운트 시: 이전에 저장한 보드를 localStorage에서 복원해 요약 페이지를 되살림
+    useEffect(() => {
+        const restored: Record<string, SavedBoard> = {};
+        const restoredDirty: Record<string, boolean> = {};
+        boardSlides.forEach(s => {
+            const saved = loadSavedBoardItems(s.boardId!);
+            if (saved) restored[s.boardId!] = { title: s.title, accent: s.boardAccent || '#10B981', items: saved };
+            if (loadBoardDirty(s.boardId!)) restoredDirty[s.boardId!] = true;
+        });
+        if (Object.keys(restored).length > 0) setSavedBoards(restored);
+        if (Object.keys(restoredDirty).length > 0) setDirtyBoards(restoredDirty);
+        // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [meeting.id]);
+
+    // 보드 저장 시: 요약 페이지 추가/갱신 후 해당 페이지로 이동
+    const handleBoardSaved = useCallback((boardId: string, items: PriorityItem[]) => {
+        const slide = (meeting.slides || []).find(s => s.boardId === boardId);
+        const entry: SavedBoard = {
+            title: slide?.title || '마케팅 우선순위',
+            accent: slide?.boardAccent || '#10B981',
+            items,
+        };
+        setSavedBoards(prev => ({ ...prev, [boardId]: entry }));
+        setDirtyBoards(prev => ({ ...prev, [boardId]: false }));
+
+        // 새로 추가될 요약 슬라이드의 인덱스 계산 후 이동
+        const allBoardSlides = (meeting.slides || []).filter(s => s.type === 'priorityBoard' && s.boardId);
+        const savedSet = new Set(Object.keys(savedBoards));
+        savedSet.add(boardId);
+        const orderedSaved = allBoardSlides.filter(s => savedSet.has(s.boardId!));
+        const pos = orderedSaved.findIndex(s => s.boardId === boardId);
+        const baseCount = meeting.slides ? meeting.slides.length : 0;
+        if (pos >= 0) setCurrentSlide(baseCount + pos);
+    }, [meeting.slides, savedBoards]);
+
+    // 보드 초기화 시: 해당 요약 페이지 제거
+    const handleBoardReset = useCallback((boardId: string) => {
+        setSavedBoards(prev => {
+            if (!prev[boardId]) return prev;
+            const next = { ...prev };
+            delete next[boardId];
+            return next;
+        });
+        setDirtyBoards(prev => {
+            const next = { ...prev };
+            delete next[boardId];
+            return next;
+        });
+    }, []);
+
+    // 보드의 미저장 수정 여부 통지 → 요약 페이지 stale 경고
+    const handleBoardDirtyChange = useCallback((boardId: string, dirty: boolean) => {
+        setDirtyBoards(prev => (prev[boardId] === dirty ? prev : { ...prev, [boardId]: dirty }));
+    }, []);
+
+    // 저장된 보드 → 요약 페이지 목록 (보드 등장 순서대로)
+    const summaryBoards = boardSlides
+        .filter(s => savedBoards[s.boardId!])
+        .map(s => ({ boardId: s.boardId!, stale: !!dirtyBoards[s.boardId!], ...savedBoards[s.boardId!] }));
 
     // 기존 구조일 때 슬라이드 개수 계산: 타이틀 + agendaItems + specialNotes + achievements + businessUpdates
     const getOldStructureSlideCount = () => {
@@ -80,7 +154,13 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
         return count;
     };
 
-    const totalSlides = hasNewStructure ? meeting.slides!.length : getOldStructureSlideCount();
+    const baseSlideCount = hasNewStructure ? meeting.slides!.length : getOldStructureSlideCount();
+    const totalSlides = baseSlideCount + summaryBoards.length;
+
+    // 요약 페이지 제거 등으로 슬라이드 수가 줄면 현재 위치를 범위 안으로 보정
+    useEffect(() => {
+        if (currentSlide > totalSlides - 1) setCurrentSlide(Math.max(0, totalSlides - 1));
+    }, [totalSlides, currentSlide]);
 
     const nextSlide = useCallback(() => {
         setCurrentSlide(prev => Math.min(prev + 1, totalSlides - 1));
@@ -92,6 +172,9 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
 
     useEffect(() => {
         const handleKeyDown = (e: KeyboardEvent) => {
+            // 보드 편집 폼(input/textarea/select) 포커스 중에는 슬라이드 네비게이션을 비활성화
+            const t = e.target as HTMLElement | null;
+            if (t && (t.tagName === 'INPUT' || t.tagName === 'TEXTAREA' || t.tagName === 'SELECT' || t.isContentEditable)) return;
             if (e.key === 'ArrowRight' || e.key === ' ') {
                 e.preventDefault();
                 nextSlide();
@@ -107,6 +190,24 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
     const renderNewSlide = (slideData: NonNullable<MeetingRecord['slides']>[number], index: number) => {
         const icon = slideIcons[slideData.type] || '📄';
         const color = slideColors[slideData.type] || '#3B82F6';
+
+        // 🎛️ 인터랙티브 마케팅 우선순위 보드
+        if (slideData.type === 'priorityBoard' && slideData.boardId) {
+            return (
+                <MarketingPriorityBoard
+                    key={slideData.boardId}
+                    boardId={slideData.boardId}
+                    accent={slideData.boardAccent || '#10B981'}
+                    title={slideData.title}
+                    subtitle={slideData.subtitle}
+                    index={index}
+                    initialItems={slideData.priorityItems || []}
+                    onSaved={handleBoardSaved}
+                    onReset={handleBoardReset}
+                    onDirtyChange={handleBoardDirtyChange}
+                />
+            );
+        }
 
         if (slideData.type === 'title') {
             return (
@@ -1517,9 +1618,10 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
                                                 display: 'flex',
                                                 alignItems: 'flex-start',
                                                 gap: '0.5rem'
-                                            }}
-                                            dangerouslySetInnerHTML={{ __html: `<span style="color: ${sectionColor}">→</span> ${item}` }}
-                                            />
+                                            }}>
+                                                <span style={{ color: sectionColor, flexShrink: 0 }}>→</span>
+                                                <span style={{ flex: 1 }} dangerouslySetInnerHTML={{ __html: item }} />
+                                            </li>
                                         ))}
                                     </ul>
                                 </div>
@@ -1789,8 +1891,71 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
         return null;
     };
 
+    // ✅ 저장된 우선순위 보드 → '한눈에 보기' 요약 페이지
+    const renderBoardSummary = (board: { boardId: string; title: string; accent: string; items: PriorityItem[]; stale?: boolean }, index: number) => {
+        const accent = board.accent;
+        const active = board.items.filter(i => i.status === 'active');
+        const hold = board.items.filter(i => i.status === 'hold');
+        return (
+            <div className={styles.slideContent}>
+                <div className={styles.newSlideHeader}>
+                    <div className={styles.slideHeaderLeft}>
+                        <span className={styles.slideIcon} style={{ background: `${accent}20`, color: accent }}>✅</span>
+                        <span className={styles.slideNumber} style={{ color: accent }}>{String(index + 1).padStart(2, '0')}</span>
+                    </div>
+                    {board.stale
+                        ? <span className={styles.mpbLiveBadge} style={{ borderColor: '#F59E0B88', color: '#F59E0B' }}>⚠ 보드에 미저장 수정 있음</span>
+                        : <span className={styles.mpbLiveBadge} style={{ borderColor: `${accent}55`, color: accent }}>저장본 · 한눈에 보기</span>}
+                </div>
+                <h2 className={styles.newSlideTitle} style={{ color: accent }}>{board.title} — 우선순위 확정</h2>
+                <p style={{ color: '#888', fontSize: '1.2rem', marginBottom: '1.2rem' }}>
+                    저장 시점의 우선순위 · 마감일 스냅샷 — 보드에서 수정 후 다시 저장하면 갱신됩니다
+                </p>
+
+                <div className={styles.mpbSummaryGrid}>
+                    {active.map((it, i) => {
+                        const pm = priorityMeta(it.priority);
+                        return (
+                            <div key={it.id} className={styles.mpbSummaryRow} style={{ borderLeftColor: pm.color }}>
+                                <span className={styles.mpbSummaryNum} style={{ background: `${accent}22`, color: accent }}>{i + 1}</span>
+                                <div className={styles.mpbSummaryMain}>
+                                    <div className={styles.mpbSummaryTitle}>
+                                        {it.title}
+                                        <span className={styles.mpbBadge} style={{ background: `${pm.color}22`, color: pm.color, borderColor: `${pm.color}66` }}>{pm.label}</span>
+                                        {it.channel && <span className={styles.mpbTag}>{it.channel}</span>}
+                                    </div>
+                                    {it.desc && <div className={styles.mpbSummaryDesc}>{it.desc}</div>}
+                                </div>
+                                <div className={styles.mpbSummaryMeta}>
+                                    {it.assignee && <span>👤 {it.assignee}</span>}
+                                    <span style={{ color: accent, fontWeight: 700 }}>⏰ {it.deadline || '미정'}</span>
+                                </div>
+                            </div>
+                        );
+                    })}
+                    {active.length === 0 && <div className={styles.mpbEmpty}>진행중 실행안이 없습니다.</div>}
+                </div>
+
+                {hold.length > 0 && (
+                    <>
+                        <div className={styles.mpbSectionLabel}>⏸ 보류 ({hold.length})</div>
+                        <div className={styles.mpbSummaryHoldList}>
+                            {hold.map(it => (
+                                <span key={it.id} className={styles.mpbHoldChip}>{it.title}{it.deadline ? ` · ${it.deadline}` : ''}</span>
+                            ))}
+                        </div>
+                    </>
+                )}
+            </div>
+        );
+    };
+
+    // 특정 회의(임팩트 발표용)는 Paperlogy 테마를 입혀 글씨를 크게·울림 있게
+    const PAPERLOGY_MEETINGS = ['2026-06-20', '2026-06-20-marketing'];
+    const isPaperlogy = PAPERLOGY_MEETINGS.includes(meeting.id);
+
     return (
-        <div className={styles.deckContainer}>
+        <div className={`${styles.deckContainer} ${isPaperlogy ? styles.paperlogyTheme : ''}`}>
             <div className={styles.controls}>
                 <Link href="/" className={styles.backButton}>
                     <ArrowLeft size={20} /> 목록
@@ -1802,9 +1967,13 @@ export default function SlideDeck({ meeting }: SlideDeckProps) {
 
             <div className={styles.slideViewport}>
                 <div className={styles.slide} key={currentSlide}>
-                    {hasNewStructure
-                        ? renderNewSlide(meeting.slides![currentSlide], currentSlide)
-                        : renderOldSlide(currentSlide)
+                    {currentSlide >= baseSlideCount
+                        ? (summaryBoards[currentSlide - baseSlideCount]
+                            ? renderBoardSummary(summaryBoards[currentSlide - baseSlideCount], currentSlide)
+                            : null)
+                        : hasNewStructure
+                            ? renderNewSlide(meeting.slides![currentSlide], currentSlide)
+                            : renderOldSlide(currentSlide)
                     }
                 </div>
             </div>

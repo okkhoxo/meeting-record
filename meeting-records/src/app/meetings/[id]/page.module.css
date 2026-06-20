@@ -747,11 +747,9 @@
     font-size: 1.4rem;
     color: #bbb;
     line-height: 1.7;
-    padding: 0.8rem 0;
+    padding: 0.8rem 0 0.8rem 1.8rem;
     border-bottom: 1px solid #222;
-    display: flex;
-    align-items: flex-start;
-    gap: 0.8rem;
+    position: relative;
 }
 
 .sectionList li:last-child {
@@ -762,7 +760,9 @@
     content: '→';
     color: var(--accent-color, #3B82F6);
     font-weight: 700;
-    flex-shrink: 0;
+    position: absolute;
+    left: 0;
+    top: 0.8rem;
 }
 
 /* Responsive for new structure */
@@ -791,4 +791,559 @@
     .sectionList li {
         font-size: 1.2rem;
     }
+}
+
+/* =========================================================
+   Paperlogy 임팩트 테마 (특정 회의 전용 — smoat IR 스타일)
+   meeting.id 기준으로 deckContainer 에 .paperlogyTheme 부여
+   ========================================================= */
+.paperlogyTheme {
+    font-family: 'Paperlogy', var(--font-sans);
+    letter-spacing: -0.02em;
+}
+
+/* 큼직큼직한 타이포 — 울림 있는 발표용 */
+.paperlogyTheme .titleSlideMain {
+    font-size: 5.5rem;
+    font-weight: 900;
+    background: linear-gradient(135deg, #fff 0%, #aaa 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.paperlogyTheme .titleSlideSubtitle {
+    font-size: 1.9rem;
+    font-weight: 500;
+    color: #999;
+    letter-spacing: 0.01em;
+}
+
+.paperlogyTheme .newSlideTitle {
+    font-size: 3.6rem;
+    font-weight: 900;
+    line-height: 1.15;
+}
+
+.paperlogyTheme .sectionTitle {
+    font-size: 1.9rem;
+    font-weight: 800;
+}
+
+.paperlogyTheme .sectionList li {
+    font-size: 1.6rem;
+    font-weight: 500;
+    line-height: 1.65;
+}
+
+.paperlogyTheme .slideNumber {
+    font-size: 3.4rem;
+    font-weight: 900;
+}
+
+@media (max-width: 1200px) {
+    .paperlogyTheme .titleSlideMain {
+        font-size: 3.4rem;
+    }
+
+    .paperlogyTheme .newSlideTitle {
+        font-size: 2.6rem;
+    }
+
+    .paperlogyTheme .sectionList li {
+        font-size: 1.3rem;
+    }
+}
+
+/* ============================================================
+   🎛️ 마케팅 우선순위 보드 (인터랙티브)
+   ============================================================ */
+.mpbLiveBadge {
+    font-size: 0.85rem;
+    font-weight: 700;
+    padding: 0.35rem 0.8rem;
+    border-radius: 999px;
+    border: 1px solid;
+    white-space: nowrap;
+    letter-spacing: 0.01em;
+}
+
+.mpbToolbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.2rem;
+    padding-bottom: 1rem;
+    border-bottom: 1px solid #1f1f1f;
+}
+
+.mpbToolbarLeft,
+.mpbToolbarRight {
+    display: flex;
+    align-items: center;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+}
+
+.mpbBtn,
+.mpbBtnSave,
+.mpbBtnGhost,
+.mpbBtnConfirm {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.5rem 0.95rem;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: filter 0.15s ease, background 0.15s ease, transform 0.05s ease;
+    line-height: 1;
+}
+
+.mpbBtn {
+    background: #161616;
+    border: 1px solid #333;
+    color: #ddd;
+}
+
+.mpbBtn:hover {
+    background: #1e1e1e;
+}
+
+.mpbBtnGhost {
+    background: transparent;
+    border: 1px solid #2a2a2a;
+    color: #888;
+    font-weight: 600;
+}
+
+.mpbBtnGhost:hover {
+    color: #ccc;
+    border-color: #444;
+}
+
+.mpbBtnSave,
+.mpbBtnConfirm {
+    border: none;
+    color: #04150f;
+}
+
+.mpbBtnSave:hover,
+.mpbBtnConfirm:hover {
+    filter: brightness(1.1);
+}
+
+.mpbBtnSave:active,
+.mpbBtnConfirm:active {
+    transform: translateY(1px);
+}
+
+.mpbDirty {
+    font-size: 0.85rem;
+    color: #F59E0B;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border: 1px solid rgba(245, 158, 11, 0.4);
+    border-radius: 6px;
+    background: rgba(245, 158, 11, 0.08);
+}
+
+.mpbList {
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+}
+
+.mpbCard {
+    display: flex;
+    align-items: stretch;
+    gap: 1rem;
+    background: #121212;
+    border: 1px solid #232323;
+    border-left: 4px solid;
+    border-radius: 12px;
+    padding: 0.9rem 1.1rem;
+}
+
+.mpbCardHold {
+    opacity: 0.6;
+    background: #0e0e0e;
+}
+
+.mpbCardLeft {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-shrink: 0;
+}
+
+.mpbOrdinal {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 8px;
+    font-weight: 900;
+    font-size: 1.1rem;
+}
+
+.mpbOrdinalHold {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2rem;
+    height: 2rem;
+    color: #555;
+}
+
+.mpbReorder {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+}
+
+.mpbReorderBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 1.6rem;
+    height: 1.1rem;
+    background: #1c1c1c;
+    border: 1px solid #2c2c2c;
+    border-radius: 5px;
+    color: #999;
+    cursor: pointer;
+    padding: 0;
+}
+
+.mpbReorderBtn:hover:not(:disabled) {
+    background: #262626;
+    color: #fff;
+}
+
+.mpbReorderBtn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.mpbCardBody {
+    flex: 1;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0.3rem;
+    justify-content: center;
+}
+
+.mpbCardTitleRow {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    flex-wrap: wrap;
+}
+
+.mpbCardTitle {
+    font-size: 1.15rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+.mpbBadge {
+    font-size: 0.75rem;
+    font-weight: 800;
+    padding: 0.15rem 0.5rem;
+    border-radius: 6px;
+    border: 1px solid;
+    white-space: nowrap;
+}
+
+.mpbTag {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #9aa;
+    background: #1b1b1b;
+    border: 1px solid #2b2b2b;
+    padding: 0.15rem 0.5rem;
+    border-radius: 6px;
+    white-space: nowrap;
+}
+
+.mpbCardDesc {
+    font-size: 0.95rem;
+    color: #9a9a9a;
+    line-height: 1.5;
+}
+
+.mpbMetaRow {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+}
+
+.mpbMeta {
+    font-size: 0.85rem;
+    color: #888;
+    font-weight: 600;
+}
+
+.mpbCardActions {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+    flex-shrink: 0;
+}
+
+.mpbIconBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.1rem;
+    height: 2.1rem;
+    background: #1a1a1a;
+    border: 1px solid #2c2c2c;
+    border-radius: 8px;
+    color: #aaa;
+    cursor: pointer;
+    padding: 0;
+}
+
+.mpbIconBtn:hover {
+    background: #242424;
+    color: #fff;
+}
+
+.mpbIconDanger:hover {
+    background: rgba(239, 68, 68, 0.15);
+    color: #EF4444;
+    border-color: rgba(239, 68, 68, 0.5);
+}
+
+/* 편집 폼 */
+.mpbEditForm {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    background: #0d0d0d;
+    border: 1px solid;
+    border-radius: 10px;
+    padding: 0.9rem;
+}
+
+.mpbInput,
+.mpbInputSm,
+.mpbSelect {
+    background: #161616;
+    border: 1px solid #2e2e2e;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.95rem;
+    padding: 0.55rem 0.7rem;
+    font-family: inherit;
+}
+
+.mpbInput {
+    width: 100%;
+}
+
+.mpbInput:focus,
+.mpbInputSm:focus,
+.mpbSelect:focus {
+    outline: none;
+    border-color: #555;
+}
+
+.mpbEditRow {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+}
+
+.mpbInputSm {
+    flex: 1;
+    min-width: 120px;
+}
+
+.mpbSelect {
+    flex-shrink: 0;
+    cursor: pointer;
+}
+
+.mpbEditActions {
+    display: flex;
+    gap: 0.5rem;
+    margin-top: 0.2rem;
+}
+
+/* 📅 마감일 설정 영역 */
+.mpbDeadlineBox {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    background: #0b0b0b;
+    border: 1px dashed #333;
+    border-radius: 10px;
+    padding: 0.6rem 0.75rem;
+}
+
+.mpbDeadlineLabel {
+    font-size: 0.9rem;
+    font-weight: 800;
+    color: #ccc;
+    white-space: nowrap;
+}
+
+.mpbDateInput {
+    background: #161616;
+    border: 1px solid #2e2e2e;
+    border-radius: 8px;
+    color: #fff;
+    font-size: 0.95rem;
+    padding: 0.5rem 0.6rem;
+    font-family: inherit;
+    color-scheme: dark; /* 네이티브 달력 위젯을 다크로 */
+    cursor: pointer;
+}
+
+.mpbDateInput:focus {
+    outline: none;
+    border-color: #555;
+}
+
+.mpbChips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.35rem;
+}
+
+.mpbChip {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #bbb;
+    background: #1a1a1a;
+    border: 1px solid #333;
+    border-radius: 999px;
+    padding: 0.32rem 0.7rem;
+    cursor: pointer;
+    transition: background 0.15s ease, color 0.15s ease;
+}
+
+.mpbChip:hover {
+    background: #262626;
+    color: #fff;
+}
+
+.mpbSectionLabel {
+    font-size: 0.95rem;
+    font-weight: 800;
+    color: #888;
+    margin: 1.3rem 0 0.6rem;
+    letter-spacing: 0.02em;
+}
+
+.mpbEmpty {
+    text-align: center;
+    color: #666;
+    font-size: 1rem;
+    padding: 2rem;
+    border: 1px dashed #2a2a2a;
+    border-radius: 12px;
+}
+
+.mpbToast {
+    position: sticky;
+    bottom: 0;
+    margin-top: 1.2rem;
+    align-self: center;
+    background: #101010;
+    border: 1px solid;
+    border-radius: 999px;
+    color: #fff;
+    font-size: 0.95rem;
+    font-weight: 700;
+    padding: 0.6rem 1.2rem;
+    box-shadow: 0 8px 30px rgba(0, 0, 0, 0.6);
+}
+
+/* ✅ 한눈에 보기 요약 페이지 */
+.mpbSummaryGrid {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+}
+
+.mpbSummaryRow {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    background: #111;
+    border: 1px solid #222;
+    border-left: 4px solid;
+    border-radius: 12px;
+    padding: 0.8rem 1.1rem;
+}
+
+.mpbSummaryNum {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.2rem;
+    height: 2.2rem;
+    border-radius: 8px;
+    font-weight: 900;
+    font-size: 1.2rem;
+    flex-shrink: 0;
+}
+
+.mpbSummaryMain {
+    flex: 1;
+    min-width: 0;
+}
+
+.mpbSummaryTitle {
+    display: flex;
+    align-items: center;
+    gap: 0.55rem;
+    flex-wrap: wrap;
+    font-size: 1.2rem;
+    font-weight: 800;
+    color: #fff;
+}
+
+.mpbSummaryDesc {
+    font-size: 0.92rem;
+    color: #999;
+    margin-top: 0.25rem;
+    line-height: 1.5;
+}
+
+.mpbSummaryMeta {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 0.2rem;
+    flex-shrink: 0;
+    font-size: 0.9rem;
+    color: #999;
+    white-space: nowrap;
+}
+
+.mpbSummaryHoldList {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.mpbHoldChip {
+    font-size: 0.9rem;
+    color: #888;
+    background: #141414;
+    border: 1px solid #2a2a2a;
+    border-radius: 999px;
+    padding: 0.35rem 0.85rem;
 }
