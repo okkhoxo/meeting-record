@@ -110,6 +110,8 @@ export default function MarketingPriorityBoard({ boardId, accent, title, subtitl
     const [hydrated, setHydrated] = useState(false);
     const [dirty, setDirty] = useState(false);
     const [toast, setToast] = useState<string | null>(null);
+    const [draggingId, setDraggingId] = useState<string | null>(null);
+    const [dragOverId, setDragOverId] = useState<string | null>(null);
     const toastTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
     // 실제 사용자 변경이 있었을 때만 draft를 기록 (단순 조회만으로 시드가 박제되는 것 방지)
     const touchedRef = useRef(false);
@@ -174,6 +176,26 @@ export default function MarketingPriorityBoard({ boardId, accent, title, subtitl
             const next = [...prev];
             [next[idx], next[j]] = [next[j], next[idx]];
             return next;
+        });
+        markDirty();
+    }
+
+    // ── 드래그앤드롭 — 진행중 항목 순서 변경 (유튜브 뮤직 방식) ──
+    function dropOn(targetId: string) {
+        const sourceId = draggingId;
+        setDraggingId(null);
+        setDragOverId(null);
+        if (!sourceId || sourceId === targetId) return;
+        setItems(prev => {
+            const active = prev.filter(i => i.status === 'active');
+            const hold = prev.filter(i => i.status === 'hold');
+            const from = active.findIndex(i => i.id === sourceId);
+            const to = active.findIndex(i => i.id === targetId);
+            if (from < 0 || to < 0) return prev;
+            const next = [...active];
+            const [moved] = next.splice(from, 1);
+            next.splice(to, 0, moved);
+            return [...next, ...hold];
         });
         markDirty();
     }
@@ -368,13 +390,26 @@ export default function MarketingPriorityBoard({ boardId, accent, title, subtitl
         }
         const pm = priorityMeta(it.priority);
         const isHold = it.status === 'hold';
+        const draggable = !isHold;
+        const cardClass = `${styles.mpbCard} ${isHold ? styles.mpbCardHold : ''} ${draggable ? styles.mpbCardDraggable : ''} ${draggingId === it.id ? styles.mpbCardDragging : ''} ${dragOverId === it.id && draggingId !== it.id ? styles.mpbCardDragOver : ''}`;
         return (
             <div
                 key={it.id}
-                className={`${styles.mpbCard} ${isHold ? styles.mpbCardHold : ''}`}
+                className={cardClass}
                 style={{ borderLeftColor: isHold ? '#555' : pm.color }}
+                draggable={draggable}
+                onDragStart={draggable ? (e) => { setDraggingId(it.id); e.dataTransfer.effectAllowed = 'move'; try { e.dataTransfer.setData('text/plain', it.id); } catch { /* ignore */ } } : undefined}
+                onDragEnd={draggable ? () => { setDraggingId(null); setDragOverId(null); } : undefined}
+                onDragOver={draggable ? (e) => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; if (dragOverId !== it.id) setDragOverId(it.id); } : undefined}
+                onDragLeave={draggable ? () => { if (dragOverId === it.id) setDragOverId(null); } : undefined}
+                onDrop={draggable ? (e) => { e.preventDefault(); dropOn(it.id); } : undefined}
             >
                 <div className={styles.mpbCardLeft}>
+                    {!isHold && (
+                        <span className={styles.mpbDragHandle} title="드래그해서 순서 변경">
+                            <GripVertical size={16} />
+                        </span>
+                    )}
                     {ordinal !== null ? (
                         <span className={styles.mpbOrdinal} style={{ background: `${accent}22`, color: accent }}>{ordinal}</span>
                     ) : (
