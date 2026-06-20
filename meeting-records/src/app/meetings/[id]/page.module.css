@@ -1074,6 +1074,21 @@
     flex-direction: column;
     gap: 0.3rem;
     justify-content: center;
+    cursor: pointer;
+    border-radius: 8px;
+    padding: 0.2rem 0.4rem;
+    margin: -0.2rem -0.4rem;
+    transition: background 0.12s ease;
+}
+
+.mpbCardBody:hover {
+    background: rgba(255, 255, 255, 0.04);
+}
+
+.mpbCardBody:hover .mpbCardTitle {
+    text-decoration: underline;
+    text-decoration-color: rgba(255, 255, 255, 0.25);
+    text-underline-offset: 3px;
 }
 
 .mpbCardTitleRow {

@@ -423,7 +423,7 @@ export default function MarketingPriorityBoard({ boardId, accent, title, subtitl
                     )}
                 </div>
 
-                <div className={styles.mpbCardBody}>
+                <div className={styles.mpbCardBody} onClick={() => startEdit(it)} title="클릭하면 편집">
                     <div className={styles.mpbCardTitleRow}>
                         <span className={styles.mpbCardTitle}>{it.title || '(이름 없음)'}</span>
                         <span className={styles.mpbBadge} style={{ background: `${pm.color}22`, color: pm.color, borderColor: `${pm.color}66` }}>{pm.label}</span>
