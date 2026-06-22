@@ -196,12 +196,14 @@ export const meetings: MeetingRecord[] = [
                 boardId: 'accent-id',
                 boardAccent: '#EC4899',
                 priorityItems: [
-                    { id: 'aid-1', title: "미끼상품 → 향수 추가구매 (정기상품화)", desc: "6,000원 디퓨저·키캡·클리커로 유입 → 향수 추가구매 유도. 정기 상품으로 구성", channel: "상품·가격", assignee: "유선화·유재영", deadline: "이번 주", priority: 'critical', status: 'active' },
-                    { id: 'aid-2', title: "해외 타겟 마케팅", desc: "글로벌 OTA(Klook·KKday·Trazy) 입점 + 영·중·일 다국어 + 해외 인플루언서 매일 발송", channel: "해외", assignee: "유재영·유선화", deadline: "상시", priority: 'high', status: 'active' },
-                    { id: 'aid-3', title: "커플 타겟 마케팅", desc: "생카 의존 탈피 — 커플·일반 고객 비중 30%↑", channel: "타겟", assignee: "유선화", deadline: "2026.06.30", priority: 'high', status: 'active' },
-                    { id: 'aid-4', title: "자체 릴스 컨텐츠 제작", desc: "AI 조향사·체험형 숏폼 — 찍을 이유가 명확한 1일/주기 릴스", channel: "콘텐츠·바이럴", assignee: "유선화", deadline: "상시", priority: 'high', status: 'active' },
-                    { id: 'aid-5', title: "뿌덕 4탄 — 사주 컨텐츠", desc: "최애 향 + 사주 결합 굿즈/체험 콘텐츠로 4탄 진행", channel: "콘텐츠·바이럴", assignee: "유선화", deadline: "2026.07.10", priority: 'medium', status: 'active' },
-                    { id: 'aid-6', title: "악센트 와우 — 변경안", desc: "추후 변경 관련 회의에서 방향 확정 후 진행", channel: "악센트 와우", assignee: "전원", deadline: "추후 회의", priority: 'medium', status: 'hold' }
+                    { id: 'aid-1', title: "커플 타겟 마케팅", desc: "생카 의존 탈피 — 커플·일반 고객 비중 30%↑", channel: "타겟", assignee: "유선화", deadline: "2026.07.31", priority: 'high', status: 'active' },
+                    { id: 'aid-2', title: "미끼상품 → 향수 추가구매 (정기상품화)", desc: "6,000원 디퓨저·키캡·클리커로 유입 → 향수 추가구매 유도. 정기 상품으로 구성", channel: "상품·가격", assignee: "유선화·이동주", deadline: "2026.06.30", priority: 'critical', status: 'active' },
+                    { id: 'aid-3', title: "Klook Fever Tripadvisor", desc: "", channel: "", assignee: "김주연", deadline: "2026.07.15", priority: 'medium', status: 'active' },
+                    { id: 'aid-4', title: "해외 인플루언서 DM 발송", desc: "", channel: "", assignee: "유재영", deadline: "2026.07.31", priority: 'medium', status: 'active' },
+                    { id: 'aid-5', title: "아이디 한영 배너", desc: "", channel: "", assignee: "이동주·유선화", deadline: "2026.06.30", priority: 'medium', status: 'active' },
+                    { id: 'aid-6', title: "자체 릴스 컨텐츠 제작", desc: "AI 조향사·체험형 숏폼 — 찍을 이유가 명확한 1일/주기 릴스", channel: "콘텐츠·바이럴", assignee: "유선화·유재영", deadline: "상시", priority: 'high', status: 'active' },
+                    { id: 'aid-7', title: "뿌덕 4탄 — 사주 컨텐츠", desc: "최애 향 + 사주 결합 굿즈/체험 콘텐츠로 4탄 진행", channel: "콘텐츠·바이럴", assignee: "김주연·이동주", deadline: "2026.07.15", priority: 'medium', status: 'active' },
+                    { id: 'aid-h1', title: "악센트 와우 — 변경안", desc: "추후 변경 관련 회의에서 방향 확정 후 진행", channel: "악센트 와우", assignee: "전원", deadline: "추후 회의", priority: 'medium', status: 'hold' }
                 ]
             },
             // 4. 악센트 와우 — 추후 변경 (보류)
@@ -264,22 +266,24 @@ export const meetings: MeetingRecord[] = [
                 boardId: 'smoat',
                 boardAccent: '#10B981',
                 priorityItems: [
-                    { id: 'smt-1', title: "메타 광고 — 증명설계형 A/B", desc: "영상 1개당 가설 1개(무엇을 증명?) 부착. 이긴 가설만 예산↑, 진 가설은 끔", channel: "유입", assignee: "유선화·유재영", deadline: "2026.06.30", priority: 'critical', status: 'active' },
-                    { id: 'smt-2', title: "오픈채팅 황금고블린 정례화", desc: "선착순 N명 지문 10개 → 웹툰 제공으로 가두리. 6/18~19 실증 완료", channel: "가두리", assignee: "김주연", deadline: "상시", priority: 'critical', status: 'active' },
-                    { id: 'smt-3', title: "VS AI 블라인드 테스트", desc: "'휘문고 기출 vs AI 기출, 맞출 수 있나' — 통념 파괴 릴스", channel: "유입", assignee: "유선화", deadline: "상시", priority: 'high', status: 'active' },
-                    { id: 'smt-4', title: "지문 웹툰 30초 클립", desc: "'이건 처음 본다' 후킹 + 오픈채팅 미끼로 이중 사용", channel: "유입·가두리", assignee: "유선화·김주연", deadline: "상시", priority: 'high', status: 'active' },
-                    { id: 'smt-5', title: "1일 1콘텐츠 (릴스·카드뉴스)", desc: "개발 업데이트마다 1건, 꾸준함으로 알고리즘·신뢰 축적", channel: "유입", assignee: "유선화", deadline: "상시", priority: 'high', status: 'active' },
-                    { id: 'smt-6', title: "원장 발영업 + 제안서", desc: "핏 케이스 원장 1:1 컨택, 학군지 독점 어필 → 원장 10개 락인", channel: "영업", assignee: "유재영", deadline: "2026.07.01", priority: 'high', status: 'active' },
-                    { id: 'smt-7', title: "세미나 + 피드백 크레딧 프로모션", desc: "1:1 온보딩 세미나(무료 30명) → 2개월 피드백 5회 시 크레딧 락인·바이럴", channel: "락인·바이럴", assignee: "유선화", deadline: "2026.07.01", priority: 'medium', status: 'active' },
-                    { id: 'smt-8', title: "깜짝 크레딧 선착순 이벤트", desc: "오픈채팅 활성화용 무료 크레딧 리워드", channel: "리텐션", assignee: "김주연", deadline: "상시", priority: 'medium', status: 'active' },
-                    { id: 'smt-9', title: "발영업 다큐 유튜브", desc: "영업 현장을 날것으로 기록 → 원장·강사 신뢰 적립", channel: "콘텐츠·신뢰", assignee: "유재영", deadline: "2026.07.15", priority: 'medium', status: 'active' },
-                    { id: 'smt-10', title: "카페 침투", desc: "강사 카페·단톡 주기 활동, '7월까지 무료' 후킹 + 뱃지 획득", channel: "오프라인", assignee: "유재영·김주연", deadline: "상시", priority: 'medium', status: 'active' },
-                    { id: 'smt-11', title: "정보성 문자", desc: "서비스·기능 안내 (수신동의 전 광고문자는 불법 / 정보성은 합법, 어드민 수집 반영)", channel: "오프라인", assignee: "김주연", deadline: "상시", priority: 'medium', status: 'active' },
-                    { id: 'smt-12', title: "학원 방문 + 원장 면담", desc: "전단지 배포 + 원장 면담", channel: "오프라인", assignee: "유재영", deadline: "상시", priority: 'medium', status: 'active' },
-                    { id: 'smt-13', title: "유튜브 — 'AI문제 vs 실제시험, 구별 가능?'", desc: "선생님·학생이 구별할 수 있을까 — 통념 파괴 실험 콘텐츠", channel: "콘텐츠", assignee: "유선화", deadline: "2026.07.20", priority: 'low', status: 'active' },
-                    { id: 'smt-14', title: "학교 앞 전단지", desc: "학생→학원 선생님 전달 시 사탕 리워드", channel: "오프라인", assignee: "전원", deadline: "방학", priority: 'low', status: 'active' },
-                    { id: 'smt-15', title: "기능설명 위주 블로그·인스타 발행", desc: "ver1.0 고정 전엔 곧 어긋남 → 7/1 이후로 연기 (획기적 후킹이 먼저)", channel: "콘텐츠", assignee: "유선화", deadline: "7/1 이후", priority: 'low', status: 'hold' },
-                    { id: 'smt-16', title: "'학교 맞춤 시험지 제작' 기획", desc: "구조적 모순(결국 외부 AI로 제작) → 동형 시험지 고도화 전까지 보류", channel: "기획", assignee: "—", deadline: "재검토", priority: 'low', status: 'hold' }
+                    { id: 'smt-1', title: "오픈채팅 선착특전 웹툰 정례화 (워터마크), 메타광고? 고민중 (웹툰 생성에 단어 수정도 가능하다고? 씨바꺼), 깜짝 크레딧 증정 이벤트 in 오픈채팅방", desc: "선착순 N명 지문 10개 → 웹툰 제공으로 가두리", channel: "가두리", assignee: "유재영·유선화", deadline: "상시", priority: 'critical', status: 'active' },
+                    { id: 'smt-2', title: "메타 광고 — 증명설계형 A/B/C/D/E (적자생존형) 7월 1일 2개 목표 4일에 하나씩 // 하나는 오픈채팅방 링크 (트리만들기) 광고는 웹툰으로 만들기 하나, 세미나(1:1) 광고 하나", desc: "다양한 가설과 다양한 매체 후킹이 된다? 등등.. 어필을 무엇으로 할지 영상미를 다양하게 시도를 할지 등등...", channel: "유입", assignee: "유선화·유재영", deadline: "2026.07.01", priority: 'critical', status: 'active' },
+                    { id: 'smt-3', title: "3일 1콘텐츠 (릴스·카드뉴스)", desc: "개발 업데이트마다 1건, 꾸준함으로 알고리즘·신뢰 축적 / 틀잡기 유선화, 주기적인 콘텐츠 업로드 유재영", channel: "유입", assignee: "유재영·유선화", deadline: "2026.06.26", priority: 'high', status: 'active' },
+                    { id: 'smt-4', title: "링크 트리 - 선화 제작 악센트 아이디도 바꾸기 9900원 변경 - 스모트 링크, 오픈채팅방 링크, 1:1 세미나 신청 링크", desc: "", channel: "", assignee: "유선화", deadline: "2026.06.22", priority: 'medium', status: 'active' },
+                    { id: 'smt-5', title: "세미나 + 피드백 크레딧 프로모션 릴스? 광고로는 아니고 그냥 just 링크 트리, 사이트에 세미나 접수 폼 제작 필요(이동주)", desc: "1:1 온보딩 세미나(무료 30명) → 2개월 피드백 5회 시 크레딧 락인·바이럴", channel: "락인·바이럴", assignee: "유선화·이동주", deadline: "2026.07.01", priority: 'medium', status: 'active' },
+                    { id: 'smt-6', title: "ERP 제작 네안데르, 악센트, 스모트 ERP", desc: "", channel: "", assignee: "유선화", deadline: "2026.07.15", priority: 'medium', status: 'active' },
+                    { id: 'smt-7', title: "세미나 (단체) 진행 디자인, 발주 등등... pg 등... 대관, 마케팅, 리워드, 기획, ai 문제 생성 세미나.", desc: "", channel: "", assignee: "이동주·유선화·유재영", deadline: "2026.07.18", priority: 'medium', status: 'active' },
+                    { id: 'smt-8', title: "당근 광고", desc: "", channel: "", assignee: "유선화", deadline: "2026.07.10", priority: 'medium', status: 'active' },
+                    { id: 'smt-9', title: "카페 침투", desc: "강사 카페·단톡 주기 활동, '7월까지 무료' 후킹 + 뱃지 획득", channel: "오프라인", assignee: "유재영", deadline: "상시", priority: 'medium', status: 'active' },
+                    { id: 'smt-10', title: "정보성 문자 및 광고 문자 ( 반값 문자 결제 )", desc: "서비스·기능 안내 (수신동의 전 광고문자는 불법 / 정보성은 합법, 어드민 수집 반영)", channel: "오프라인", assignee: "유재영", deadline: "상시", priority: 'medium', status: 'active' },
+                    { id: 'smt-11', title: "학원 방문 + 원장 면담", desc: "전단지 배포 + 원장 면담", channel: "오프라인", assignee: "유재영", deadline: "상시", priority: 'medium', status: 'active' },
+                    { id: 'smt-h1', title: "블로그", desc: "", channel: "", assignee: "유선화", deadline: "", priority: 'medium', status: 'hold' },
+                    { id: 'smt-h2', title: "VS AI 블라인드 테스트", desc: "'휘문고 기출 vs AI 기출, 맞출 수 있나' — 통념 파괴 릴스", channel: "유입", assignee: "유선화", deadline: "상시", priority: 'high', status: 'hold' },
+                    { id: 'smt-h3', title: "원장 발영업 + 제안서", desc: "핏 케이스 원장 1:1 컨택, 학군지 독점 어필 → 원장 10개 락인", channel: "영업", assignee: "유재영", deadline: "2026.07.01", priority: 'high', status: 'hold' },
+                    { id: 'smt-h4', title: "발영업 다큐 유튜브", desc: "영업 현장을 날것으로 기록 → 원장·강사 신뢰 적립", channel: "콘텐츠·신뢰", assignee: "유재영", deadline: "2026.07.15", priority: 'medium', status: 'hold' },
+                    { id: 'smt-h5', title: "유튜브 — 'AI문제 vs 실제시험, 구별 가능?'", desc: "선생님·학생이 구별할 수 있을까 — 통념 파괴 실험 콘텐츠", channel: "콘텐츠", assignee: "유선화", deadline: "2026.07.20", priority: 'low', status: 'hold' },
+                    { id: 'smt-h6', title: "기능설명 위주 블로그·인스타 발행", desc: "ver1.0 고정 전엔 곧 어긋남 → 7/1 이후로 연기 (획기적 후킹이 먼저)", channel: "콘텐츠", assignee: "유선화", deadline: "7/1 이후", priority: 'low', status: 'hold' },
+                    { id: 'smt-h7', title: "'학교 맞춤 시험지 제작' 기획", desc: "구조적 모순(결국 외부 AI로 제작) → 동형 시험지 고도화 전까지 보류", channel: "기획", assignee: "—", deadline: "재검토", priority: 'low', status: 'hold' }
                 ]
             },
             // 7. 핵심 마감일
